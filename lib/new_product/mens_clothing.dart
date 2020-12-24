@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,29 +24,23 @@ class _MensClothingState extends State<MensClothing> {
   var _conditions = ["Used", "Brand New"];
   String _condition = "Used";
 
- final product_nameController = TextEditingController();
- final product_priceController = TextEditingController();
- final product_usedFor = TextEditingController();
- final product_details = TextEditingController();
+  final product_nameController = TextEditingController();
+  final product_priceController = TextEditingController();
+  final product_usedFor = TextEditingController();
+  final product_details = TextEditingController();
 
   final _globalKeyScaffold = GlobalKey<ScaffoldState>();
 
   var productName = "";
   var usedfor = "";
   var productPrice = "";
-  var productdetails ="";
+  var productdetails = "";
 
   Future<File> file;
   String status = '';
   String base64Image;
   File tmpFile;
   String error = 'Error';
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +72,7 @@ class _MensClothingState extends State<MensClothing> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller:product_nameController ,
+                controller: product_nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Product Name',
@@ -190,11 +185,13 @@ class _MensClothingState extends State<MensClothing> {
                   children: <Widget>[
                     FutureBuilder<File>(
                       future: file,
-                      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+                      builder:
+                          (BuildContext context, AsyncSnapshot<File> snapshot) {
                         if (snapshot.connectionState == ConnectionState.done &&
                             null != snapshot.data) {
                           tmpFile = snapshot.data;
-                          base64Image = base64Encode(snapshot.data.readAsBytesSync());
+                          base64Image =
+                              base64Encode(snapshot.data.readAsBytesSync());
                           return Container(
                             margin: EdgeInsets.all(15),
                             child: Material(
@@ -219,14 +216,16 @@ class _MensClothingState extends State<MensClothing> {
                                 alignment: Alignment.topRight,
                                 children: [
                                   Container(
-                                    child: Image.asset('assets/placeholder-image.png'),
+                                    child: Image.asset(
+                                        'assets/placeholder-image.png'),
                                   ),
                                   InkWell(
                                     onTap: () {
                                       chooseImage();
                                     },
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: 10.0, right: 10.0),
+                                      padding: EdgeInsets.only(
+                                          top: 10.0, right: 10.0),
                                       child: Icon(
                                         Icons.edit,
                                         size: 30.0,
@@ -264,8 +263,10 @@ class _MensClothingState extends State<MensClothing> {
             ),
             FlatButton(
                 onPressed: () {
-                  if(product_nameController!="" && product_usedFor !="" &&product_priceController !="" &&product_details!= ""){
-
+                  if (product_nameController != "" &&
+                      product_usedFor != "" &&
+                      product_priceController != "" &&
+                      product_details != "") {
                     productName = product_nameController.text;
                     usedfor = product_usedFor.text;
                     productPrice = product_priceController.text;
@@ -273,13 +274,11 @@ class _MensClothingState extends State<MensClothing> {
                     _condition = _condition;
                     _negotiable = _negotiable;
                     uploadImg();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  }
-                  else{
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => HomePage()));
+                  } else {
                     _showSnackBar("Fill all fields!!");
                   }
-
                 },
                 child: Text("Next"))
           ],
@@ -287,9 +286,11 @@ class _MensClothingState extends State<MensClothing> {
       ),
     );
   }
+
   chooseImage() {
     setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery,  imageQuality: 50);
+      file =
+          ImagePicker.pickImage(source: ImageSource.gallery, imageQuality: 50);
     });
     setStatus('');
   }
@@ -312,40 +313,48 @@ class _MensClothingState extends State<MensClothing> {
   }
 
   upload(String fileName) async {
-
     usedfor = product_usedFor.text;
     productPrice = product_priceController.text;
     productdetails = product_details.text;
     _condition = _condition;
     _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
-    var category = "Men's Clothing";
+    var category = "Mens Clothing";
 
-    print('$usedfor'+'$productdetails'+'$_condition'+'$fileName');
+    print('$usedfor' + '$productdetails' + '$_condition' + '$fileName');
 
-    var map = new Map<String, dynamic>();
-    map['image'] = base64Image.toString();
-    map['imageName'] = fileName;
-    map['productName'] = productName;
-    map['usedfor'] = usedfor;
-    map['productPrice'] = productPrice;
-    map['condition'] = _condition;
-    map['negotiable'] = _negotiable;
-    map['description'] = productdetails;
-    map['category']= category;
-    map['seller']= seller;
+    // var jsonData = json.encode(map);
+    // print(jsonData);
+
+    var map = {
+      'image': base64Image,
+      'imageName': fileName,
+      'name': productName,
+      'for' : usedfor,
+      'price' : productPrice,
+      'condition' : _condition,
+      'negotiable' : _negotiable,
+      'description' : productdetails,
+      'category': category,
+      'seller': seller,
+    };
+
+    // Response response;
+    // var dio = Dio();
+    // response = await dio.post(UPLOAD_URL,data:map);
+    // options: Options(contentType: ContentType.parse("application/x-www-form-urlencoded")))
 
     var response = await http.post('$UPLOAD_URL', body: map);
-    print(response);
-    if(response.body.toString().contains('image')){
+    print(response.body.toString());
+    if (response.body.toString().contains('added')) {
       print('Success');
-    }else{
+    } else {
       print('Failed');
     }
   }
+
   void _showSnackBar(String message) {
     final _snackBar = SnackBar(content: Text(message));
     _globalKeyScaffold.currentState.showSnackBar(_snackBar);
   }
-
 }

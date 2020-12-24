@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:thrift_nep/components/product_provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 
@@ -11,9 +12,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   Widget build(BuildContext context) {
     Provider.of<EmailProvider>(context).getEmail();
+    Provider.of<ProductProvider>(context, listen: false).fetchProduct();
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(

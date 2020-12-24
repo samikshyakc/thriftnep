@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/product_details.dart';
+import 'package:thrift_nep/components/product_provider.dart';
 import 'package:thrift_nep/components/shopping_cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: EmailProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ProductProvider(),
         )
       ],
       child: MaterialApp(

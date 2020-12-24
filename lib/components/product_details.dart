@@ -1,19 +1,34 @@
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/screens/homepage.dart';
 
 class ProductDetails extends StatefulWidget {
-  final product_detail_name;
-  final product_detail_new_price;
-  final product_detail_old_price;
-  final product_detail_picture;
+
+  final productName;
+  final productPrice;
+  final negotiable;
+  final condition;
+  final usedfor;
+  final category;
+  final productImages;
+  final details;
+  final seller;
+
 
   ProductDetails(
-      {this.product_detail_name,
-      this.product_detail_new_price,
-      this.product_detail_old_price,
-      this.product_detail_picture});
+      {
+        this.productName,
+        this.productPrice,
+        this.negotiable,
+        this.condition,
+        this.usedfor,
+        this.category,
+        this.productImages,
+        this.details,
+        this.seller
+      });
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
@@ -58,13 +73,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: GridTile(
                   child: Container(
                     color: Colors.white,
-                    child: Image.asset(widget.product_detail_picture),
+                   // child: Image.asset(widget.productImages),
+                    child:  Image(image: CachedNetworkImageProvider(widget.productImages),fit:BoxFit.fill,),
                   ),
                   footer: Container(
                     color: Colors.white70,
                     child: ListTile(
                       leading: Text(
-                        widget.product_detail_name,
+                        widget.productName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16.0),
                       ),
@@ -72,7 +88,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         children: [
                           Expanded(
                               child: Text(
-                            "\$${widget.product_detail_old_price}",
+                            "\$${widget.productPrice}",
                             style: TextStyle(
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
@@ -80,7 +96,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           )),
                           Expanded(
                               child: Text(
-                            "\$${widget.product_detail_new_price}",
+                            "\$${widget.productPrice}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, color: Colors.red),
                           )),
@@ -159,8 +175,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             ListTile(
               title: Text('Product Details'),
-              subtitle: Text(
-                  'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+             subtitle: Text(widget.details),
+             // subtitle: Text(
+                  // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
             ),
             Divider(),
             Row(
@@ -174,7 +191,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text(widget.product_detail_name),
+                  child: Text(widget.productName),
                 )
               ],
             ),
@@ -183,13 +200,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                   child: Text(
-                    "Product Brand",
+                    "Used For",
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text('Brand X'),
+                  child: Text(widget.usedfor),
                 )
               ],
             ),
@@ -204,7 +221,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: Text('Used'),
+                  child: Text(widget.condition),
                 )
               ],
             ),
@@ -217,10 +234,10 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ),
             // SIMILAR PRODUCT SECTION
-            Container(
-              height: 360.0,
-              child: Similar_products(),
-            )
+            // Container(
+            //   height: 360.0,
+            //   child: Similar_products(),
+            // )
           ],
         ),
       ),
@@ -228,102 +245,102 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 }
 
-class Similar_products extends StatefulWidget {
-  @override
-  _Similar_productsState createState() => _Similar_productsState();
-}
+// class Similar_products extends StatefulWidget {
+//   @override
+//   _Similar_productsState createState() => _Similar_productsState();
+// }
+//
+// class _Similar_productsState extends State<Similar_products> {
+//   @override
+//   var product_list = [
+//     {
+//       "name": "Blazer",
+//       "picture": "images/products/blazer1.jpeg",
+//       "old_price": 120,
+//       "price": 85,
+//     },
+//     {
+//       "name": "Dress",
+//       "picture": "images/products/dress1.jpeg",
+//       "old_price": 120,
+//       "price": 85,
+//     },
+//     {
+//       "name": "Black Dress",
+//       "picture": "images/products/dress2.jpeg",
+//       "old_price": 120,
+//       "price": 85,
+//     },
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.builder(
+//         itemCount: product_list.length,
+//         gridDelegate:
+//             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+//         itemBuilder: (BuildContext context, int index) {
+//           return Similar_product(
+//             prod_name: product_list[index]['name'],
+//             prod_picture: product_list[index]['picture'],
+//             prod_old_price: product_list[index]['old_price'],
+//             prod_price: product_list[index]['price'],
+//           );
+//         });
+//   }
+// }
 
-class _Similar_productsState extends State<Similar_products> {
-  @override
-  var product_list = [
-    {
-      "name": "Blazer",
-      "picture": "images/products/blazer1.jpeg",
-      "old_price": 120,
-      "price": 85,
-    },
-    {
-      "name": "Dress",
-      "picture": "images/products/dress1.jpeg",
-      "old_price": 120,
-      "price": 85,
-    },
-    {
-      "name": "Black Dress",
-      "picture": "images/products/dress2.jpeg",
-      "old_price": 120,
-      "price": 85,
-    },
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: product_list.length,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int index) {
-          return Similar_product(
-            prod_name: product_list[index]['name'],
-            prod_picture: product_list[index]['picture'],
-            prod_old_price: product_list[index]['old_price'],
-            prod_price: product_list[index]['price'],
-          );
-        });
-  }
-}
-
-class Similar_product extends StatelessWidget {
-  final prod_name;
-  final prod_picture;
-  final prod_old_price;
-  final prod_price;
-
-  Similar_product({
-    this.prod_name,
-    this.prod_picture,
-    this.prod_old_price,
-    this.prod_price,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Hero(
-          tag: Text('Hero 1'),
-          child: Material(
-            child: InkWell(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  //here we are passing the value of the product to product details page
-                  builder: (context) => ProductDetails(
-                        product_detail_name: prod_name,
-                        product_detail_picture: prod_picture,
-                        product_detail_new_price: prod_price,
-                        product_detail_old_price: prod_old_price,
-                      ))),
-              child: GridTile(
-                  footer: Container(
-                    color: Colors.white70,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            prod_name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16.0),
-                          ),
-                        ),
-                        Text(
-                          '\$$prod_price',
-                          style: TextStyle(color: Colors.red),
-                        )
-                      ],
-                    ),
-                  ),
-                  child: Image.asset(
-                    prod_picture,
-                    fit: BoxFit.cover,
-                  )),
-            ),
-          )),
-    );
-  }
-}
+// class Similar_product extends StatelessWidget {
+//   final prod_name;
+//   final prod_picture;
+//   final prod_old_price;
+//   final prod_price;
+//
+//   Similar_product({
+//     this.prod_name,
+//     this.prod_picture,
+//     this.prod_old_price,
+//     this.prod_price,
+//   });
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: Hero(
+//           tag: Text('Hero 1'),
+//           child: Material(
+//             child: InkWell(
+//               onTap: () => Navigator.of(context).push(MaterialPageRoute(
+//                   //here we are passing the value of the product to product details page
+//                   builder: (context) => ProductDetails(
+//                         product_detail_name: prod_name,
+//                         product_detail_picture: prod_picture,
+//                         product_detail_new_price: prod_price,
+//                         product_detail_old_price: prod_old_price,
+//                       ))),
+//               child: GridTile(
+//                   footer: Container(
+//                     color: Colors.white70,
+//                     child: Row(
+//                       children: [
+//                         Expanded(
+//                           child: Text(
+//                             prod_name,
+//                             style: TextStyle(
+//                                 fontWeight: FontWeight.bold, fontSize: 16.0),
+//                           ),
+//                         ),
+//                         Text(
+//                           '\$$prod_price',
+//                           style: TextStyle(color: Colors.red),
+//                         )
+//                       ],
+//                     ),
+//                   ),
+//                   child: Image.asset(
+//                     prod_picture,
+//                     fit: BoxFit.cover,
+//                   )),
+//             ),
+//           )),
+//     );
+//   }
+// }

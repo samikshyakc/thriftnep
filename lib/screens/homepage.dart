@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thrift_nep/components/product.dart';
 import 'package:thrift_nep/components/horizontal_ListView.dart';
+import 'package:thrift_nep/components/product_provider.dart';
 import 'package:thrift_nep/components/products.dart';
 import 'package:thrift_nep/components/shopping_cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:thrift_nep/new_product/sell_product.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/widgets/product_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,9 +18,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Product> productList = [];
   @override
   Widget build(BuildContext context) {
     String email = Provider.of<EmailProvider>(context, listen: false).email();
+
     print('Email: $email');
 
     Widget image_carousel = Container(
@@ -41,6 +46,7 @@ class _HomePageState extends State<HomePage> {
         indicatorBgPadding: 4.0,
       ),
     );
+    productList = Provider.of<ProductProvider>(context, listen: true).allProduct;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -190,25 +196,35 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: ListView(
-          children: <Widget>[
-            image_carousel,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Categories'),
-            ),
-            // Horizontal list view begins here
-            HorizontalList(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Recent Products'),
-            ),
-            //grid-view
-            Container(
-              height: 320.0,
-              child: Products(),
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              image_carousel,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Categories'),
+              ),
+              // Horizontal list view begins here
+              HorizontalList(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Recent Products'),
+              ),
+              //grid-view
+              Container(
+                child:GridView.builder(
+                  shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: productList.length,
+                      gridDelegate:
+                      SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return ProductWidget(product: productList[index]);
+                      }),
+                ),
+            ],
+          ),
         ),
       ),
     );
