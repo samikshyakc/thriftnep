@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:thrift_nep/components/product.dart';
-import 'package:thrift_nep/components/product_details.dart';
-import 'package:thrift_nep/constants/colors.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product_details.dart';
+
 
 
 class ProductWidget extends StatelessWidget {
@@ -50,7 +50,7 @@ class ProductWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          product.productPrice,
+                          "\$${product.productPrice}",
                           style: TextStyle(color: Colors.red),
                         )
                       ],

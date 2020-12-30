@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:thrift_nep/components/product_provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
-
+import 'package:thrift_nep/provider/product_provider.dart';
+import 'package:thrift_nep/provider/cart_provider.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -15,7 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     Provider.of<EmailProvider>(context).getEmail();
+   // String email = Provider.of<EmailProvider>(context, listen: false).email();
     Provider.of<ProductProvider>(context, listen: false).fetchProduct();
     return Scaffold(
         body: Container(
@@ -43,11 +46,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   Container(
                     height: 260,
-                    // // child: Image(image: AssetImage('logo.jpg')),
-                    // child: CircleAvatar(
-                    //   radius: 80.0,
-                    //   backgroundImage: AssetImage("logo.jpg"),
-                    // ),
                   ),
                   SizedBox(
                     height: 15,

@@ -5,6 +5,7 @@ import 'package:thrift_nep/constants/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:thrift_nep/widgets/loading_indicator.dart';
 
 class UploadImage extends StatefulWidget {
   @override
@@ -36,6 +37,7 @@ class _UploadImageState extends State<UploadImage> {
   }
 
   uploadImg() {
+
     if (null == tmpFile) {
       setStatus(error);
       return;
@@ -47,14 +49,16 @@ class _UploadImageState extends State<UploadImage> {
   }
 
   upload(String fileName) async {
-
+    onLoading(context);
     var map = new Map<String, dynamic>();
     map['image'] = base64Image.toString();
     map['imageName'] = fileName;
     var response = await http.post('$UPLOAD_URL', body: map);
     print(response);
+    Navigator.pop(context);
     if(response.body.toString().contains('image')){
       print('Success');
+
     }else{
       print('Failed');
     }
@@ -144,6 +148,11 @@ class _UploadImageState extends State<UploadImage> {
                   color: kAppbar,
                   onPressed: () {
                     uploadImg();
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => HomePage()));
+
+
+
                   },
                 ),
               ),

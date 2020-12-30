@@ -1,9 +1,16 @@
 //import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:thrift_nep/category/mens_clothing.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/new_product/mens_clothing.dart';
+import 'package:thrift_nep/category/accessories.dart';
+import 'package:thrift_nep/category/books.dart';
+import 'package:thrift_nep/category/footwears.dart';
+import 'package:thrift_nep/category/furnitures.dart';
+import 'package:thrift_nep/category/mobile_phones.dart';
+import 'package:thrift_nep/category/pcs.dart';
+import 'package:thrift_nep/category/watch.dart';
+import 'package:thrift_nep/category/womens_clothing.dart';
 
 class SellProduct extends StatefulWidget {
   @override
@@ -61,7 +68,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/dress.PNG"),
                     ),
                     title: Text("Women's Clothing", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => WomensClothing()));
+                    },
                   ),
                 ),
                 Card(
@@ -74,7 +84,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/accessories.PNG"),
                     ),
                     title: Text("Accessories", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Accessories()));
+                    },
                   ),
                 ),
                 Card(
@@ -87,7 +100,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/heels.PNG"),
                     ),
                     title: Text("Footwears", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Footwears()));
+                    },
                   ),
                 ),
                 Card(
@@ -100,7 +116,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/watch.PNG"),
                     ),
                     title: Text("Watchs", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Watch()));
+                    },
                   ),
                 ),
                 Card(
@@ -113,7 +132,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/books.PNG"),
                     ),
                     title: Text("Books", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Books()));
+                    },
                   ),
                 ),
                 Card(
@@ -126,7 +148,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/pc.PNG"),
                     ),
                     title: Text("PCs", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => PC()));
+                    },
                   ),
                 ),
                 Card(
@@ -139,7 +164,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/mobiles.PNG"),
                     ),
                     title: Text("Mobile phones", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Mobile()));
+                    },
                   ),
                 ),
                 Card(
@@ -152,7 +180,10 @@ class _SellProductState extends State<SellProduct> {
                       backgroundImage: AssetImage("images/cats/furnitures.PNG"),
                     ),
                     title: Text("Furnitures", style: TextStyle(fontSize: 20)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Furniture()));
+                    },
                   ),
                 ),
               ],
@@ -162,21 +193,3 @@ class _SellProductState extends State<SellProduct> {
   }
 }
 
-// bottom: TabBar(
-//   tabs: [
-//     Tab(
-//       icon: Icon(Icons.android),
-//       text: "Tab 1",
-//     ),
-//     Tab(icon: Icon(Icons.phone_iphone), text: "Tab 2"),
-//     Tab(icon: Icon(Icons.add_sharp), text: "Tab 3"),
-//   ],
-// ),
-
-// body: TabBarView(
-//   children: [
-//     Center(child: Text("Page 1")),
-//     Center(child: Text("Page 2")),
-//     Center(child: Text("Page 2")),
-//   ],
-// ),

@@ -2,13 +2,13 @@ import 'dart:collection';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:thrift_nep/components/product.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
 class ProductProvider extends ChangeNotifier {
   List<Product> productList = [];
 
-  List<Product> get allProduct => UnmodifiableListView(productList); //yo bhaneko chai NoteProvider le matra aba noteList lai change garna sakcha
+  List<Product> get allProduct => UnmodifiableListView(productList); //yo bhaneko chai ProductProvider le matra aba productList lai change garna sakcha
 
   Future<void> fetchProduct() async {
     var url = '$READPRODUCT_URL';

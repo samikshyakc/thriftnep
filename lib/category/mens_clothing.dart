@@ -261,26 +261,33 @@ class _MensClothingState extends State<MensClothing> {
                 ),
               ),
             ),
-            FlatButton(
-                onPressed: () {
-                  if (product_nameController != "" &&
-                      product_usedFor != "" &&
-                      product_priceController != "" &&
-                      product_details != "") {
-                    productName = product_nameController.text;
-                    usedfor = product_usedFor.text;
-                    productPrice = product_priceController.text;
-                    productdetails = product_details.text;
-                    _condition = _condition;
-                    _negotiable = _negotiable;
-                    uploadImg();
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => HomePage()));
-                  } else {
-                    _showSnackBar("Fill all fields!!");
-                  }
-                },
-                child: Text("Next"))
+            Padding(
+              padding: const EdgeInsets.fromLTRB(60.0, 8.0, 60.0, 8.0),
+              child: RaisedButton(
+                 color: kAppbar,
+                  onPressed: () {
+                    if (product_nameController != "" &&
+                        product_usedFor != "" &&
+                        product_priceController != "" &&
+                        product_details != "") {
+                      productName = product_nameController.text;
+                      usedfor = product_usedFor.text;
+                      productPrice = product_priceController.text;
+                      productdetails = product_details.text;
+                      _condition = _condition;
+                      _negotiable = _negotiable;
+                      uploadImg();
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => HomePage()));
+                    } else {
+                      _showSnackBar("Fill all fields!!");
+                    }
+                  },
+                  child: Text("SELL", style: TextStyle(color: Colors.white),)),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
           ],
         )),
       ),

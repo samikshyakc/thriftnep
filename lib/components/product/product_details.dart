@@ -1,11 +1,15 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/screens/homepage.dart';
+import 'package:thrift_nep/constants/urls.dart';
+import 'package:http/http.dart' as http;
+import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/widgets/loading_indicator.dart';
 
 class ProductDetails extends StatefulWidget {
-
+  final productId;
   final productName;
   final productPrice;
   final negotiable;
@@ -19,6 +23,7 @@ class ProductDetails extends StatefulWidget {
 
   ProductDetails(
       {
+        this.productId,
         this.productName,
         this.productPrice,
         this.negotiable,
@@ -35,8 +40,10 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -45,16 +52,6 @@ class _ProductDetailsState extends State<ProductDetails> {
             'Thrift Nep',
             style: TextStyle(color: Colors.white),
           ),
-          // title: InkWell(
-          //   onTap: () {
-          //     Navigator.push(
-          //         context, MaterialPageRoute(builder: (context) => HomePage()));
-          //   },
-          //   child: Text(
-          //     'Thrift Nep',
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          // ),
           backgroundColor: kAppbar,
           iconTheme: IconThemeData(color: Colors.white),
           actions: [
@@ -88,7 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         children: [
                           Expanded(
                               child: Text(
-                            "\$${widget.productPrice}",
+                                widget.productId.toString(),
                             style: TextStyle(
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
@@ -108,44 +105,44 @@ class _ProductDetailsState extends State<ProductDetails> {
                   // child: ,
                 )),
             // ===== the first buttons ==========
-            Row(
-              children: [
+            // Row(
+            //   children: [
                 //========== the size button ========
-                Expanded(
-                    child: MaterialButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text("Size"),
-                            content: Text('Choose the size'),
-                            actions: [
-                              MaterialButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('close'))
-                            ],
-                          );
-                        });
-                  },
-                  color: Colors.white,
-                  textColor: kAppbar,
-                  elevation: 0.2,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text("Size"),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.arrow_drop_down),
-                      ),
-                    ],
-                  ),
-                ))
-              ],
-            ),
+                // Expanded(
+                //     child: MaterialButton(
+                //   onPressed: () {
+                //     showDialog(
+                //         context: context,
+                //         builder: (context) {
+                //           return AlertDialog(
+                //             title: Text("Size"),
+                //             content: Text('Choose the size'),
+                //             actions: [
+                //               MaterialButton(
+                //                   onPressed: () {
+                //                     Navigator.pop(context);
+                //                   },
+                //                   child: Text('close'))
+                //             ],
+                //           );
+                //         });
+                //   },
+                //   color: Colors.white,
+                //   textColor: kAppbar,
+                //   elevation: 0.2,
+                //   child: Row(
+                //     children: [
+                //       Expanded(
+                //         child: Text("Size"),
+                //       ),
+                //       Expanded(
+                //         child: Icon(Icons.arrow_drop_down),
+                //       ),
+                //     ],
+                //   ),
+                // ))
+            //   ],
+            // ),
             Row(
               children: [
                 //========== the size button ========
@@ -161,13 +158,27 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Icons.add_shopping_cart,
                       color: kAppbar,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      addToCart();
+                    }),
                 IconButton(
                     icon: Icon(
                       Icons.favorite_border,
                       color: kAppbar,
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+
+                      // Cart(
+                      //
+                      // productName:pro;
+                      // productPrice: prod;
+                      // negotiable;
+                      // condition;
+                      // usedfor;
+                      // productImages;
+                      // seller;
+                      // );
+                    }),
               ],
             ),
             Divider(
@@ -243,104 +254,17 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
     );
   }
+
+  void addToCart() async {
+    String email = Provider.of<EmailProvider>(context, listen: false).email();
+
+    onLoading(context);
+    var url = '$ADDTOCART_URL?name=${widget.productName}&price=${widget.productPrice}&condition=${widget.condition}&seller=${widget.seller}&negotiable=${widget.negotiable}&image=${widget.productImages}&seller=$email';
+    var response = await http.get(url);
+    Navigator.pop(context);
+    //print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+  }
 }
 
-// class Similar_products extends StatefulWidget {
-//   @override
-//   _Similar_productsState createState() => _Similar_productsState();
-// }
-//
-// class _Similar_productsState extends State<Similar_products> {
-//   @override
-//   var product_list = [
-//     {
-//       "name": "Blazer",
-//       "picture": "images/products/blazer1.jpeg",
-//       "old_price": 120,
-//       "price": 85,
-//     },
-//     {
-//       "name": "Dress",
-//       "picture": "images/products/dress1.jpeg",
-//       "old_price": 120,
-//       "price": 85,
-//     },
-//     {
-//       "name": "Black Dress",
-//       "picture": "images/products/dress2.jpeg",
-//       "old_price": 120,
-//       "price": 85,
-//     },
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.builder(
-//         itemCount: product_list.length,
-//         gridDelegate:
-//             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//         itemBuilder: (BuildContext context, int index) {
-//           return Similar_product(
-//             prod_name: product_list[index]['name'],
-//             prod_picture: product_list[index]['picture'],
-//             prod_old_price: product_list[index]['old_price'],
-//             prod_price: product_list[index]['price'],
-//           );
-//         });
-//   }
-// }
-
-// class Similar_product extends StatelessWidget {
-//   final prod_name;
-//   final prod_picture;
-//   final prod_old_price;
-//   final prod_price;
-//
-//   Similar_product({
-//     this.prod_name,
-//     this.prod_picture,
-//     this.prod_old_price,
-//     this.prod_price,
-//   });
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       child: Hero(
-//           tag: Text('Hero 1'),
-//           child: Material(
-//             child: InkWell(
-//               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-//                   //here we are passing the value of the product to product details page
-//                   builder: (context) => ProductDetails(
-//                         product_detail_name: prod_name,
-//                         product_detail_picture: prod_picture,
-//                         product_detail_new_price: prod_price,
-//                         product_detail_old_price: prod_old_price,
-//                       ))),
-//               child: GridTile(
-//                   footer: Container(
-//                     color: Colors.white70,
-//                     child: Row(
-//                       children: [
-//                         Expanded(
-//                           child: Text(
-//                             prod_name,
-//                             style: TextStyle(
-//                                 fontWeight: FontWeight.bold, fontSize: 16.0),
-//                           ),
-//                         ),
-//                         Text(
-//                           '\$$prod_price',
-//                           style: TextStyle(color: Colors.red),
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                   child: Image.asset(
-//                     prod_picture,
-//                     fit: BoxFit.cover,
-//                   )),
-//             ),
-//           )),
-//     );
-//   }
-// }

@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/new_product/mens_clothing.dart';
 import 'package:thrift_nep/widgets/customTextField.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:thrift_nep/utils/validator.dart';

@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_nep/components/product_details.dart';
-import 'package:thrift_nep/components/product_provider.dart';
-import 'package:thrift_nep/components/shopping_cart.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product_details.dart';
 import 'package:thrift_nep/constants/colors.dart';
+import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/screens/homepage.dart';
 import 'package:thrift_nep/screens/login_screen.dart';
 import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/splash_screen.dart';
 import 'package:thrift_nep/screens/welcome/welcome_screen.dart';
 
-// void main() {
-//   runApp(MaterialApp(
-//     home: WelcomeScreen(),
-//     debugShowCheckedModeBanner: false,
-//   ));
-// }
 void main() {
   runApp(MyApp());
 }
@@ -33,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: ProductProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: CartProvider(),
         )
       ],
       child: MaterialApp(
@@ -55,7 +52,7 @@ class MyApp extends StatelessWidget {
           'home': (context) => HomePage(),
           'welcome': (context) => WelcomeScreen(),
           'prod_details': (context) => ProductDetails(),
-          'cart': (context) => Cart(),
+
         },
       ),
     );

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thrift_nep/components/product.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart_screen.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product.dart';
 import 'package:thrift_nep/components/horizontal_ListView.dart';
-import 'package:thrift_nep/components/product_provider.dart';
-import 'package:thrift_nep/components/products.dart';
-import 'package:thrift_nep/components/shopping_cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:thrift_nep/new_product/sell_product.dart';
+import 'package:thrift_nep/provider/cart_provider.dart';
+import 'file:///C:/flutter_project/thrift_nep/lib/components/product/sell_product.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String email = Provider.of<EmailProvider>(context, listen: false).email();
+    Provider.of<CartProvider>(context, listen: false).fetchCart(email);
 
     print('Email: $email');
 
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Cart()));
+                      context, MaterialPageRoute(builder: (context) => CartProducts()));
                 }),
           ],
         ),
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Cart()));
+                        MaterialPageRoute(builder: (context) => CartProducts()));
                   },
                   child: ListTile(
                     title: Text('My Cart', style: TextStyle(color: kAppbar)),
