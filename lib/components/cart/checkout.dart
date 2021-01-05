@@ -4,13 +4,14 @@ import 'package:thrift_nep/components/cart/cart_widget.dart';
 import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
+import 'package:thrift_nep/widgets/checkout_widget.dart';
 
-class CartProducts extends StatefulWidget {
+class CheckOut extends StatefulWidget {
   @override
-  _CartProductsState createState() => _CartProductsState();
+  _CheckOutState createState() => _CheckOutState();
 }
 
-class _CartProductsState extends State<CartProducts> {
+class _CheckOutState extends State<CheckOut> {
   List<Cart> cartproductList = [];
   int totalPrice = 0;
 
@@ -27,14 +28,14 @@ class _CartProductsState extends State<CartProducts> {
           elevation: 0.1,
           //automaticallyImplyLeading: false,
           title: Text(
-            'My Cart',
+            'CheckOut',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: kAppbar,
           iconTheme: IconThemeData(color: Colors.white),
           actions: [],
         ),
-        body: SingleChildScrollView(
+        body:SingleChildScrollView(
           //crossAxisAlignment: CrossAxisAlignment.start,
 
           child: ListView.builder(
@@ -43,7 +44,7 @@ class _CartProductsState extends State<CartProducts> {
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return CartWidget(cartproductList[index]);
+                return CheckOutWidget(cartproductList[index]);
               }),
         ),
         bottomNavigationBar: Container(
@@ -56,9 +57,9 @@ class _CartProductsState extends State<CartProducts> {
               )),
               Expanded(child: MaterialButton(
                 onPressed: (){
-                  Navigator.pushReplacementNamed(context, 'checkout');
+                  Navigator.pushReplacementNamed(context, 'payment');
                 },
-                child: Text('Checkout', style: TextStyle(color: Colors.white),),
+                child: Text('Proceed to Payment', style: TextStyle(color: Colors.white),),
                 color:kAppbar,
               ))
 

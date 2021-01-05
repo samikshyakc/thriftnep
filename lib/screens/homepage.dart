@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart_screen.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product.dart';
+import 'package:thrift_nep/components/cart/cart_screen.dart';
 import 'package:thrift_nep/components/horizontal_ListView.dart';
+import 'package:thrift_nep/components/product/product.dart';
+import 'package:thrift_nep/components/product/sell_product.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/product/sell_product.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';

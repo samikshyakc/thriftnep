@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/cart/checkout.dart';
+import 'package:thrift_nep/components/cart/payment.dart';
 import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product_details.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: CartProvider(),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -52,6 +54,9 @@ class MyApp extends StatelessWidget {
           'home': (context) => HomePage(),
           'welcome': (context) => WelcomeScreen(),
           'prod_details': (context) => ProductDetails(),
+          'checkout' : (context) => CheckOut(),
+          'payment' : (context) => Payment(),
+        //  'directpayment' : (context) => DirectPayment(),
 
         },
       ),

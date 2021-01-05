@@ -43,7 +43,10 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
         child: Container(
           decoration: BoxDecoration(
             image:
-                DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill),
+                DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill,
+                    colorFilter: new ColorFilter.mode(
+                        kAppbar.withOpacity(1.0), BlendMode.darken)),
+
             gradient: LinearGradient(
                 colors: [kPrimaryColor, kPrimaryLightColor],
                 begin: Alignment.bottomCenter,

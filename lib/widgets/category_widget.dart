@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/components/product/product_details.dart';
 
-
-class ProductWidget extends StatelessWidget {
-  const ProductWidget({
+class CategroryWidget extends StatelessWidget {
+  const CategroryWidget({
     Key key,
     @required this.product,
   }) : super(key: key);
@@ -21,8 +20,8 @@ class ProductWidget extends StatelessWidget {
           child: Material(
             child: InkWell(
               onTap: ()
-               => Navigator.of(context).push(MaterialPageRoute(
-              //  here we are passing the value of the product to product details page
+              => Navigator.of(context).push(MaterialPageRoute(
+                //  here we are passing the value of the product to product details page
                   builder: (context) => ProductDetails(
 
                     productName:product.productName,
@@ -37,26 +36,26 @@ class ProductWidget extends StatelessWidget {
 
                   ))),
               child: GridTile(
-                  footer: Container(
-                    color: Colors.white24,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            product.productName,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16.0),
-                          ),
+                footer: Container(
+                  color: Colors.white24,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          product.productName,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16.0),
                         ),
-                        Text(
-                          "\$${product.productPrice}",
-                          style: TextStyle(color: Colors.red),
-                        )
-                      ],
-                    ),
+                      ),
+                      Text(
+                        "\$${product.productPrice}",
+                        style: TextStyle(color: Colors.red),
+                      )
+                    ],
                   ),
+                ),
 
-                 child: Image(image: CachedNetworkImageProvider(product.productImages),fit:BoxFit.fill,),
+                child: Image(image: CachedNetworkImageProvider(product.productImages),fit:BoxFit.fill,),
               ),
             ),
           )),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:thrift_nep/constants/urls.dart';
+import 'package:thrift_nep/provider/cart_provider.dart';
+import 'package:thrift_nep/provider/product_provider.dart';
+import 'package:thrift_nep/screens/cat.dart';
 
 class HorizontalList extends StatelessWidget {
   @override
@@ -11,7 +15,7 @@ class HorizontalList extends StatelessWidget {
         children: <Widget>[
           Category(
             image_location: 'images/cats/accessories.PNG',
-            image_caption: 'Accessories',
+            image_caption: 'Watch',
           ),
           Category(
             image_location: 'images/cats/pc.PNG',
@@ -50,18 +54,24 @@ class HorizontalList extends StatelessWidget {
 class Category extends StatelessWidget {
   final String image_location;
   final String image_caption;
+
   //final Icon icon;
   Category({
     this.image_location,
     this.image_caption,
     // this.icon,
   });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              //  here we are passing the value of the product to product details page
+              builder: (context) => Cat(image_caption)));
+        },
         child: Container(
           width: 100,
           decoration: BoxDecoration(

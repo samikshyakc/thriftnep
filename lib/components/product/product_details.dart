@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/product/buynow.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +20,6 @@ class ProductDetails extends StatefulWidget {
   final productImages;
   final details;
   final seller;
-
 
   ProductDetails(
       {
@@ -148,7 +148,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                 //========== the size button ========
                 Expanded(
                     child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => BuyNow(
+                                productId: widget.productId,
+                                productName:widget.productName,
+                                productPrice:widget.productPrice,
+                                productImages: widget.productImages,
+                              )
+                          ));
+                        },
                         color: Colors.white,
                         textColor: kAppbar,
                         elevation: 0.2,

@@ -39,7 +39,7 @@ dependencies:
   carousel_pro: ^0.0.13
   multi_image_picker: ^4.7.14
   cached_network_image: ^2.5.0
-
+  flutter_khalti: ^1.0.0
   dio: ^3.0.10
 
 

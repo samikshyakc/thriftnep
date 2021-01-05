@@ -13,7 +13,11 @@ class Background extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('1.png'), fit: BoxFit.cover),
+
+          image: DecorationImage(image: AssetImage('1.png'), fit: BoxFit.cover,
+              colorFilter: new ColorFilter.mode(
+                  kAppbar.withOpacity(1.0), BlendMode.darken)),
+
           gradient: LinearGradient(
               colors: [kPrimaryColor, Colors.blue[300]],
               begin: Alignment.bottomCenter,

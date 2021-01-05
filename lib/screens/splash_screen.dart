@@ -24,9 +24,12 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
+                    colorFilter: new ColorFilter.mode(
+                        kAppbar.withOpacity(1.0), BlendMode.darken),
                     image: AssetImage('1.png'), fit: BoxFit.cover),
                 gradient: LinearGradient(
                     colors: [kPrimaryColor, Colors.blue[300]],
+
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter)),
             child: Center(

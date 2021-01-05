@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product.dart';
+import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
 class ProductProvider extends ChangeNotifier {
@@ -24,6 +24,17 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  List<Product> filterByCat(String category){
+    List<Product> filteredList = [];
+    productList.forEach((product) {
+      if(product.category == category){
+        filteredList.add(product);
+      }
+    });
+    return filteredList;
+  }
+  
   // Future<String> save(String title, String details) async {
   //   var url = '$ADDNOTE_URL?title=$title&details=$details';
   //   var response = await http.get(url);
