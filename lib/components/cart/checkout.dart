@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/components/cart/cart_widget.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/widgets/checkout_widget.dart';
@@ -14,6 +14,7 @@ class CheckOut extends StatefulWidget {
 class _CheckOutState extends State<CheckOut> {
   List<Cart> cartproductList = [];
   int totalPrice = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class _CheckOutState extends State<CheckOut> {
             children: [
               Expanded(child: ListTile(
                 title:Text("Total:"),
-                subtitle:Text('\$$totalPrice', style: TextStyle(color: Colors.black, fontSize: 20),),
+                subtitle:Text('Rs $totalPrice', style: TextStyle(color: Colors.black, fontSize: 20),),
               )),
               Expanded(child: MaterialButton(
                 onPressed: (){

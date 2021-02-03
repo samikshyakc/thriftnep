@@ -9,3 +9,5 @@ const String READPRODUCT_URL = '$BASE_URL/display.php';
 const String ADDTOCART_URL = '$BASE_URL/addCart.php';
 const String FETCHCART_URL = '$BASE_URL/fetchCart.php';
 const String FETCHCATEGORY_URL = '$BASE_URL/fetchCategory.php';
+const String ORDER_URL = '$BASE_URL/orders.php';
+const String FETCHORDER_URL = '$BASE_URL/fetchOrder.php';

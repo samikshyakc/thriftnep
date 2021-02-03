@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/components/cart/cart_widget.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 
@@ -52,7 +52,7 @@ class _CartProductsState extends State<CartProducts> {
             children: [
               Expanded(child: ListTile(
                 title:Text("Total:"),
-                subtitle:Text('\$$totalPrice', style: TextStyle(color: Colors.black, fontSize: 20),),
+                subtitle:Text('Rs$totalPrice', style: TextStyle(color: Colors.black, fontSize: 20),),
               )),
               Expanded(child: MaterialButton(
                 onPressed: (){

@@ -11,13 +11,15 @@ class BuyNow extends StatefulWidget {
   final productName;
   final productPrice;
   final productImages;
+  final seller;
 
   BuyNow(
   {
     this.productId,
     this.productName,
     this.productPrice,
-    this.productImages
+    this.productImages,
+    this.seller
 }
       );
   @override
@@ -61,7 +63,7 @@ class _BuyNowState extends State<BuyNow> {
                 Container(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    "\$ ${widget.productPrice}",
+                    "Rs ${widget.productPrice}",
                     style: TextStyle(
                         fontSize: 17.0,
                         color: kAppbar,
@@ -80,13 +82,16 @@ class _BuyNowState extends State<BuyNow> {
             children: [
               Expanded(child: ListTile(
                 title:Text("Total:"),
-                subtitle:Text("\$${widget.productPrice}", style: TextStyle(color: Colors.black, fontSize: 20),),
+                subtitle:Text("Rs${widget.productPrice}", style: TextStyle(color: Colors.black, fontSize: 20),),
               )),
               Expanded(child: MaterialButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Pay(
                         productPrice:widget.productPrice,
+                        productName: widget.productName,
+                       seller: widget.seller,
+                       // seller: widget.,
 
                       )
                   ));

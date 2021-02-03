@@ -48,7 +48,7 @@ class CategroryWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "\$${product.productPrice}",
+                        "Rs${product.productPrice}",
                         style: TextStyle(color: Colors.red),
                       )
                     ],

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/cart/cart.dart';
+import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/constants/colors.dart';
 
 
@@ -47,7 +47,7 @@ CartWidget(this.cartProduct);
             Container(
               alignment: Alignment.topLeft,
               child: Text(
-                "\$ ${cartProduct.price}",
+                "Rs ${cartProduct.price}",
                 style: TextStyle(
                     fontSize: 17.0,
                     color: kAppbar,

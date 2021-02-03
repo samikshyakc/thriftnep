@@ -3,13 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thrift_nep/components/cart/cart_screen.dart';
 import 'package:thrift_nep/components/horizontal_ListView.dart';
+import 'package:thrift_nep/components/order/order_screen.dart';
 import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/components/product/sell_product.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
+import 'package:thrift_nep/screens/search.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     String email = Provider.of<EmailProvider>(context, listen: false).email();
     Provider.of<CartProvider>(context, listen: false).fetchCart(email);
-
+    Provider.of<OrderProvider>(context, listen: false).fetchCart(email);
     print('Email: $email');
 
     Widget image_carousel = Container(
@@ -65,8 +68,11 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(
                   Icons.search,
                   color: Colors.white,
+
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'search');
+                }),
             IconButton(
                 icon: Icon(
                   Icons.shopping_cart_sharp,
@@ -125,8 +131,19 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => OrderProducts()));
+                  },
+                  child: ListTile(
+                    title: Text('My Orders ', style: TextStyle(color: kAppbar)),
+                    leading: Icon(Icons.shopping_basket_sharp, color: kAppbar),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SellProduct()));
                   },
+
                   child: ListTile(
                     title:
                         Text('Sell Product', style: TextStyle(color: kAppbar)),
@@ -140,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: ListTile(
                     title: Text('My Cart', style: TextStyle(color: kAppbar)),
-                    leading: Icon(Icons.shopping_basket_sharp, color: kAppbar),
+                    leading: Icon(Icons.shopping_cart_rounded, color: kAppbar),
                   ),
                 ),
                 Divider(),

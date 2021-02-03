@@ -6,26 +6,26 @@ import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
 
-class CartProvider extends ChangeNotifier {
+class OrderProvider extends ChangeNotifier {
 
-  List<Cart> cartproductList = [];
+  List<Cart> orderList = [];
 
   int totalPrice =0;
 
-  List<Cart> get allProduct => UnmodifiableListView(cartproductList);
+  List<Cart> get allProduct => UnmodifiableListView(orderList);
 
   //String email = Provider.of<EmailProvider>(context, listen: false).email();
   Future<void> fetchCart(String user) async {
-    cartproductList = [];
-    var url = '$FETCHCART_URL?user=$user';
+    orderList = [];
+    var url = '$FETCHORDER_URL?user=$user';
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
       result.forEach((p) {
-        var cart = Cart.fromJson(p);
-        print(cart.id);
-        totalPrice += int.parse(cart.price);
-        cartproductList.add(cart);
+        var order = Cart.fromJson(p);
+        print(order.id);
+        totalPrice += int.parse(order.price);
+        orderList.add(order);
       });
     }
 

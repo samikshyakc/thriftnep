@@ -93,7 +93,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           )),
                           Expanded(
                               child: Text(
-                            "\$${widget.productPrice}",
+                            "Rs${widget.productPrice}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, color: Colors.red),
                           )),
@@ -155,6 +155,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 productName:widget.productName,
                                 productPrice:widget.productPrice,
                                 productImages: widget.productImages,
+                                seller: widget.seller,
                               )
                           ));
                         },

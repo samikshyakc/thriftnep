@@ -5,6 +5,9 @@ class Cart {
   String productCondition;
   String negotiable;
   String cartOf;
+  String seller;
+  String paymentMethod;
+  String address;
   String productImages;
   Cart({
     this.id,
@@ -14,6 +17,9 @@ class Cart {
     this.negotiable,
     this.cartOf,
     this.productImages,
+    this.seller,
+    this.address,
+    this.paymentMethod
   });
 
   Cart.fromJson(Map<String, dynamic> json) {
@@ -24,6 +30,9 @@ class Cart {
     negotiable = json['negotiable'];
     cartOf = json['cartOf'];
     productImages= json['product_images'];
+    paymentMethod = json['payment_method'];
+    seller = json['seller'];
+    address = json['address'];
 
 
   }
@@ -37,6 +46,11 @@ class Cart {
     data['condition'] = this.productCondition;
     data['seller'] = this.cartOf;
     data['images'] = this.productImages;
+
+    data['payment_method'] = this.paymentMethod;
+    data['seller'] = this.seller;
+    data['address'] = this.address;
+
 
     return data;
   }

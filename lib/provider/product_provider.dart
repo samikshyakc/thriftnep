@@ -34,8 +34,20 @@ class ProductProvider extends ChangeNotifier {
     });
     return filteredList;
   }
-  
-  // Future<String> save(String title, String details) async {
+
+  List<Product> filterProduct(String search){
+    List<Product> filteredProd = [];
+    productList.forEach((product) {
+      if(product.productName.toLowerCase().contains(search.toLowerCase())){
+        filteredProd.add(product);
+      }
+    });
+    return filteredProd;
+  }
+
+
+
+// Future<String> save(String title, String details) async {
   //   var url = '$ADDNOTE_URL?title=$title&details=$details';
   //   var response = await http.get(url);
   //   if (response.body.contains("Created")) {
