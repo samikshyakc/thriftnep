@@ -39,10 +39,10 @@ class _MainPageState extends State<LoginScreen> with ValidationMixin {
           decoration: BoxDecoration(
             image:
                 DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill),
-            gradient: LinearGradient(
-                colors: [kPrimaryColor, kPrimaryLightColor],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter),
+            // gradient: LinearGradient(
+            // //    colors: [kPrimaryColor, kPrimaryLightColor],
+            //     begin: Alignment.bottomCenter,
+            //     end: Alignment.topCenter),
           ),
           child: Center(
             child: Form(

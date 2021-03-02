@@ -47,10 +47,10 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
                     colorFilter: new ColorFilter.mode(
                         kAppbar.withOpacity(1.0), BlendMode.darken)),
 
-            gradient: LinearGradient(
-                colors: [kPrimaryColor, kPrimaryLightColor],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter),
+            // gradient: LinearGradient(
+            //  //   colors: [kPrimaryColor, kPrimaryLightColor],
+            //     begin: Alignment.bottomCenter,
+            //     end: Alignment.topCenter),
           ),
           child: Form(
             child: ListView(

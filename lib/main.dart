@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/cart/checkout.dart';
 import 'package:thrift_nep/components/cart/payment.dart';
 import 'package:thrift_nep/components/order/confirmed.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/components/product/product_details.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
@@ -16,6 +15,8 @@ import 'package:thrift_nep/screens/search.dart';
 import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/splash_screen.dart';
 import 'package:thrift_nep/screens/welcome/welcome_screen.dart';
+
+import 'components/product/product_details.dart';
 
 void main() {
   runApp(MyApp());

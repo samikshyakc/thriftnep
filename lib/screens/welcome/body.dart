@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/flutter_project/thrift_nep/lib/widgets/round_button.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/screens/login_screen.dart';
 import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/welcome/background.dart';
+
+import '../../widgets/round_button.dart';
 
 class Body extends StatelessWidget {
   @override

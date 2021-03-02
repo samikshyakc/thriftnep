@@ -12,8 +12,8 @@ import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
-import 'package:thrift_nep/screens/search.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
+import 'package:thrift_nep/screens/user_profile.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -122,7 +122,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  },
                   child: ListTile(
                     title: Text('My account', style: TextStyle(color: kAppbar)),
                     leading: Icon(Icons.person, color: kAppbar),

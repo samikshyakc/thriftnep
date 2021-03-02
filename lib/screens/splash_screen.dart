@@ -28,10 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
                         kAppbar.withOpacity(1.0), BlendMode.darken),
                     image: AssetImage('1.png'), fit: BoxFit.cover),
                 gradient: LinearGradient(
-                    colors: [kPrimaryColor, Colors.blue[300]],
+                  colors: [kPrimaryColor, Colors.blue[300]],
 
                     begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter)),
+                    end: Alignment.topCenter)
+    ),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

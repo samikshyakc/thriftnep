@@ -29,11 +29,12 @@ class _OrderPlacedState extends State<OrderPlaced> {
                         kAppbar.withOpacity(1.0), BlendMode.darken),
                     image: AssetImage('background.png'),
                     fit: BoxFit.cover),
-                gradient: LinearGradient(
-                    colors: [kPrimaryColor, Colors.blue[300]],
-
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter)),
+                // gradient: LinearGradient(
+                //   //  colors: [kPrimaryColor, Colors.blue[300]],
+                //
+                //     begin: Alignment.bottomCenter,
+                //     end: Alignment.topCenter)
+        ),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
