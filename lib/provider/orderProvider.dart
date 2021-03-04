@@ -23,8 +23,8 @@ class OrderProvider extends ChangeNotifier {
       var result = json.decode(response.body);
       result.forEach((p) {
         var order = Cart.fromJson(p);
-        print(order.id);
-        totalPrice += int.parse(order.price);
+      //  print(order.proid);
+        totalPrice += int.parse(order.productPrice);
         orderList.add(order);
       });
     }

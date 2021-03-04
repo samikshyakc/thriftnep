@@ -4,7 +4,7 @@ class Product {
   String productId;
   String productName;
   String productPrice;
-  String negotiable;
+ // String negotiable;
   String productCondition;
   String usedFor;
   String category;
@@ -16,7 +16,7 @@ class Product {
     this.productId,
     this.productName,
     this.productPrice,
-    this.negotiable,
+   // this.negotiable,
     this.productCondition,
     this.usedFor,
     this.category,
@@ -29,7 +29,7 @@ class Product {
     productId = json['product_id'];
     productName = json['product_name'];
     productPrice = json['product_price'];
-    negotiable = json['negotiable'];
+  //  negotiable = json['negotiable'];
     productCondition = json['product_condition'];
     usedFor = json['used_for'];
     category = json['category'];
@@ -43,7 +43,7 @@ class Product {
     data['product_id'] = this.productId;
     data['product_name'] = this.productName;
     data['product_price'] = this.productPrice;
-    data['negotiable'] = this.negotiable;
+   // data['negotiable'] = this.negotiable;
     data['product_condition'] = this.productCondition;
     data['used_for'] = this.usedFor;
     data['category'] = this.category;

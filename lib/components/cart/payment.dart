@@ -172,7 +172,7 @@ class _PaymentState extends State<Payment> {
     var address = addressController.text;
     cartproductList.forEach((cart) async {
       onLoading(context);
-      var url = '$ORDER_URL?name=${cart.productName}&price=${cart.price}&seller=${cart.seller}&payment_method=$paymentMethod&buyer=${cart.cartOf}&address=$address';
+      var url = '$ORDER_URL?name=${cart.productName}&price=${cart.productPrice}&seller=${cart.seller}&payment_method=$paymentMethod&buyer=${cart.cartOf}&address=$address';
       var response = await http.get(url);
       Navigator.pop(context);
       //print('Response status: ${response.statusCode}');

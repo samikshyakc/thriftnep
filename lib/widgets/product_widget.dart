@@ -24,10 +24,10 @@ class ProductWidget extends StatelessWidget {
                => Navigator.of(context).push(MaterialPageRoute(
               //  here we are passing the value of the product to product details page
                   builder: (context) => ProductDetails(
-
+                    productId: product.productId,
                     productName:product.productName,
                     productPrice: product.productPrice,
-                    negotiable: product.negotiable,
+                   // negotiable: product.negotiable,
                     condition: product.productCondition,
                     usedfor: product.usedFor,
                     category: product.category,

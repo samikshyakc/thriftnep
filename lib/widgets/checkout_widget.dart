@@ -26,7 +26,7 @@ class CheckOutWidget extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               child: Text(
-                "Rs ${cartProduct.price}",
+                "Rs ${cartProduct.productPrice}",
                 style: TextStyle(
                     fontSize: 17.0,
                     color: kAppbar,

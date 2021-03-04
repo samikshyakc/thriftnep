@@ -15,6 +15,7 @@ class ProductProvider extends ChangeNotifier {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
+      print(result);
       result.forEach((p) {
         var note = Product.fromJson(p);
         productList.add(note);

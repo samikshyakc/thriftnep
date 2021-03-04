@@ -81,24 +81,31 @@ class _ProductDetailsState extends State<ProductDetails> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16.0),
                       ),
-                      title: Row(
-                        children: [
-                          Expanded(
-                              child: Text(
-                                widget.productId.toString(),
-                            style: TextStyle(
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          )),
-                          Expanded(
+
+                      title: Expanded(
                               child: Text(
                             "Rs${widget.productPrice}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, color: Colors.red),
                           )),
-                        ],
-                      ),
+                      // title: Row(
+                      //   children: [
+                      //     // Expanded(
+                      //     //     child: Text(
+                      //     //       widget.seller,
+                      //     //   style: TextStyle(
+                      //     //     color: Colors.grey,
+                      //     //    // decoration: TextDecoration.lineThrough,
+                      //     //   ),
+                      //     // )),
+                      //     Expanded(
+                      //         child: Text(
+                      //       "Rs${widget.productPrice}",
+                      //       style: TextStyle(
+                      //           fontWeight: FontWeight.bold, color: Colors.red),
+                      //     )),
+                      //   ],
+                      // ),
                     ),
                   ),
 
@@ -266,10 +273,13 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   void addToCart() async {
+    var id = widget.productId;
+    print(id);
     String email = Provider.of<EmailProvider>(context, listen: false).email();
 
     onLoading(context);
-    var url = '$ADDTOCART_URL?name=${widget.productName}&price=${widget.productPrice}&condition=${widget.condition}&seller=${widget.seller}&negotiable=${widget.negotiable}&image=${widget.productImages}&seller=$email';
+  //  var url = '$ADDTOCART_URL?name=${widget.productName}&price=${widget.productPrice}&condition=${widget.condition}&seller=${widget.seller}&negotiable=${widget.negotiable}&image=${widget.productImages}&seller=$email';
+    var url = '$ADDTOCART_URL?product_id=${widget.productId}&cart_of=$email';
     var response = await http.get(url);
     Navigator.pop(context);
     //print('Response status: ${response.statusCode}');

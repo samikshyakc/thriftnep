@@ -41,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
                       'Prajwal KC'
                   ),
                   Padding(
-                    padding:const EdgeInsets.all(8.0),),
+                    padding:const EdgeInsets.all(4.0),),
 
                   Text("$email"),
                   // ListView(
@@ -68,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.white70,
                     child: ListTile(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, "nav");
+                        Navigator.pushReplacementNamed(context, "home");
                       },
                       leading: Icon(Icons.home),
                       title: Text(

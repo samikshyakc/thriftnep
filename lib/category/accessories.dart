@@ -275,7 +275,7 @@ class _AccessoriesState extends State<Accessories> {
                           productPrice = product_priceController.text;
                           productdetails = product_details.text;
                           _condition = _condition;
-                          _negotiable = _negotiable;
+                        //  _negotiable = _negotiable;
                           uploadImg();
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context) => HomePage()));
@@ -321,7 +321,7 @@ class _AccessoriesState extends State<Accessories> {
     productPrice = product_priceController.text;
     productdetails = product_details.text;
     _condition = _condition;
-    _negotiable = _negotiable;
+  //  _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
     var category = "Accessories";
 
@@ -337,7 +337,7 @@ class _AccessoriesState extends State<Accessories> {
       'for' : usedfor,
       'price' : productPrice,
       'condition' : _condition,
-      'negotiable' : _negotiable,
+   //   'negotiable' : _negotiable,
       'description' : productdetails,
       'category': category,
       'seller': seller,

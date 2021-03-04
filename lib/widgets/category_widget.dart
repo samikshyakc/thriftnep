@@ -26,7 +26,7 @@ class CategroryWidget extends StatelessWidget {
 
                     productName:product.productName,
                     productPrice: product.productPrice,
-                    negotiable: product.negotiable,
+                  //  negotiable: product.negotiable,
                     condition: product.productCondition,
                     usedfor: product.usedFor,
                     category: product.category,

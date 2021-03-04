@@ -21,10 +21,11 @@ class CartProvider extends ChangeNotifier {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
+      print(result);
       result.forEach((p) {
         var cart = Cart.fromJson(p);
-        print(cart.id);
-        totalPrice += int.parse(cart.price);
+        print(cart.cartId);
+        totalPrice += int.parse(cart.productPrice);
         cartproductList.add(cart);
       });
     }

@@ -47,7 +47,7 @@ class OrderWidget extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               child: Text(
-                "Rs ${orderProduct.price}",
+                "Rs ${orderProduct.productPrice}",
                 style: TextStyle(
                     fontSize: 17.0,
                     color: kAppbar,
