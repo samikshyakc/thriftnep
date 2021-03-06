@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thrift_nep/components/product/product.dart';
@@ -15,8 +16,9 @@ class Pay extends StatefulWidget {
   final productPrice;
   final productName;
   final seller;
+  final productId;
 
-  Pay({this.productPrice, this.productName, this.seller});
+  Pay({this.productPrice, this.productName, this.seller,this.productId});
 
   @override
   _PayState createState() => _PayState();
@@ -93,8 +95,8 @@ class _PayState extends State<Pay> {
                                 onLoading(context);
                                 cashOnDelivery('COD');
                                 Navigator.pop(context);
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, 'confirmOrder', (route) => false);
+                                // Navigator.pushNamedAndRemoveUntil(
+                                //     context, 'confirmOrder', (route) => false);
                               },
                               child: Text('Confirm'),
                             ),
@@ -173,17 +175,18 @@ class _PayState extends State<Pay> {
   }
 
   void cashOnDelivery(String paymentMethod) async {
-    var productName = widget.productName;
-    var productPrice = widget.productPrice;
-    var seller = widget.seller;
-   // var address = "Pokhara";
+
     var address = addressController.text;
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
     String buyer = Provider.of<EmailProvider>(context, listen: false).email();
 
     onLoading(context);
     var url =
-        '$ORDER_URL?name=$productName&price=$productPrice&seller=$seller&payment_method=$paymentMethod&buyer=$buyer&address=$address';
+        '$ORDER_URL?product_id=${widget.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
     var response = await http.get(url);
+  //  var url = '$ORDER_URL?productId=${cart.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
     Navigator.pop(context);
     //print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

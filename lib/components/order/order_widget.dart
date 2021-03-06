@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:thrift_nep/components/cart/cart.dart';
+import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
 
 
 class OrderWidget extends StatelessWidget {
-  final Cart orderProduct;
+  final Order orderProduct;
 
 
   OrderWidget(this.orderProduct);

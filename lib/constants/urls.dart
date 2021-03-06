@@ -11,3 +11,6 @@ const String FETCHCART_URL = '$BASE_URL/fetchCart.php';
 const String FETCHCATEGORY_URL = '$BASE_URL/fetchCategory.php';
 const String ORDER_URL = '$BASE_URL/orders.php';
 const String FETCHORDER_URL = '$BASE_URL/fetchOrder.php';
+const String FETCHUSER_URL = '$BASE_URL/fetchUser.php';
+const String VERIFIYUSER_URL = '$BASE_URL/verifyUser.php';
+const String UPDATEUSER_URL = '$BASE_URL/updateUser.php';

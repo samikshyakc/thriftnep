@@ -4,11 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/cart/checkout.dart';
 import 'package:thrift_nep/components/cart/payment.dart';
 import 'package:thrift_nep/components/order/confirmed.dart';
+import 'package:thrift_nep/components/user_profile/account_screen.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
+import 'package:thrift_nep/provider/user_provider.dart';
 import 'package:thrift_nep/screens/homepage.dart';
 import 'package:thrift_nep/screens/login_screen.dart';
 import 'package:thrift_nep/screens/search.dart';
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: OrderProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: UserProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -55,6 +60,7 @@ class MyApp extends StatelessWidget {
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           'splash': (context) => SplashScreen(),
+          'account': (context) => MyAccount(),
           // When navigating to the "/second" route, build the SecondScreen widget.
           'signup': (context) => SignupScreen(),
           'login': (context) => LoginScreen(),

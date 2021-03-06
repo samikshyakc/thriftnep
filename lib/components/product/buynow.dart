@@ -88,6 +88,7 @@ class _BuyNowState extends State<BuyNow> {
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Pay(
+                        productId: widget.productId,
                         productPrice:widget.productPrice,
                         productName: widget.productName,
                        seller: widget.seller,

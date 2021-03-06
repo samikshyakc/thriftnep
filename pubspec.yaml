@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^2.5.0
   flutter_khalti: ^1.0.0
   dio: ^3.0.10
+  intl: ^0.16.1
 
 
 

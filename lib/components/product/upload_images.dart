@@ -130,7 +130,7 @@ class _UploadImageState extends State<UploadImage> {
                           ],
                         ),
                       ),
-                    );
+                    ); 
                   }
                 },
               ),

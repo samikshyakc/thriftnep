@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/user_profile/account_screen.dart';
+import 'package:thrift_nep/components/user_profile/user.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/user_provider.dart';
+import 'package:thrift_nep/widgets/customTextField.dart';
+import 'package:thrift_nep/widgets/loading_indicator.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({
+    Key key,
+    @required this.user,
+  }) : super(key: key);
 
+  final Users user;
   @override
   Widget build(BuildContext context) {
+    TextEditingController passwordController = TextEditingController();
     String email = Provider.of<EmailProvider>(context, listen: false).email();
+    Provider.of<UserProvider>(context, listen: false).fetchUser(email);
     return SafeArea(
       child: Scaffold(
         backgroundColor: kPrimaryLightColor,
@@ -116,12 +128,17 @@ class ProfileScreen extends StatelessWidget {
                   Card(
                     color: Colors.white70,
                     child: ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(context, "faq");
-                      },
-                      leading: Icon(Icons.question_answer),
+                      onTap: ()
+                      => Navigator.of(context).push(MaterialPageRoute(
+                        //  here we are passing the value of the product to product details page
+                          builder: (context) => MyAccount(
+                                  // username: user.name,
+                                  // email: user.email,
+                          ))),
+
+                      leading: Icon(Icons.account_circle),
                       title: Text(
-                        'FAQ',
+                        'Account',
                         style: GoogleFonts.raleway(
                           textStyle: TextStyle(
                               color: Colors.black54,
@@ -156,7 +173,11 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+
+
   }
+
+
 }
 
 

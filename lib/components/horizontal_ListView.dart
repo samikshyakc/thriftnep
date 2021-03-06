@@ -92,20 +92,6 @@ class Category extends StatelessWidget {
             ),
           ),
 
-          // child: ListTile(
-          //   // title: Image.asset(
-          //   //   image_location,
-          //   //   width: 100,
-          //   //   height: 60,
-          //   // ),
-          //   subtitle: Container(
-          //     alignment: Alignment.bottomCenter,
-          //     child: Text(
-          //       image_caption,
-          //       style: TextStyle(fontSize: 12.0, color: kAppbar),
-          //     ),
-          //   ),
-          // ),
         ),
       ),
     );

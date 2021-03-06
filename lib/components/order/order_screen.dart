@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/components/cart/cart_widget.dart';
 import 'package:thrift_nep/components/order/order_widget.dart';
+import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
@@ -13,7 +14,7 @@ class OrderProducts extends StatefulWidget {
 }
 
 class _OrderProductsState extends State<OrderProducts> {
-  List<Cart> orderList = [];
+  List<Order> orderList = [];
   int totalPrice = 0;
 
   @override
