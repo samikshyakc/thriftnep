@@ -203,14 +203,12 @@ class _MyAccountState extends State<MyAccount> {
   }
   void verify() async {
     username = fullnameController.text;
-     password = passwordController.text;
-     newpassword = newpasswordController.text;
+    password = passwordController.text;
+    newpassword = newpasswordController.text;
     String email = Provider.of<EmailProvider>(context, listen: false).email();
     onLoading(context);
     var url = '$VERIFIYUSER_URL?email=$email&password=$password';
     var response = await http.get(url);
-    //  var url = '$ORDER_URL?productId=${cart.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
-    //print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     if (response.body.contains("matched!!")) {
       var url2 = '$UPDATEUSER_URL?email=$email&name=$username&password=$newpassword';
