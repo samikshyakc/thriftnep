@@ -16,7 +16,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
 
-
     Provider.of<EmailProvider>(context).getEmail();
    // String email = Provider.of<EmailProvider>(context, listen: false).email();
     Provider.of<ProductProvider>(context, listen: false).fetchProduct();

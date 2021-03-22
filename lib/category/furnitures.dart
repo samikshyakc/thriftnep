@@ -323,7 +323,7 @@ class _FurnitureState extends State<Furniture> {
     _condition = _condition;
     _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
-    var category = "furniture";
+    var category = "Furniture";
 
     print('$usedfor' + '$productdetails' + '$_condition' + '$fileName');
 

@@ -40,6 +40,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  final _globalKeyScaffold = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +83,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                             fontWeight: FontWeight.bold, fontSize: 16.0),
                       ),
 
-                      title: Expanded(
-                              child: Text(
+                      title: Text(
                             "Rs${widget.productPrice}",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.red),
-                          )),
+                        fontWeight: FontWeight.bold, color: Colors.red),
+                          ),
                       // title: Row(
                       //   children: [
                       //     // Expanded(
@@ -178,24 +178,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     onPressed: () {
                       addToCart();
                     }),
-                IconButton(
-                    icon: Icon(
-                      Icons.favorite_border,
-                      color: kAppbar,
-                    ),
-                    onPressed: () {
 
-                      // Cart(
-                      //
-                      // productName:pro;
-                      // productPrice: prod;
-                      // negotiable;
-                      // condition;
-                      // usedfor;
-                      // productImages;
-                      // seller;
-                      // );
-                    }),
               ],
             ),
             Divider(
@@ -281,10 +264,22 @@ class _ProductDetailsState extends State<ProductDetails> {
   //  var url = '$ADDTOCART_URL?name=${widget.productName}&price=${widget.productPrice}&condition=${widget.condition}&seller=${widget.seller}&negotiable=${widget.negotiable}&image=${widget.productImages}&seller=$email';
     var url = '$ADDTOCART_URL?product_id=${widget.productId}&cart_of=$email';
     var response = await http.get(url);
-    Navigator.pop(context);
+
     //print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
+    if (response.body.toString().contains('Already')) {
+      print('Already in cart');
+      Navigator.pop(context);
+      _showSnackBar("Already in cart!!");
+    } else {
+      print('Added to cart');
+    }
 
+  }
+
+  void _showSnackBar(String message) {
+    final _snackBar = SnackBar(content: Text(message));
+    _globalKeyScaffold.currentState.showSnackBar(_snackBar);
   }
 }
 

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:thrift_nep/constants/urls.dart';
-import 'package:thrift_nep/provider/cart_provider.dart';
-import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/screens/cat.dart';
 
 class HorizontalList extends StatelessWidget {
@@ -15,7 +11,7 @@ class HorizontalList extends StatelessWidget {
         children: <Widget>[
           Category(
             image_location: 'images/cats/accessories.PNG',
-            image_caption: 'Watch',
+            image_caption: 'Accessories',
           ),
           Category(
             image_location: 'images/cats/pc.PNG',
@@ -27,23 +23,23 @@ class HorizontalList extends StatelessWidget {
           ),
           Category(
             image_location: 'images/cats/tshirt.PNG',
-            image_caption: 'Clothings FM',
+            image_caption: 'Mens Clothing',
           ),
           Category(
             image_location: 'images/cats/dress.PNG',
-            image_caption: 'Dresses',
+            image_caption: 'Womens Clothing',
           ),
           Category(
-            image_location: 'images/cats/bags.PNG',
-            image_caption: 'Bags',
+            image_location: 'images/cats/books.PNG',
+            image_caption: 'Books',
           ),
           Category(
             image_location: 'images/cats/shoes.PNG',
-            image_caption: 'Shoes',
+            image_caption: 'Footwears',
           ),
           Category(
             image_location: 'images/cats/mobiles.PNG',
-            image_caption: 'Mobiles',
+            image_caption: 'Mobile',
           ),
         ],
       ),

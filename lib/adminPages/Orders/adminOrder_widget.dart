@@ -2,23 +2,38 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:thrift_nep/adminPages/Orders/adminOrderDetails.dart';
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
 
 
-class OrderWidget extends StatelessWidget {
+class AdminOrderWidget extends StatelessWidget {
   final Order orderProduct;
 
 
-  OrderWidget(this.orderProduct);
+  AdminOrderWidget(this.orderProduct);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: (){
+        onTap: ()
+        => Navigator.of(context).push(MaterialPageRoute(
+          //  here we are passing the value of the product to product details page
+            builder: (context) => AdminOrderDetails(
+              productId: orderProduct.productId,
+              productName:orderProduct.productName,
+              productPrice: orderProduct.productPrice,
+              // negotiable: product.negotiable,
+              condition: orderProduct.productCondition,
+              usedfor: orderProduct.usedFor,
+              category: orderProduct.category,
+              productImages: orderProduct.productImages,
+              details: orderProduct.description,
+              seller: orderProduct.seller,
+              orderId: orderProduct.orderId,
 
-        },
+            ))),
         child: Slidable(
           actionPane: SlidableDrawerActionPane(),
           actionExtentRatio: 0.25,

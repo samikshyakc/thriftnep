@@ -12,7 +12,6 @@ import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
-import 'package:thrift_nep/provider/user_provider.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
 import 'package:thrift_nep/screens/user_profile.dart';
 
@@ -27,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     String email = Provider.of<EmailProvider>(context, listen: false).email();
     Provider.of<CartProvider>(context, listen: false).fetchCart(email);
-    Provider.of<OrderProvider>(context, listen: false).fetchCart(email);
+    Provider.of<OrderProvider>(context, listen: false).fetchOrder(email);
     print('Email: $email');
 
     Widget image_carousel = Container(

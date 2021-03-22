@@ -1,4 +1,3 @@
-
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +9,6 @@ import 'package:thrift_nep/widgets/loading_indicator.dart';
 
 class MyAccount extends StatefulWidget {
 
-  // const MyAccount({
-  //   Key key,
-  //   @required this.username,this.email
-  // }) : super(key: key);
-  //
-  // final username;
-  // final email;
-
   @override
   _MyAccountState createState() => _MyAccountState();
 }
@@ -26,31 +17,25 @@ class _MyAccountState extends State<MyAccount> {
 
   final _globalKeyScaffold = GlobalKey<ScaffoldState>();
   String username="";
-
-  String phoneNumber =  '9806703955';
-
+  String phoneNumber =  "";
   String emailAddress="";
   String newpassword = '';
-
   String password= '';
 
   TextEditingController fullnameController ;
-
   TextEditingController phonenumberController ;
-
   TextEditingController emailController ;
-
   TextEditingController passwordController ;
   TextEditingController newpasswordController ;
+
   bool _obscurePassword = true;
-
-
-
 
   @override
   Widget build(BuildContext context) {
-    // username =  widget.;
-    // emailAddress =widget.email;
+    username =  Provider.of<EmailProvider>(context, listen: false).name;
+    phoneNumber =Provider.of<EmailProvider>(context, listen: false).phoneNumber;
+    emailAddress = Provider.of<EmailProvider>(context, listen: false).email();
+    print(emailAddress);
     fullnameController = TextEditingController(text: "$username");
     phonenumberController = TextEditingController(text: "$phoneNumber");
     emailController = TextEditingController(text: "$emailAddress");
@@ -98,6 +83,7 @@ class _MyAccountState extends State<MyAccount> {
                 Padding(
                   padding: const EdgeInsets.only(right: 40,left: 35),
                   child: TextField(
+                    enabled: false,
                     controller: phonenumberController,
                     obscureText: false,
                     decoration: InputDecoration(
@@ -116,6 +102,7 @@ class _MyAccountState extends State<MyAccount> {
                 Padding(
                   padding: const EdgeInsets.only(right: 40,left: 35),
                   child: TextField(
+                    enabled: false,
                     controller: emailController,
                       obscureText: false,
                       decoration: InputDecoration(

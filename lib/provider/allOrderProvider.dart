@@ -6,25 +6,23 @@ import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
 
-class OrderProvider extends ChangeNotifier {
+class AllOrderProvider extends ChangeNotifier {
 
   List<Order> orderList = [];
-
-  int totalPrice =0;
 
   List<Order> get allOrder => UnmodifiableListView(orderList);
 
   //String email = Provider.of<EmailProvider>(context, listen: false).email();
-  Future<void> fetchOrder(String user) async {
+  Future<void> fetchAllOrder() async {
     orderList = [];
-    var url = '$FETCHORDER_URL?user=$user';
+    var url = '$FETCHALLORDER_URL';
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
       result.forEach((p) {
         var order = Order.fromJson(p);
-      //  print(order.proid);
-        totalPrice += int.parse(order.productPrice);
+        //  print(order.proid);
+       // totalPrice += int.parse(order.productPrice);
         orderList.add(order);
       });
     }

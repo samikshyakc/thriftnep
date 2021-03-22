@@ -323,7 +323,7 @@ class _MobileState extends State<Mobile> {
     _condition = _condition;
     _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
-    var category = "mobile";
+    var category = "Mobile";
 
     print('$usedfor' + '$productdetails' + '$_condition' + '$fileName');
 

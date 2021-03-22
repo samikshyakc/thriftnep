@@ -196,9 +196,17 @@ class _MensClothingState extends State<MensClothing> {
                             margin: EdgeInsets.all(15),
                             child: Material(
                               elevation: 3.0,
-                              child: Image.file(
-                                snapshot.data,
-                                fit: BoxFit.fill,
+                              child: Column(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.cancel_outlined),
+                                    onPressed: (){},
+                                  ),
+                                  Image.file(
+                                    snapshot.data,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ],
                               ),
                             ),
                           );

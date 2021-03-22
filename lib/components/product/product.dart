@@ -1,10 +1,8 @@
-
 class Product {
 
   String productId;
   String productName;
   String productPrice;
- // String negotiable;
   String productCondition;
   String usedFor;
   String category;
@@ -16,7 +14,6 @@ class Product {
     this.productId,
     this.productName,
     this.productPrice,
-   // this.negotiable,
     this.productCondition,
     this.usedFor,
     this.category,

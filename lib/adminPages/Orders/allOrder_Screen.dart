@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/adminPages/Orders/adminOrder_widget.dart';
 import 'package:thrift_nep/components/order/order_widget.dart';
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
+import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
 
 class OrderProducts extends StatefulWidget {
@@ -17,9 +19,9 @@ class _OrderProductsState extends State<OrderProducts> {
   @override
   Widget build(BuildContext context) {
     orderList =
-        Provider.of<OrderProvider>(context, listen: false).allOrder;
-    totalPrice = Provider.of<OrderProvider>(context, listen: false).totalPrice;
-    print(totalPrice);
+        Provider.of<AllOrderProvider>(context, listen: false).allOrder;
+  //  totalPrice = Provider.of<AllOrderProvider>(context, listen: false).totalPrice;
+  //  print(totalPrice);
 
     return SafeArea(
       child: Scaffold(
@@ -27,7 +29,7 @@ class _OrderProductsState extends State<OrderProducts> {
           elevation: 0.1,
           //automaticallyImplyLeading: false,
           title: Text(
-            'My Orders',
+            'New Orders',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: kAppbar,
@@ -43,7 +45,7 @@ class _OrderProductsState extends State<OrderProducts> {
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return OrderWidget(orderList[index]);
+                return AdminOrderWidget(orderList[index]);
               }),
         ),
 

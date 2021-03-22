@@ -13,6 +13,7 @@ class Order {
   String buyer;
   String address;
   String date;
+  String status;
 
   Order(
       {this.orderId,
@@ -28,7 +29,9 @@ class Order {
         this.paymentMethod,
         this.buyer,
         this.address,
-        this.date});
+        this.date,
+        this.status
+      });
 
   Order.fromJson(Map<String, dynamic> json) {
     orderId = json['order_id'];
@@ -45,6 +48,7 @@ class Order {
     buyer = json['buyer'];
     address = json['address'];
     date = json['date'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +67,7 @@ class Order {
     data['buyer'] = this.buyer;
     data['address'] = this.address;
     data['date'] = this.date;
+    data['status'] = this.status;
     return data;
   }
 }

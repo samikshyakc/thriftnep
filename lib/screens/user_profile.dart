@@ -5,9 +5,7 @@ import 'package:thrift_nep/components/user_profile/account_screen.dart';
 import 'package:thrift_nep/components/user_profile/user.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
-import 'package:thrift_nep/provider/user_provider.dart';
-import 'package:thrift_nep/widgets/customTextField.dart';
-import 'package:thrift_nep/widgets/loading_indicator.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
@@ -18,9 +16,7 @@ class ProfileScreen extends StatelessWidget {
   final Users user;
   @override
   Widget build(BuildContext context) {
-    TextEditingController passwordController = TextEditingController();
     String email = Provider.of<EmailProvider>(context, listen: false).email();
-    Provider.of<UserProvider>(context, listen: false).fetchUser(email);
     return SafeArea(
       child: Scaffold(
         backgroundColor: kPrimaryLightColor,
@@ -138,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
 
                       leading: Icon(Icons.account_circle),
                       title: Text(
-                        'Account',
+                        'Edit Account',
                         style: GoogleFonts.raleway(
                           textStyle: TextStyle(
                               color: Colors.black54,

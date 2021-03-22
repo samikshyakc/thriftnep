@@ -17,7 +17,7 @@ class _CartProductsState extends State<CartProducts> {
   @override
   Widget build(BuildContext context) {
     cartproductList =
-        Provider.of<CartProvider>(context, listen: false).allProduct;
+        Provider.of<CartProvider>(context, listen: false).allCart;
     totalPrice = Provider.of<CartProvider>(context, listen: false).totalPrice;
     print(totalPrice);
 

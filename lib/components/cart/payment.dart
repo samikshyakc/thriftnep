@@ -32,7 +32,7 @@ class _PaymentState extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
-    cartproductList = Provider.of<CartProvider>(context, listen: false).allProduct;
+    cartproductList = Provider.of<CartProvider>(context, listen: false).allCart;
     totalPrice = Provider.of<CartProvider>(context, listen: false).totalPrice;
     print(totalPrice);
 
@@ -171,6 +171,7 @@ class _PaymentState extends State<Payment> {
 
   void sendOrder(String paymentMethod) async {
     String buyer = Provider.of<EmailProvider>(context, listen: false).email();
+    //String cartID = cart.productId;
     var address = addressController.text;
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd');
@@ -185,6 +186,17 @@ class _PaymentState extends State<Payment> {
       //print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if (response.body.contains("order added")) {
+        var url = '$DELETE_URL?email=$buyer&product_id=${cart.productId}';
+        var response = await http.get(url);
+        Navigator.pop(context);
+        //print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        if (response.body.contains("deleted")) {
+          Provider.of<CartProvider>(context, listen: false).fetchCart(buyer);
+          Navigator.pushReplacementNamed(context, 'home');
+        } else {
+          _showSnackBar('Failed');
+        }
         // Navigator.pushReplacementNamed(context, 'home');
         print('success');
         print("");

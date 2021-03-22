@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_nep/components/order/order_widget.dart';
+import 'package:thrift_nep/adminPages/Orders/adminOrder_widget.dart';
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/provider/orderProvider.dart';
+import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
 
-class OrderProducts extends StatefulWidget {
+
+class DeliveredOrder extends StatefulWidget {
   @override
-  _OrderProductsState createState() => _OrderProductsState();
+  _DeliveredOrderState createState() => _DeliveredOrderState();
 }
 
-class _OrderProductsState extends State<OrderProducts> {
+class _DeliveredOrderState extends State<DeliveredOrder> {
   List<Order> orderList = [];
-  int totalPrice = 0;
+ // int totalPrice = 0;
 
   @override
   Widget build(BuildContext context) {
     orderList =
-        Provider.of<OrderProvider>(context, listen: false).allOrder;
-    totalPrice = Provider.of<OrderProvider>(context, listen: false).totalPrice;
-    print(totalPrice);
-
+        Provider.of<DeliveredOrderProvider>(context, listen: false).deliveredOrder;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.1,
           //automaticallyImplyLeading: false,
           title: Text(
-            'My Orders',
+            'Delivered Orders',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: kAppbar,
@@ -43,7 +41,7 @@ class _OrderProductsState extends State<OrderProducts> {
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return OrderWidget(orderList[index]);
+                return AdminOrderWidget(orderList[index]);
               }),
         ),
 

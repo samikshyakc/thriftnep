@@ -42,6 +42,7 @@ dependencies:
   flutter_khalti: ^1.0.0
   dio: ^3.0.10
   intl: ^0.16.1
+  flutter_slidable: ^0.5.7
 
 
 
@@ -70,6 +71,10 @@ flutter:
     - assets/background.png
     - assets/illustration.png
     - assets/placeholder-image.png
+    - assets/delivered.png
+    - assets/dispatched.png
+    - assets/neworders.png
+    - assets/orders.png
     - images/c1.jpg
     - images/m1.jpeg
     - images/m2.jpg

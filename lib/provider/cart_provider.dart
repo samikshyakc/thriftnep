@@ -12,7 +12,7 @@ class CartProvider extends ChangeNotifier {
 
   int totalPrice =0;
 
-  List<Cart> get allProduct => UnmodifiableListView(cartproductList);
+  List<Cart> get allCart=> UnmodifiableListView(cartproductList);
 
   //String email = Provider.of<EmailProvider>(context, listen: false).email();
   Future<void> fetchCart(String user) async {
@@ -33,15 +33,8 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-// Future<String> save(String title, String details) async {
-//   var url = '$ADDNOTE_URL?title=$title&details=$details';
-//   var response = await http.get(url);
-//   if (response.body.contains("Created")) {
-//     productList = [];
-//     fetchNote();
-//   }
-//   return response.body;
-// }
+
+
 }
 
 
