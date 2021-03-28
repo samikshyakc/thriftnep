@@ -186,7 +186,7 @@ class _PaymentState extends State<Payment> {
       //print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
       if (response.body.contains("order added")) {
-        var url = '$DELETE_URL?email=$buyer&product_id=${cart.productId}';
+        var url = '$DELETE_URL?product_id=${cart.productId}';
         var response = await http.get(url);
         Navigator.pop(context);
         //print('Response status: ${response.statusCode}');

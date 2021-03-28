@@ -11,6 +11,7 @@ class EmailProvider extends ChangeNotifier {
   String name = "";
   String phoneNumber ="";
   String _email = '';
+  String status = "";
   String email() => _email;
    String _name ="";
   getEmail() async {
@@ -32,6 +33,7 @@ class EmailProvider extends ChangeNotifier {
         var user = Users.fromJson(p);
         name = user.name;
         phoneNumber= user.phoneNumber;
+        status = user.status.toString();
       });
     }
 

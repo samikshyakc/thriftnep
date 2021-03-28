@@ -22,6 +22,8 @@ class AdminOrderDetails extends StatefulWidget {
   final details;
   final seller;
   final orderId;
+  final orderAddress;
+  final buyer;
 
   AdminOrderDetails(
       {
@@ -34,8 +36,10 @@ class AdminOrderDetails extends StatefulWidget {
         this.category,
         this.productImages,
         this.details,
+        this.buyer,
         this.seller,
-        this.orderId
+        this.orderId,
+        this.orderAddress
       });
 
   @override
@@ -97,32 +101,6 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
 
                   // child: ,
                 )),
-
-            Row(
-              children: [
-                //========== the size button ========
-                Expanded(
-                    child: MaterialButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  BuyNow(
-                                    productId: widget.productId,
-                                    productName: widget.productName,
-                                    productPrice: widget.productPrice,
-                                    productImages: widget.productImages,
-                                    seller: widget.seller,
-                                  )
-                          ));
-                        },
-                        color: Colors.white,
-                        textColor: kAppbar,
-                        elevation: 0.2,
-                        child: Text('Buy Now'))),
-
-
-              ],
-            ),
             Divider(
               color: kAppbar,
             ),
@@ -160,6 +138,36 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(widget.usedfor),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                  child: Text(
+                    "Product Buyer",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(widget.buyer),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                  child: Text(
+                    "Delivery Address",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(widget.orderAddress),
                 )
               ],
             ),

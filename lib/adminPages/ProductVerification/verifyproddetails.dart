@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_nep/components/product/buynow.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:http/http.dart' as http;
@@ -95,31 +94,6 @@ class _AdminProductDetailsState extends State<AdminProductDetails> {
                   // child: ,
                 )),
 
-            Row(
-              children: [
-                //========== the size button ========
-                Expanded(
-                    child: MaterialButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  BuyNow(
-                                    productId: widget.productId,
-                                    productName: widget.productName,
-                                    productPrice: widget.productPrice,
-                                    productImages: widget.productImages,
-                                    seller: widget.seller,
-                                  )
-                          ));
-                        },
-                        color: Colors.white,
-                        textColor: kAppbar,
-                        elevation: 0.2,
-                        child: Text('Buy Now'))),
-
-
-              ],
-            ),
             Divider(
               color: kAppbar,
             ),
@@ -176,20 +150,61 @@ class _AdminProductDetailsState extends State<AdminProductDetails> {
               ],
             ),
             Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                  child: Text(
+                    "Product Category",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(widget.category),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                  child: Text(
+                    "Product Seller",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(widget.seller),
+                )
+              ],
+            ),
+            Row(
 
               children: [
-                IconButton(
-                    icon: Icon(Icons.done),
-                    onPressed: (){
-                      approveProd();
-                      Navigator.pushReplacementNamed(context, 'admin');
-                    },
+                ElevatedButton(
+                  child: Text('Approve', style: TextStyle(color: Colors.white),),
+                  style: ElevatedButton.styleFrom(
+                    primary: kAppbar,
+                  ),
+                  //icon: Icon(Icons.pic),
+                  onPressed: () {
+                   approveProd();
+                   Navigator.pushReplacementNamed(context, 'admin');
+                  },
                 ),
                 Padding(padding: EdgeInsets.all(8.0)),
-                IconButton(icon: Icon(Icons.cancel_outlined), onPressed: (){
-                  declineProd();
-                  Navigator.pushReplacementNamed(context, 'admin');
-                })
+                ElevatedButton(
+                  child: Text('Disapprove', style: TextStyle(color: Colors.white),),
+                  style: ElevatedButton.styleFrom(
+                    primary: kAppbar,
+                  ),
+                  //icon: Icon(Icons.pic),
+                  onPressed: () {
+                    declineProd();
+                    Navigator.pushReplacementNamed(context, 'admin');
+                  },
+                ),
               ],
             )
           ],

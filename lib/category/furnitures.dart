@@ -196,9 +196,24 @@ class _FurnitureState extends State<Furniture> {
                                 margin: EdgeInsets.all(15),
                                 child: Material(
                                   elevation: 3.0,
-                                  child: Image.file(
-                                    snapshot.data,
-                                    fit: BoxFit.fill,
+                                  child: Column(
+                                    children: [
+                                      Image.file(
+                                        snapshot.data,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      ElevatedButton(
+                                        child: Text('Choose another', style: TextStyle(color: Colors.white),),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: kAppbar,
+                                        ),
+                                        //icon: Icon(Icons.pic),
+                                        onPressed: () {
+                                          chooseImage();
+                                          print('Pressed');
+                                        },
+                                      )
+                                    ],
                                   ),
                                 ),
                               );

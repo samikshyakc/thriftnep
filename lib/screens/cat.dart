@@ -36,7 +36,7 @@ class _CategoryState extends State<Cat> {
           elevation: 0.1,
           //automaticallyImplyLeading: false,
           title: Text(
-            'Thrift Nep',
+            '${widget.category}',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: kAppbar,
@@ -59,7 +59,7 @@ class _CategoryState extends State<Cat> {
                 }),
           ],
         ),
-        body: SingleChildScrollView(
+        body: productList.length == 0? Center(child: Text("No result found!!", style: TextStyle(color: Colors.blue), )): SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

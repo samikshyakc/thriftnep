@@ -8,6 +8,7 @@ import 'package:thrift_nep/constants/urls.dart';
 class ProductProvider extends ChangeNotifier {
   List<Product> productList=[];
 
+
   List<Product> get allProduct => UnmodifiableListView(productList); //yo bhaneko chai ProductProvider le matra aba productList lai change garna sakcha
 
   Future<void> fetchProduct() async {
@@ -25,7 +26,6 @@ class ProductProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-
 
   List<Product> filterByCat(String category){
     List<Product> filteredList = [];
@@ -46,6 +46,7 @@ class ProductProvider extends ChangeNotifier {
     });
     return filteredProd;
   }
+
 
   // Future<void> fetchProductToVerify() async {
   //   var url = '$VERIFIYPRODUCT_URL';

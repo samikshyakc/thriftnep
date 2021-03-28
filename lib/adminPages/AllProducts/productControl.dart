@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
-import 'package:thrift_nep/provider/allOrderProvider.dart';
-import 'package:thrift_nep/provider/allUserProvider.dart';
-import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
-import 'package:thrift_nep/provider/productToVerify.dart';
-import 'package:thrift_nep/provider/product_provider.dart';
 
-class AdminHomeScreen extends StatelessWidget {
+
+class AdminProductScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
-    Provider.of<VerifyProductProvider>(context, listen: false)
-        .fetchProductToVerify();
-    Provider.of<DeliveredOrderProvider>(context, listen: false)
-        .fetchDeliveredOrder();
-    Provider.of<DisptachOrderProvider>(context, listen: false)
-        .fetchDispatchedOrder();
 
-    Provider.of<ProductProvider>(context, listen: false).fetchProduct();
-    Provider.of<AllUserProvider>(context, listen: false).fetchUser();
     return SafeArea(
       child: Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
             elevation: 0.1, //automaticallyImplyLeading: false,
             title: Text(
-              'Dashboard',
+              'Products',
               style: TextStyle(color: Colors.white),
             ),
             backgroundColor: kAppbar,
@@ -61,16 +46,16 @@ class AdminHomeScreen extends StatelessWidget {
                             mainAxisSpacing: 17,
                             children: <Widget>[
                               Items(
-                                  "Prodcuts",
-                                  "assets/images/dietlogo.png",
+                                  "New",
+                                  "assets/orders.png",
                                   context,
-                                  "productScreen"),
-                              // Items("All Products", "assets/images/bmi.png",
-                              //     context, "adminAllProduct"),
-                              Items("Orders", "assets/orders.png",
-                                  context, "adminOrders"),
-                              Items("Users", "assets/images/water.jpg",
-                                  context, "adminUsers"),
+                                  "verify"),
+                              Items("Approved", "assets/dispatched.png",
+                                  context, "adminAllProduct"),
+                              Items("Disapproved", "assets/delivered.png",
+                                  context, "disapprovedProducts"),
+                              // Items("Orders", "assets/images/water.jpg",
+                              //     context, "dispatchOrder"),
                             ],
                           ),
                         ),

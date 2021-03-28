@@ -21,24 +21,33 @@ class _MyAccountState extends State<MyAccount> {
   String emailAddress="";
   String newpassword = '';
   String password= '';
+  String status = '';
 
   TextEditingController fullnameController ;
   TextEditingController phonenumberController ;
   TextEditingController emailController ;
   TextEditingController passwordController ;
   TextEditingController newpasswordController ;
+  TextEditingController statusController ;
 
   bool _obscurePassword = true;
 
+   String act = "active";
+
+  List activity = ["active", "inactive"];
+
   @override
   Widget build(BuildContext context) {
+
     username =  Provider.of<EmailProvider>(context, listen: false).name;
+    status =  Provider.of<EmailProvider>(context, listen: false).status;
     phoneNumber =Provider.of<EmailProvider>(context, listen: false).phoneNumber;
     emailAddress = Provider.of<EmailProvider>(context, listen: false).email();
     print(emailAddress);
     fullnameController = TextEditingController(text: "$username");
     phonenumberController = TextEditingController(text: "$phoneNumber");
     emailController = TextEditingController(text: "$emailAddress");
+    statusController = TextEditingController(text: status == '1'?"active":'inactive');
     newpasswordController = TextEditingController();
     passwordController = TextEditingController();
 
@@ -139,9 +148,11 @@ class _MyAccountState extends State<MyAccount> {
                       )
                     ),
                   ),
-
-
                   ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
+                //   child: status == '1' ? Text("active") : Text("inactive"),
+                // ),
                 SizedBox(height: 25),
                 Center(
                   child: ElevatedButton(
@@ -192,6 +203,87 @@ class _MyAccountState extends State<MyAccount> {
                             fontWeight: FontWeight.bold)),
                   ),
                 ),
+               Divider(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("you can change your status"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 40,left: 35),
+                  child: InkWell(
+                    onTap: (){
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              // title: Text("Are you sure?"),
+                              //content: Text('Logout?'),
+                              title: Text(' Enter your password'),
+
+                              content:SizedBox(
+                                height: 55,
+                                width: 150,
+                                child: DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10.0))),
+                                  value:status== '1'? "active": "inactive",
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      act = newValue;
+                                    });
+                                  },
+                                  items: activity.map((valueItem) {
+                                    return DropdownMenuItem(
+                                      value: valueItem,
+                                      child: Text(valueItem),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () async {
+
+                                    onLoading(context);
+                                    statusController.text = act;
+                                    changeStatus();
+                                    //verify();
+                                    //   cashOnDelivery('COD');
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    // Navigator.pushNamedAndRemoveUntil(
+                                    //     context, 'confirmOrder', (route) => false);
+                                  },
+                                  child: Text('Confirm'),
+                                ),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('NO')),
+                              ],
+                            );
+                          });
+                    },
+                    child: TextField(
+                        enabled: false,
+                        controller: statusController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(color: Colors.black)
+                          ),
+                          suffixIcon: Icon(Icons.lightbulb),),
+
+
+                    ),
+                  ),
+                ),
+
 
               ],
             ),
@@ -222,6 +314,24 @@ class _MyAccountState extends State<MyAccount> {
     }
     } else {
       _showSnackBar('incorrect password!');
+    }
+  }
+
+  void changeStatus() async {
+    act = statusController.text;
+    String email = Provider.of<EmailProvider>(context, listen: false).email();
+    onLoading(context);
+    var url = '$CHANGESTATUS_URL?email=$email&status=$act';
+    var response = await http.get(url);
+    print('Response body: ${response.body}');
+    if (response.body.contains("user status changed")) {
+      print("done");
+      Navigator.pop(context);
+      // Navigator.pushReplacementNamed(context, 'home');
+    }
+    else{
+      print("Update failed");
+      Navigator.pop(context);
     }
   }
   void _showSnackBar(String message) {

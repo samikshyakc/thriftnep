@@ -16,6 +16,8 @@ const String VERIFIYUSER_URL = '$BASE_URL/verifyUser.php';
 const String UPDATEUSER_URL = '$BASE_URL/updateUser.php';
 const String DELETECART_URL = '$BASE_URL/deleteCart.php';
 const String DELETE_URL = '$BASE_URL/delete.php';
+const String MYPRODUCT_URL = '$BASE_URL/fetchMyProduct.php';
+const String ALLUSERS_URL = '$BASE_URL/fetchAllUsers.php';
 
 //admin controll url
 const String VERIFIYPRODUCT_URL = '$BASE_URL/productToVerify.php';
@@ -25,3 +27,4 @@ const String FETCHALLORDER_URL = '$BASE_URL/fetchAllOrder.php';
 const String FETCHDELIVEREDORDER_URL = '$BASE_URL/fetchDeliveredOrder.php';
 const String FETCHDISPATCEDORDER_URL = '$BASE_URL/fetchDispatchedOrder.php';
 const String UPDATEORDERSTATUS_URL = '$BASE_URL/updateOrderStatus.php';
+const String CHANGESTATUS_URL = '$BASE_URL/userStatus.php';

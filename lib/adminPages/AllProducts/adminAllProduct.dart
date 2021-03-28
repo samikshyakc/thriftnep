@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'file:///C:/Users/Samikshya/AndroidStudioProjects/thriftnep/lib/adminPages/AllProducts/allProduct_widget.dart';
-import 'file:///C:/Users/Samikshya/AndroidStudioProjects/thriftnep/lib/adminPages/ProductVerification/verifyproductwidget.dart';
+import 'package:thrift_nep/adminPages/AllProducts/allProduct_widget.dart';
 import 'package:thrift_nep/components/product/product.dart';
+import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/productToVerify.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
 
@@ -13,7 +13,13 @@ class AllProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     productList = Provider.of<ProductProvider>(context, listen: true).allProduct;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: kAppbar,
+        title: Text("All Products", style: TextStyle(color: Colors.white),),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back, color: Colors.white,),
+        // ),
+      ),
       // body: VerifyProdWidget(),
       body: SingleChildScrollView(
         child: ListView.builder(

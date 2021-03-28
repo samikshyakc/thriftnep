@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/adminPages/AllProducts/disapprovedProducts.dart';
+import 'package:thrift_nep/adminPages/AllProducts/productControl.dart';
 import 'package:thrift_nep/adminPages/Orders/deliveredOrder.dart';
 import 'package:thrift_nep/adminPages/Orders/dispatchedOrder.dart';
+import 'package:thrift_nep/adminPages/Users/user_screen.dart';
 import 'package:thrift_nep/adminPages/admin_homepage.dart';
 import 'package:thrift_nep/adminPages/orderscontrol.dart';
 import 'package:thrift_nep/components/cart/checkout.dart';
@@ -10,12 +13,15 @@ import 'package:thrift_nep/components/cart/payment.dart';
 import 'package:thrift_nep/components/order/confirmed.dart';
 import 'package:thrift_nep/components/order/orderHistoryScreen.dart';
 import 'package:thrift_nep/components/user_profile/account_screen.dart';
+import 'package:thrift_nep/components/user_profile/myProduct.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
+import 'package:thrift_nep/provider/allUserProvider.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/myProductProvider.dart';
 import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/productToVerify.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
@@ -24,6 +30,7 @@ import 'package:thrift_nep/screens/login_screen.dart';
 import 'package:thrift_nep/screens/search.dart';
 import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/splash_screen.dart';
+import 'package:thrift_nep/screens/user_profile.dart';
 import 'package:thrift_nep/screens/welcome/welcome_screen.dart';
 import 'adminPages/AllProducts/adminAllProduct.dart';
 import 'adminPages/Orders/allOrder_Screen.dart';
@@ -61,9 +68,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: DisptachOrderProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: MyProductProvider(),
+        ),
 
         ChangeNotifierProvider.value(
           value: VerifyProductProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: AllUserProvider(),
         ),
 
       ],
@@ -87,19 +100,24 @@ class MyApp extends StatelessWidget {
           'login': (context) => LoginScreen(),
           'home': (context) => HomePage(),
           'welcome': (context) => WelcomeScreen(),
+        //  'profile': (context) => ProfileScreen(user: user),
           'prod_details': (context) => ProductDetails(),
           'checkout' : (context) => CheckOut(),
           'payment' : (context) => Payment(),
           'search' : (context) => SearchScreen(),
+          'myProducts' : (context) => MyProducts(),
           'orderHistory' : (context) => OrderHistoryScreen(),
           'confirmOrder' : (context) => OrderPlaced(),
           'admin': (context) => AdminHomeScreen(),
+          'adminUsers': (context) => AllUsers(),
           'verify': (context) => Verification(),
           'adminAllProduct': (context) => AllProduct(),
           'adminAllOrder': (context) => OrderProducts(),
           'deliverOrder': (context) => DeliveredOrder(),
           'dispatchOrder': (context) => DispatchedOrder(),
           'adminOrders': (context) => AdminOrderScreen(),
+          'productScreen': (context) => AdminProductScreen(),
+          'disapprovedProducts': (context) => DisapprovedProducts(),
 
         },
       ),

@@ -3,14 +3,16 @@ class Users {
   String name;
   String email;
   String phoneNumber;
+  String status;
 
-  Users({this.userId, this.name, this.email, this.phoneNumber});
+  Users({this.userId, this.name, this.email, this.phoneNumber, this.status});
 
   Users.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
     name = json['name'];
     email = json['email'];
     phoneNumber = json['phoneNumber'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +21,7 @@ class Users {
     data['name'] = this.name;
     data['email'] = this.email;
     data['phoneNumber'] = this.phoneNumber;
+    data['status'] = this.status;
     return data;
   }
 }

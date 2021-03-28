@@ -5,6 +5,7 @@ import 'package:thrift_nep/components/user_profile/account_screen.dart';
 import 'package:thrift_nep/components/user_profile/user.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
+import 'package:thrift_nep/provider/myProductProvider.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -16,7 +17,9 @@ class ProfileScreen extends StatelessWidget {
   final Users user;
   @override
   Widget build(BuildContext context) {
+
     String email = Provider.of<EmailProvider>(context, listen: false).email();
+    Provider.of<MyProductProvider>(context, listen: false).fetchmyProduct(email);
     return SafeArea(
       child: Scaffold(
         backgroundColor: kPrimaryLightColor,
@@ -52,6 +55,10 @@ class ProfileScreen extends StatelessWidget {
                     padding:const EdgeInsets.all(4.0),),
 
                   Text("$email"),
+                  Padding(
+                    padding:const EdgeInsets.all(4.0),),
+
+
                   // ListView(
                   //   children: [
                   //     ListTile(
@@ -93,7 +100,9 @@ class ProfileScreen extends StatelessWidget {
                   Card(
                     color: Colors.white70,
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, 'myProducts');
+                      },
                       leading: Icon(Icons.wallet_giftcard_sharp),
                       title: Text(
                         'My Products',
@@ -170,8 +179,11 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
 
-
   }
+  // saveStatus() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setString('status', status);
+  // }
 
 
 }

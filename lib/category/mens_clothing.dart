@@ -198,14 +198,27 @@ class _MensClothingState extends State<MensClothing> {
                               elevation: 3.0,
                               child: Column(
                                 children: [
-                                  IconButton(
-                                    icon: Icon(Icons.cancel_outlined),
-                                    onPressed: (){},
-                                  ),
+                                  // IconButton(
+                                  //   icon: Icon(Icons.cancel_outlined),
+                                  //   onPressed: (){
+                                  //    chooseImage();
+                                  //   },
+                                  // ),
                                   Image.file(
                                     snapshot.data,
                                     fit: BoxFit.fill,
                                   ),
+                                  ElevatedButton(
+                                    child: Text('Choose another', style: TextStyle(color: Colors.white),),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: kAppbar,
+                                    ),
+                                    //icon: Icon(Icons.pic),
+                                    onPressed: () {
+                                      chooseImage();
+                                      print('Pressed');
+                                    },
+                                  )
                                 ],
                               ),
                             ),
