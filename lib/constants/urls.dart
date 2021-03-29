@@ -22,6 +22,7 @@ const String ALLUSERS_URL = '$BASE_URL/fetchAllUsers.php';
 //admin controll url
 const String VERIFIYPRODUCT_URL = '$BASE_URL/productToVerify.php';
 const String APPROVEPRODUCT_URL = '$BASE_URL/productApproved.php';
+const String DISPRODUCT_URL = '$BASE_URL/productDisapproved.php';
 const String DECLINEPRODUCT_URL = '$BASE_URL/productDeclined.php';
 const String FETCHALLORDER_URL = '$BASE_URL/fetchAllOrder.php';
 const String FETCHDELIVEREDORDER_URL = '$BASE_URL/fetchDeliveredOrder.php';

@@ -19,6 +19,7 @@ import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/provider/allUserProvider.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
+import 'package:thrift_nep/provider/disapprovedProduct_provider.dart';
 import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/provider/myProductProvider.dart';
@@ -78,6 +79,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: AllUserProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: DisapprovedProductProvider(),
+        ),
 
       ],
       child: MaterialApp(
@@ -90,7 +94,7 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryLightColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: 'admin',
+        initialRoute: 'splash',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           'splash': (context) => SplashScreen(),

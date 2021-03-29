@@ -19,8 +19,7 @@ class MensClothing extends StatefulWidget {
 }
 
 class _MensClothingState extends State<MensClothing> {
-  var _pricenegotiable = ["YES", "NO"];
-  String _negotiable = "YES";
+
   var _conditions = ["Used", "Brand New"];
   String _condition = "Used";
 
@@ -92,34 +91,7 @@ class _MensClothingState extends State<MensClothing> {
                 autofocus: false,
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.all(8.0),
-            //   child: DropdownButtonFormField(
-            //     items: _pricenegotiable.map((String priority) {
-            //       return DropdownMenuItem(
-            //         value: priority,
-            //         child: Text(
-            //           priority,
-            //           style: TextStyle(
-            //             color: Colors.black,
-            //             fontSize: 18.0,
-            //           ),
-            //         ),
-            //       );
-            //     }).toList(),
-            //     decoration: InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       labelText: 'Price Negotiable',
-            //       labelStyle: TextStyle(fontSize: 20.0),
-            //     ),
-            //     onChanged: (value) {
-            //       setState(() {
-            //         _negotiable = value;
-            //       });
-            //     },
-            //     value: _negotiable,
-            //   ),
-            // ),
+
             Padding(
               padding: EdgeInsets.all(8.0),
               child: DropdownButtonFormField(
@@ -361,7 +333,6 @@ class _MensClothingState extends State<MensClothing> {
       'for' : usedfor,
       'price' : productPrice,
       'condition' : _condition,
-     // 'negotiable' : _negotiable,
       'description' : productdetails,
       'category': category,
       'seller': seller,

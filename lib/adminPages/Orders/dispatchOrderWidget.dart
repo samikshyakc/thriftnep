@@ -46,14 +46,14 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
           actionExtentRatio: 0.25,
           secondaryActions: <Widget>[
             new IconSlideAction(
-              caption: 'More',
+              caption: 'Cancel',
               color: Colors.black45,
-              icon: Icons.more_horiz,
+              icon: Icons.cancel_outlined,
               onTap: () {},
             ),
             new IconSlideAction(
-              caption: 'Delete',
-              color: Colors.red,
+              caption: 'Delivered',
+              color: kPrimaryColor,
               icon: Icons.delete,
               onTap: () {
                  deliveredOrder();

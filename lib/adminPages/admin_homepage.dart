@@ -4,6 +4,7 @@ import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/provider/allUserProvider.dart';
+import 'package:thrift_nep/provider/disapprovedProduct_provider.dart';
 import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 import 'package:thrift_nep/provider/productToVerify.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
@@ -16,6 +17,8 @@ class AdminHomeScreen extends StatelessWidget {
     Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
     Provider.of<VerifyProductProvider>(context, listen: false)
         .fetchProductToVerify();
+    Provider.of<DisapprovedProductProvider>(context, listen: false)
+        .fetchProductDisapproved();
     Provider.of<DeliveredOrderProvider>(context, listen: false)
         .fetchDeliveredOrder();
     Provider.of<DisptachOrderProvider>(context, listen: false)

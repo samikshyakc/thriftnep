@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/adminPages/AllProducts/allProduct_widget.dart';
 import 'package:thrift_nep/components/product/product.dart';
+import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
 
@@ -18,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     prodList =
-        Provider.of<ProductProvider>(context, listen: false).filterProduct("");
+        Provider.of<ProductProvider>(context, listen: false).filterProduct('');
     super.initState();
   }
 
@@ -27,6 +29,10 @@ class _SearchScreenState extends State<SearchScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+            elevation: 0.1, //automaticallyImplyLeading: false,
+            backgroundColor: kAppbar,
+         //   iconTheme: IconThemeData(color: Colors.white),
+
           title: Container(
             alignment: Alignment.centerLeft,
             color: Colors.transparent,
@@ -47,61 +53,35 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
         ),
-        // body: Container(
-        //   height: 900,
-        //   decoration: GradientWidget(),
-        //   child: ListView(
-        //     children: [
-        //       TextField(
-        //         onChanged: (value) {
-        //           setState(() {
-        //             hallList =
-        //                 Provider.of<EventHallProvider>(context, listen: false)
-        //                     .filterHall(value);
-        //             print(value);
-        //           });
-        //         },
-        //         style: TextStyle(color: Colors.white),
-        //         obscureText: false,
-        //         decoration: InputDecoration(
-        //             // icon: Icon(
-        //             //   Icons.arrow_back,
-        //             //   color: Colors.white,
-        //             //   size: 30,
-        //             // ),
-        //             hintText: 'Search',
-        //             hintStyle: TextStyle(color: Colors.white)),
-        //       ),
-        //
-        //     ],
-        //   ),
-        // ),
-        body: prodList.isNotEmpty
-            ?               Container(
+       
+        body: prodList.isEmpty
+            ? Center(child: Text("No results")) :
+           // ?
+        Container(
           child:GridView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: prodList.length,
               gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
               itemBuilder: (context, index) {
-                return ProductWidget(product: prodList[index]);
+                return AllProductWidget(product: prodList[index]);
               }),
         )
-            : Container(
-
-            child: Center(
-                child: Text(
-                  'No results',
-                  textScaleFactor: 1,
-                  style: GoogleFonts.roboto(
-                    textStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  textAlign: TextAlign.center,
-                ))),
+            // : Container(
+            //
+            // child: Center(
+            //     child: Text(
+            //       'No results',
+            //       textScaleFactor: 1,
+            //       style: GoogleFonts.roboto(
+            //         textStyle: TextStyle(
+            //             color: Colors.black,
+            //             fontSize: 30.0,
+            //             fontWeight: FontWeight.normal),
+            //       ),
+            //       textAlign: TextAlign.center,
+            //     ))),
       ),
     );
   }
