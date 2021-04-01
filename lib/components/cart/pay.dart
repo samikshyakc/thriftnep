@@ -60,7 +60,41 @@ class _PayState extends State<Pay> {
                 color: kAppbar,
                 textColor: Colors.white24,
                 onPressed: () {
-                  openKhalti();
+                  showDialog(context: context, builder: (context){
+                    return AlertDialog(
+                      // title: Text("Are you sure?"),
+                      //content: Text('Logout?'),
+                      title: Text('Total: $totalPrice \n Enter your delivery address'),
+
+                      content:  TextField(
+
+                       // hint: 'Delivery Address',
+                        // validator: validateEmail,
+                        controller: addressController,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.text,
+                       // issecured: false,
+                      ),
+                      actions: [
+                        FlatButton(
+                          onPressed: () async {
+                            onLoading(context);
+                            openKhalti();
+                            Navigator.pop(context);
+                            // Navigator.pushNamedAndRemoveUntil(
+                            //     context, 'confirmOrder', (route) => false);
+                          },
+                          child: Text('Confirm'),
+                        ),
+                        FlatButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('NO')),
+                      ],
+                    );
+                  });
+
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(30.0))),
@@ -76,7 +110,8 @@ class _PayState extends State<Pay> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
+                        return
+                          AlertDialog(
                           // title: Text("Are you sure?"),
                           //content: Text('Logout?'),
                           title: Text('Total: $totalPrice \n Enter your delivery address'),
@@ -144,6 +179,7 @@ class _PayState extends State<Pay> {
       ),
     );
   }
+
 
   void openKhalti() {
     print(totalPrice);

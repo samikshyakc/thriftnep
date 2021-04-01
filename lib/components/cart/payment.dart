@@ -58,7 +58,40 @@ class _PaymentState extends State<Payment> {
                 color: kAppbar,
                 textColor: Colors.white24,
                 onPressed: (){
-                  openKhalti();
+                  showDialog(context: context, builder: (context){
+                    return AlertDialog(
+                      // title: Text("Are you sure?"),
+                      //content: Text('Logout?'),
+                      title: Text('Total: $totalPrice \n Enter your delivery address'),
+
+                      content:  CustomTextField(
+                        hint: 'Delivery Address',
+                        // validator: validateEmail,
+                        controller: addressController,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.text,
+                        issecured: false,
+                      ),
+                      actions: [
+                        FlatButton(
+                          onPressed: () async {
+                            onLoading(context);
+                            openKhalti();
+                            Navigator.pop(context);
+                            // Navigator.pushNamedAndRemoveUntil(
+                            //     context, 'confirmOrder', (route) => false);
+                          },
+                          child: Text('Confirm'),
+                        ),
+                        FlatButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('NO')),
+                      ],
+                    );  ;
+                  });
+
                 },
                 shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
             ),
@@ -74,7 +107,8 @@ class _PaymentState extends State<Payment> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
+                        return
+                          AlertDialog(
                           // title: Text("Are you sure?"),
                           //content: Text('Logout?'),
                           title: Text('Total: $totalPrice \n Enter your delivery address'),

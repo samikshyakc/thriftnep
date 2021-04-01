@@ -15,6 +15,14 @@ class _CartProductsState extends State<CartProducts> {
   int totalPrice = 0;
 
   @override
+  // void initState() {
+  //  // Provider.of<CartProvider>(context, listen: false).fetchCart(email);
+  //   cartproductList =
+  //       Provider.of<CartProvider>(context, listen: false).allCart;
+  //   super.initState();
+  // }
+
+  @override
   Widget build(BuildContext context) {
     cartproductList =
         Provider.of<CartProvider>(context, listen: false).allCart;

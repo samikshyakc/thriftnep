@@ -92,7 +92,7 @@ class _BuyNowState extends State<BuyNow> {
                         productPrice:widget.productPrice,
                         productName: widget.productName,
                        seller: widget.seller,
-                       // seller: widget.,
+
 
                       )
                   ));
