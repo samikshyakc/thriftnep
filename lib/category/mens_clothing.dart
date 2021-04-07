@@ -9,9 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
-import 'package:thrift_nep/screens/homepage.dart';
+
 
 class MensClothing extends StatefulWidget {
+
   @override
   _MensClothingState createState() => _MensClothingState();
 }
@@ -317,7 +318,9 @@ class _MensClothingState extends State<MensClothing> {
     _condition = _condition;
    // _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
+
     var category = "Mens Clothing";
+   // var category = '${widget.cat}';
 
     print('$usedfor' + '$productdetails' + '$_condition' + '$fileName');
 

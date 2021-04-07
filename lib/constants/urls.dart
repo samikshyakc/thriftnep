@@ -18,6 +18,7 @@ const String DELETECART_URL = '$BASE_URL/deleteCart.php';
 const String DELETE_URL = '$BASE_URL/delete.php';
 const String MYPRODUCT_URL = '$BASE_URL/fetchMyProduct.php';
 const String ALLUSERS_URL = '$BASE_URL/fetchAllUsers.php';
+const String SEARCH_URL = '$BASE_URL/search.php';
 
 //admin controll url
 const String VERIFIYPRODUCT_URL = '$BASE_URL/productToVerify.php';

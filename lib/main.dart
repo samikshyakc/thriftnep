@@ -31,7 +31,6 @@ import 'package:thrift_nep/screens/login_screen.dart';
 import 'package:thrift_nep/screens/search.dart';
 import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/splash_screen.dart';
-import 'package:thrift_nep/screens/user_profile.dart';
 import 'package:thrift_nep/screens/welcome/welcome_screen.dart';
 import 'adminPages/AllProducts/adminAllProduct.dart';
 import 'adminPages/Orders/allOrder_Screen.dart';
@@ -108,7 +107,7 @@ class MyApp extends StatelessWidget {
           'prod_details': (context) => ProductDetails(),
           'checkout' : (context) => CheckOut(),
           'payment' : (context) => Payment(),
-          'search' : (context) => SearchScreen(),
+          'search' : (context) => SearchScreen("*"),
           'myProducts' : (context) => MyProducts(),
           'orderHistory' : (context) => OrderHistoryScreen(),
           'confirmOrder' : (context) => OrderPlaced(),

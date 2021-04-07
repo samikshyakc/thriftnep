@@ -1,29 +1,51 @@
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:thrift_nep/adminPages/AllProducts/allProduct_widget.dart';
-import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/provider/product_provider.dart';
-import 'package:thrift_nep/widgets/product_widget.dart';
+import 'package:thrift_nep/constants/urls.dart';
+
 
 class SearchScreen extends StatefulWidget {
+  final String searchText;
+  SearchScreen(this.searchText);
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<Product> prodList = [];
-  bool typing = false;
+  List prodList = [];
+  bool isLoading = true;
+
+  Future<void> fetchProduct(String searchText) async {
+    var url = '$SEARCH_URL?search=$searchText';
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var result = json.decode(response.body);
+      prodList = result;
+      setState(() {
+        isLoading = false;
+      });
+
+      print('I am being printed : \n $result');
+
+      // result.forEach((p) {
+      //   var note = Product.fromJson(p);
+      // //  print(note);
+      //   prodList.add(note);
+      // }
+     // );
+    }
+  }
 
   @override
   void initState() {
-    prodList =
-        Provider.of<ProductProvider>(context, listen: false).filterProduct('');
     super.initState();
-  }
+    searchText.text = widget.searchText;
+    fetchProduct(widget.searchText);
 
+  }
+  var searchText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,13 +59,16 @@ class _SearchScreenState extends State<SearchScreen> {
             alignment: Alignment.centerLeft,
             color: Colors.transparent,
             child: TextField(
+              controller: searchText,
               onChanged: (value) {
-                setState(() {
-                  prodList = [];
-                  prodList =
-                      Provider.of<ProductProvider>(context, listen: false)
-                          .filterProduct(value);
-                });
+                fetchProduct(value);
+                // setState(() {
+                //   prodList = [];
+                //   prodList =
+                //       Provider.of<ProductProvider>(context, listen: false)
+                //           .filterProduct(value);
+                // }
+                //);
               },
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -53,35 +78,32 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
         ),
-       
-        body: prodList.isEmpty
-            ? Center(child: Text("No results")) :
-           // ?
-        Container(
-          child:GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: prodList.length,
-              gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-              itemBuilder: (context, index) {
-                return AllProductWidget(product: prodList[index]);
-              }),
-        )
-            // : Container(
-            //
-            // child: Center(
-            //     child: Text(
-            //       'No results',
-            //       textScaleFactor: 1,
-            //       style: GoogleFonts.roboto(
-            //         textStyle: TextStyle(
-            //             color: Colors.black,
-            //             fontSize: 30.0,
-            //             fontWeight: FontWeight.normal),
-            //       ),
-            //       textAlign: TextAlign.center,
-            //     ))),
+       body:(isLoading)
+           ? Center(
+         child: CircularProgressIndicator(),
+       ):
+       //Text("heyy")
+       ListView.builder(
+           itemCount: prodList == null ? 0 : prodList.length,
+           itemBuilder: (context, i) {
+             return SearchedItems(i, context);
+           }),
+
+      ),
+    );
+  }
+  Widget SearchedItems(int i, BuildContext context) {
+    return
+      prodList == null
+        ? Text('No Data Available'):
+      Card(
+      elevation: 19,
+      child: ListTile(
+        title: Text("ProductName : " +
+            prodList[i]['product_name'] +
+            " " +
+            "\n Price" +
+            prodList[i]['product_price']),
       ),
     );
   }

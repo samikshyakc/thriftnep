@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thrift_nep/category/mens_clothing.dart';
+import 'package:thrift_nep/components/product/upload_images.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/category/accessories.dart';
 import 'package:thrift_nep/category/books.dart';
@@ -54,7 +55,8 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Men's Clothing", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MensClothing()));
+                         // MaterialPageRoute(builder: (context) => MensClothing()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Mens Clothing",)));
                     },
                   ),
                 ),
@@ -70,7 +72,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Women's Clothing", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => WomensClothing()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Womens Clothing",)));
                     },
                   ),
                 ),
@@ -86,7 +88,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Accessories", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Accessories()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Accessories",)));
                     },
                   ),
                 ),
@@ -102,7 +104,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Footwears", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Footwears()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Footwears",)));
                     },
                   ),
                 ),
@@ -118,7 +120,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Watchs", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Watch()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Watch",)));
                     },
                   ),
                 ),
@@ -134,7 +136,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Books", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Books()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Books",)));
                     },
                   ),
                 ),
@@ -150,7 +152,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("PCs", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => PC()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "PCs",)));
                     },
                   ),
                 ),
@@ -166,7 +168,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Mobile phones", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Mobile()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Mobile",)));
                     },
                   ),
                 ),
@@ -182,7 +184,7 @@ class _SellProductState extends State<SellProduct> {
                     title: Text("Furnitures", style: TextStyle(fontSize: 20)),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Furniture()));
+                          MaterialPageRoute(builder: (context) => UploadProduct(category: "Furnitures",)));
                     },
                   ),
                 ),

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
-import 'package:thrift_nep/screens/homepage.dart';
+
 
 class Accessories extends StatefulWidget {
   @override

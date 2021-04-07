@@ -31,6 +31,16 @@ class OrderProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  //
+  // List<Order> filterByDate(String from, String to){
+  //   List<Order> filteredList = [];
+  //   orderList.forEach((orderss) {
+  //     if(orderss.date == from && orderss){
+  //       filteredList.add(product);
+  //     }
+  //   });
+  //   return filteredList;
+  // }
 
 }
 

@@ -37,6 +37,7 @@ class ProductProvider extends ChangeNotifier {
     return filteredList;
   }
 
+
   List<Product> filterProduct(String search){
     List<Product> filteredProd = [];
     productList.forEach((product) {
@@ -47,32 +48,6 @@ class ProductProvider extends ChangeNotifier {
     return filteredProd;
   }
 
-
-  // Future<void> fetchProductToVerify() async {
-  //   var url = '$VERIFIYPRODUCT_URL';
-  //   var response = await http.get(url);
-  //   if (response.statusCode == 200) {
-  //     var result = json.decode(response.body);
-  //     print(result);
-  //     result.forEach((p) {
-  //       var note = Product.fromJson(p);
-  //       print(note);
-  //       verifyproductList.add(note);
-  //     });
-  //   }
-  //
-  //   notifyListeners();
-  // }
-
-// Future<String> save(String title, String details) async {
-  //   var url = '$ADDNOTE_URL?title=$title&details=$details';
-  //   var response = await http.get(url);
-  //   if (response.body.contains("Created")) {
-  //     productList = [];
-  //     fetchNote();
-  //   }
-  //   return response.body;
-  // }
 }
 
 
