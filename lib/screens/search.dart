@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:thrift_nep/adminPages/AllProducts/allProduct_widget.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
@@ -61,7 +61,8 @@ class _SearchScreenState extends State<SearchScreen> {
             child: TextField(
               controller: searchText,
               onChanged: (value) {
-                fetchProduct(value);
+                value == "" ?
+                fetchProduct(null): fetchProduct(value);
                 // setState(() {
                 //   prodList = [];
                 //   prodList =
@@ -83,11 +84,11 @@ class _SearchScreenState extends State<SearchScreen> {
          child: CircularProgressIndicator(),
        ):
        //Text("heyy")
-       ListView.builder(
+       prodList != null?  ListView.builder(
            itemCount: prodList == null ? 0 : prodList.length,
            itemBuilder: (context, i) {
              return SearchedItems(i, context);
-           }),
+           }): Center(child: Text("No result found", style: TextStyle(color: Colors.green),)) ,
 
       ),
     );

@@ -5,6 +5,7 @@ import 'package:thrift_nep/components/cart/cart_widget.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 
+
 class CartProducts extends StatefulWidget {
   @override
   _CartProductsState createState() => _CartProductsState();
@@ -14,11 +15,14 @@ class _CartProductsState extends State<CartProducts> {
   List<Cart> cartproductList = [];
   int totalPrice = 0;
 
+
   @override
   // void initState() {
-  //  // Provider.of<CartProvider>(context, listen: false).fetchCart(email);
+  //   String email = Provider.of<EmailProvider>(context, listen: false).email();
+  //   Provider.of<CartProvider>(context, listen: false).fetchCart(email);
   //   cartproductList =
   //       Provider.of<CartProvider>(context, listen: false).allCart;
+  //   totalPrice = Provider.of<CartProvider>(context, listen: false).totalPrice;
   //   super.initState();
   // }
 
@@ -27,7 +31,7 @@ class _CartProductsState extends State<CartProducts> {
     cartproductList =
         Provider.of<CartProvider>(context, listen: false).allCart;
     totalPrice = Provider.of<CartProvider>(context, listen: false).totalPrice;
-    print(totalPrice);
+    print("Total price  $totalPrice");
 
     return SafeArea(
       child: Scaffold(
@@ -45,14 +49,14 @@ class _CartProductsState extends State<CartProducts> {
         body: SingleChildScrollView(
           //crossAxisAlignment: CrossAxisAlignment.start,
 
-          child: ListView.builder(
+          child:(cartproductList.isNotEmpty)? ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               itemCount: cartproductList.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return CartWidget(cartproductList[index]);
-              }),
+              }): Center(child: Text("No prod")),
         ),
         bottomNavigationBar: Container(
           color: Colors.white,

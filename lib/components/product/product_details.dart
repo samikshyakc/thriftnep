@@ -235,15 +235,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: Text(widget.condition),
                 )
               ],
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Similar Products",
-                style: TextStyle(color: kAppbar),
-              ),
-            ),
+               ),
+            // Divider(),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Text(
+            //     "Similar Products",
+            //     style: TextStyle(color: kAppbar),
+            //   ),
+            // ),
             // SIMILAR PRODUCT SECTION
             // Container(
             //   height: 360.0,
@@ -273,6 +273,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       _showSnackBar("Already in cart!!");
     } else {
       print('Added to cart');
+      Navigator.pop(context);
     }
 
   }

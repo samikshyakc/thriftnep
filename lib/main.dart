@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryLightColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: 'splash',
+        initialRoute: 'admin',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           'splash': (context) => SplashScreen(),
@@ -107,7 +107,7 @@ class MyApp extends StatelessWidget {
           'prod_details': (context) => ProductDetails(),
           'checkout' : (context) => CheckOut(),
           'payment' : (context) => Payment(),
-          'search' : (context) => SearchScreen("*"),
+          'search' : (context) => SearchScreen(null),
           'myProducts' : (context) => MyProducts(),
           'orderHistory' : (context) => OrderHistoryScreen(),
           'confirmOrder' : (context) => OrderPlaced(),

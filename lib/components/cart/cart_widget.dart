@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:http/http.dart' as http;
+import 'package:thrift_nep/components/cart/cart_screen.dart';
 import 'package:thrift_nep/components/product/product_details.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
@@ -26,7 +27,15 @@ CartWidget(this.cartProduct);
 
 class _CartWidgetState extends State<CartWidget> {
   final _globalKeyScaffold = GlobalKey<ScaffoldState>();
+  bool changed = false;
+  // void initState() {
+  //
+  //   super.initState();
+  //
+  //
+  // }
   @override
+
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ()
@@ -36,7 +45,6 @@ class _CartWidgetState extends State<CartWidget> {
             productId: widget.cartProduct.productId,
             productName:widget.cartProduct.productName,
             productPrice: widget.cartProduct.productPrice,
-            // negotiable: product.negotiable,
             condition: widget.cartProduct.productCondition,
             usedfor: widget.cartProduct.usedFor,
             category: widget.cartProduct.category,
@@ -62,10 +70,10 @@ class _CartWidgetState extends State<CartWidget> {
               color: Colors.red,
               icon: Icons.delete,
               onTap: () {
-                onLoading(context);
-                print("delete");
                 deleteCart();
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => CartProducts()));
+
               },
             ),
           ],
@@ -128,7 +136,7 @@ void deleteCart() async {
   //print('Response status: ${response.statusCode}');
   print('Response body: ${response.body}');
   if (response.body.contains("Deleted")) {
-    Provider.of<CartProvider>(context, listen: false).fetchCart(email);
+ //  Provider.of<CartProvider>(context, listen: false).fetchCart(email);
   //  Navigator.pushReplacementNamed(context, 'home');
   } else {
     _showSnackBar('Failed');
