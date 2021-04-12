@@ -24,22 +24,22 @@ class _MyProductWidgetState extends State<MyProductWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ()
-      => Navigator.of(context).push(MaterialPageRoute(
-        //  here we are passing the value of the product to product details page
-          builder: (context) => ProductDetails(
-            productId: widget.product.productId,
-            productName:widget.product.productName,
-            productPrice: widget.product.productPrice,
-            // negotiable: product.negotiable,
-            condition: widget.product.productCondition,
-            usedfor: widget.product.usedFor,
-            category: widget.product.category,
-            productImages: widget.product.productImages,
-            details: widget.product.description,
-            seller: widget.product.seller,
-
-          ))),
+      onTap: (){},
+      // => Navigator.of(context).push(MaterialPageRoute(
+      //   //  here we are passing the value of the product to product details page
+      //     builder: (context) => ProductDetails(
+      //       productId: widget.product.productId,
+      //       productName:widget.product.productName,
+      //       productPrice: widget.product.productPrice,
+      //       // negotiable: product.negotiable,
+      //       condition: widget.product.productCondition,
+      //       usedfor: widget.product.usedFor,
+      //       category: widget.product.category,
+      //       productImages: widget.product.productImages,
+      //       details: widget.product.description,
+      //       seller: widget.product.seller,
+      //
+      //     ))),
       child: Card(
         child: Slidable(
           //   delegate: new SlidableDrawerDelegate(),

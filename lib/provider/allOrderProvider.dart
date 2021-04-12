@@ -29,6 +29,26 @@ class AllOrderProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  Future disptachedOrder(String orderID) async {
+   // onLoading(context);
+    var url = '$UPDATEORDERSTATUS_URL?order_id=$orderID&status=2';
+    var response = await http.get(url);
+  //  Navigator.pop(context);
+    //print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    if (response.body.contains("Updated")) {
+      fetchAllOrder();
+      notifyListeners();
+      return true;
+      // Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
+      // Navigator.pushReplacementNamed(context, 'admin');
+    } else {
+      print('Failed');
+      notifyListeners();
+      return false;
+    }
+  }
+
 
 }
 

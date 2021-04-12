@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -328,8 +327,8 @@ class _UploadProductState extends State<UploadProduct> {
 
     //var category = "Mens Clothing";
     var category = '${widget.category}';
-
-    print('$usedfor' + '$productdetails' + '$_condition' + '$fileName');
+  
+    print('$fileName');
 
     // var jsonData = json.encode(map);
     // print(jsonData);
@@ -346,13 +345,10 @@ class _UploadProductState extends State<UploadProduct> {
       'seller': seller,
     };
 
-    // Response response;
-    // var dio = Dio();
-    // response = await dio.post(UPLOAD_URL,data:map);
-    // options: Options(contentType: ContentType.parse("application/x-www-form-urlencoded")))
+
 
     var response = await http.post('$UPLOAD_URL', body: map);
-    print(response.body.toString());
+   // print(response.body.toString());
     if (response.body.toString().contains('added')) {
       print('Success');
       Navigator.pop(context);

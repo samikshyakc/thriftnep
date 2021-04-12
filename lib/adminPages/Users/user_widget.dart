@@ -232,7 +232,7 @@ class _UsersWidgetState extends State<UsersWidget> {
     var url = '$CHANGESTATUS_URL?email=${widget.users.email}&status=$status';
     var response = await http.get(url);
     print('Response body: ${response.body}');
-    if (response.body.contains("user status changed")) {
+    if (response.body.contains("Updated")) {
       print("done");
       Navigator.pop(context);
     }

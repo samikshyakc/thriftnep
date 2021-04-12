@@ -19,7 +19,7 @@ class ProductProvider extends ChangeNotifier {
       print(result);
       result.forEach((p) {
         var note = Product.fromJson(p);
-       print(note);
+        print(note);
         productList.add(note);
       });
     }

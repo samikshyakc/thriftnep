@@ -2,12 +2,14 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/components/product/buynow.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:http/http.dart' as http;
+import 'package:toast/toast.dart';
 
 
 class AdminOrderDetails extends StatefulWidget {
@@ -24,6 +26,7 @@ class AdminOrderDetails extends StatefulWidget {
   final orderId;
   final orderAddress;
   final buyer;
+  Order order;
 
   AdminOrderDetails(
       {
@@ -191,15 +194,15 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
               children: [
                 IconButton(
                   icon: Icon(Icons.done),
-                  onPressed: (){
-                    disptachOrder();
-                   // approveProd();
-                 //   Navigator.pushReplacementNamed(context, 'admin');
+                  onPressed: () {
+                    dispatchOrder();
+                    // approveProd();
+                    //   Navigator.pushReplacementNamed(context, 'admin');
                   },
                 ),
                 Padding(padding: EdgeInsets.all(8.0)),
-                IconButton(icon: Icon(Icons.cancel_outlined), onPressed: (){
-                 // declineProd();
+                IconButton(icon: Icon(Icons.cancel_outlined), onPressed: () {
+                  // declineProd();
                   //Navigator.pushReplacementNamed(context, 'admin');
                 })
               ],
@@ -209,20 +212,33 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
       ),
     );
   }
-void disptachOrder() async {
-  onLoading(context);
-  var url = '$UPDATEORDERSTATUS_URL?order_id=${widget.orderId}&status=Dispatched';
-  var response = await http.get(url);
-  Navigator.pop(context);
-  //print('Response status: ${response.statusCode}');
-  print('Response body: ${response.body}');
-  if (response.body.contains("Updated")) {
-    Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
-    Navigator.pushReplacementNamed(context, 'admin');
-  } else {
-    print('Failed');
+
+  dispatchOrder() async {
+    onLoading(context);
+    bool isAdded = await Provider.of<AllOrderProvider>(context, listen: false)
+        .disptachedOrder(widget.orderId);
+    Navigator.pop(context);
+    if (isAdded) {
+      Toast.show("Order Dispatched", context);
+    } else {
+      Toast.show("Something is wrong.", context);
+    }
   }
 }
+// void disptachOrder() async {
+//   onLoading(context);
+//   var url = '$UPDATEORDERSTATUS_URL?order_id=${widget.orderId}&status=2';
+//   var response = await http.get(url);
+//   Navigator.pop(context);
+//   //print('Response status: ${response.statusCode}');
+//   print('Response body: ${response.body}');
+//   if (response.body.contains("Updated")) {
+//     Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
+//     Navigator.pushReplacementNamed(context, 'admin');
+//   } else {
+//     print('Failed');
+//   }
+// }
 //
 // void declineProd() async {
 //   onLoading(context);
@@ -238,4 +254,4 @@ void disptachOrder() async {
 //     print('Failed');
 //   }
 // }
-}
+

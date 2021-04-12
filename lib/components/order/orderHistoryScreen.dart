@@ -2,21 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:thrift_nep/constants/colors.dart';
 
-class OrderHistoryScreen extends StatelessWidget {
+class OrderHistoryScreen extends StatefulWidget {
+  @override
+  _OrderHistoryScreenState createState() => _OrderHistoryScreenState();
+}
+
+class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
+
+  List prodList = [];
+  bool isLoading = true;
   var now = new DateTime.now();
+
   var toDate;
+
   var fromDate;
+
   var formatter = new DateFormat('yyyy-MM-dd');
+  var fromDateController = TextEditingController();
+  var toDateController = TextEditingController();
 
   @override
+  // void initState() {
+  //   super.initState();
+  //   fromDateController.text = fromDate;
+  //   toDateController.text = toDate;
+  //
+  //  // fetchProduct(widget.searchText);
+  //
+  // }
   Widget build(BuildContext context) {
     String checkinDate = formatter.format(now);
-    fromDate = DateTime.now();
-    toDate = now.add(Duration(days: 1));
+    fromDate = now.subtract(Duration(days: 30));
 
+    toDate = DateTime.now();
+    String fromdatee = formatter.format(fromDate);
     String uptoDate = formatter.format(toDate);
-    final fromDateController = TextEditingController(text: "$checkinDate");
-    final toDateController = TextEditingController(text: "$uptoDate");
+    fromDateController = TextEditingController(text: "$fromdatee");
+    toDateController = TextEditingController(text: "$uptoDate");
 
     return Scaffold(
       appBar: AppBar(
@@ -60,16 +82,21 @@ class OrderHistoryScreen extends StatelessWidget {
                         onTap: () async {
                           var date = await showDatePicker(
                               context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.now(),
+                              initialDate: fromDate,
+                              firstDate: DateTime(2015),
                               lastDate: DateTime(2100));
-                          fromDate = date;
-                          fromDateController.text =
-                              date.toString().substring(0, 10);
-                          toDateController.text = fromDate
-                              .add(Duration(days: 1))
-                              .toString()
-                              .substring(0, 10);
+                             // fromDate = date;
+
+
+                            fromDateController.text =
+                                date.toString().substring(0, 10);
+
+                          print("from date = ${fromDateController.text}");
+
+                          // toDateController.text = fromDate
+                          //     .add(Duration(days: 1))
+                          //     .toString()
+                          //     .substring(0, 10);
                         },
                       )),
                 ],
@@ -104,21 +131,40 @@ class OrderHistoryScreen extends StatelessWidget {
                         onTap: () async {
                           var date = await showDatePicker(
                               context: context,
-                              initialDate: fromDate.add(Duration(days: 1)),
-                              firstDate: fromDate.add(Duration(days: 1)),
-                              lastDate: DateTime(2100));
-                          print(date);
-                          toDateController.text =
-                              date.toString().substring(0, 10);
-                          print(toDateController.text);
+                              initialDate:toDate,
+                              firstDate: DateTime(2015),
+                              lastDate: DateTime.now());
+                              print(date);
+
+                            toDateController.text =
+                                date.toString().substring(0, 10);
+
+                          print("from date = ${toDateController.text}");
+
                         },
                       )),
                 ],
               ),
             ),
+
           ],
         ),
       ),
     );
+  }
+  Widget SearchedItems(int i, BuildContext context) {
+    return
+      prodList == null
+          ? Text('No Data Available'):
+      Card(
+        elevation: 19,
+        child: ListTile(
+          title: Text("ProductName : " +
+              prodList[i]['product_name'] +
+              " " +
+              "\n Price" +
+              prodList[i]['product_price']),
+        ),
+      );
   }
 }

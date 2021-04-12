@@ -2,7 +2,9 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/cart/cart.dart';
 import 'package:thrift_nep/components/product/buynow.dart';
+import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +13,7 @@ import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:toast/toast.dart';
 
-class ProductDetails extends StatefulWidget {
+class SearchProductDetails extends StatefulWidget {
   final productId;
   final productName;
   final productPrice;
@@ -23,7 +25,8 @@ class ProductDetails extends StatefulWidget {
   final details;
   final seller;
 
-  ProductDetails(
+
+  SearchProductDetails(
       {
         this.productId,
         this.productName,
@@ -38,10 +41,10 @@ class ProductDetails extends StatefulWidget {
       });
 
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _SearchProductDetailsState createState() => _SearchProductDetailsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _SearchProductDetailsState extends State<SearchProductDetails> {
   final _globalKeyScaffold = GlobalKey<ScaffoldState>();
 
   @override
@@ -73,7 +76,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: GridTile(
                   child: Container(
                     color: Colors.white,
-                   // child: Image.asset(widget.productImages),
+                    // child: Image.asset(widget.productImages),
                     child:  Image(image: CachedNetworkImageProvider(widget.productImages),fit:BoxFit.fill,),
                   ),
                   footer: Container(
@@ -86,10 +89,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
 
                       title: Text(
-                            "Rs${widget.productPrice}",
-                            style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red),
-                          ),
+                        "Rs${widget.productPrice}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
                       // title: Row(
                       //   children: [
                       //     // Expanded(
@@ -116,40 +119,40 @@ class _ProductDetailsState extends State<ProductDetails> {
             // ===== the first buttons ==========
             // Row(
             //   children: [
-                //========== the size button ========
-                // Expanded(
-                //     child: MaterialButton(
-                //   onPressed: () {
-                //     showDialog(
-                //         context: context,
-                //         builder: (context) {
-                //           return AlertDialog(
-                //             title: Text("Size"),
-                //             content: Text('Choose the size'),
-                //             actions: [
-                //               MaterialButton(
-                //                   onPressed: () {
-                //                     Navigator.pop(context);
-                //                   },
-                //                   child: Text('close'))
-                //             ],
-                //           );
-                //         });
-                //   },
-                //   color: Colors.white,
-                //   textColor: kAppbar,
-                //   elevation: 0.2,
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: Text("Size"),
-                //       ),
-                //       Expanded(
-                //         child: Icon(Icons.arrow_drop_down),
-                //       ),
-                //     ],
-                //   ),
-                // ))
+            //========== the size button ========
+            // Expanded(
+            //     child: MaterialButton(
+            //   onPressed: () {
+            //     showDialog(
+            //         context: context,
+            //         builder: (context) {
+            //           return AlertDialog(
+            //             title: Text("Size"),
+            //             content: Text('Choose the size'),
+            //             actions: [
+            //               MaterialButton(
+            //                   onPressed: () {
+            //                     Navigator.pop(context);
+            //                   },
+            //                   child: Text('close'))
+            //             ],
+            //           );
+            //         });
+            //   },
+            //   color: Colors.white,
+            //   textColor: kAppbar,
+            //   elevation: 0.2,
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: Text("Size"),
+            //       ),
+            //       Expanded(
+            //         child: Icon(Icons.arrow_drop_down),
+            //       ),
+            //     ],
+            //   ),
+            // ))
             //   ],
             // ),
             Row(
@@ -188,9 +191,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             ListTile(
               title: Text('Product Details'),
-             subtitle: Text(widget.details),
-             // subtitle: Text(
-                  // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+              subtitle: Text(widget.details),
+              // subtitle: Text(
+              // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
             ),
             Divider(),
             Row(
@@ -237,7 +240,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: Text(widget.condition),
                 )
               ],
-               ),
+            ),
             // Divider(),
             // Padding(
             //   padding: const EdgeInsets.all(8.0),

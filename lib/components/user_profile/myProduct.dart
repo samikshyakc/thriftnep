@@ -18,7 +18,7 @@ class _MyProductsState extends State<MyProducts> {
   @override
   Widget build(BuildContext context) {
     productList =
-        Provider.of<MyProductProvider>(context, listen: false).myProduct;
+        Provider.of<MyProductProvider>(context, listen: false).myproductList;
    // print(totalPrice);
 
     return SafeArea(

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:http/http.dart' as http;
-import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:flutter_khalti/flutter_khalti.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/widgets/customTextField.dart';
@@ -217,6 +215,11 @@ class _PayState extends State<Pay> {
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
     String buyer = Provider.of<EmailProvider>(context, listen: false).email();
+    print("address: $address");
+    print("address: $paymentMethod");
+    print("address: $buyer");
+    print("address: $formattedDate");
+    print("address: ${widget.productId}");
 
     onLoading(context);
     var url =
@@ -227,9 +230,18 @@ class _PayState extends State<Pay> {
     //print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     if (response.body.contains("order added")) {
-      Navigator.pushReplacementNamed(context, 'home');
+      var url = '$DELETE_URL?product_id=${widget.productId}';
+      var response = await http.get(url);
+      Navigator.pop(context);
+      print('Response body: ${response.body}');
+      if (response.body.contains("deleted")) {
+
+        Navigator.pushReplacementNamed(context, 'home');
+      } else {
+        _showSnackBar('Failed');
+      }
     } else {
-      _showSnackBar('failed!');
+     print('failed!');
     }
   }
 

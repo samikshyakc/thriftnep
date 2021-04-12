@@ -8,6 +8,7 @@ import 'package:thrift_nep/constants/urls.dart';
 class EmailProvider extends ChangeNotifier {
 
  // List<Users> users = [];
+  String id="";
   String name = "";
   String phoneNumber ="";
   String _email = '';
@@ -28,12 +29,14 @@ class EmailProvider extends ChangeNotifier {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var result = json.decode(response.body);
-      //print(result);
+      print(result);
       result.forEach((p) {
         var user = Users.fromJson(p);
         name = user.name;
         phoneNumber= user.phoneNumber;
         status = user.status.toString();
+        id = user.userId.toString();
+
       });
     }
 

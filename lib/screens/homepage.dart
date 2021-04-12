@@ -25,9 +25,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String email = Provider.of<EmailProvider>(context, listen: false).email();
-    Provider.of<CartProvider>(context, listen: false).fetchCart(email);
-    Provider.of<OrderProvider>(context, listen: false).fetchOrder(email);
+    String id = Provider.of<EmailProvider>(context, listen: false).id;
+    String name = Provider.of<EmailProvider>(context, listen: false).name;
+    print("im above cartprovider");
+    Provider.of<CartProvider>(context, listen: false).fetchCart(id);
+  //  Provider.of<OrderProvider>(context, listen: false).fetchOrder(email);
     print('Email: $email');
+    print('ID: $id');
 
     Widget image_carousel = Container(
       height: 200.0,
@@ -92,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 UserAccountsDrawerHeader(
                   accountName: Text(
-                    'Samikshya',
+                    '$name',
                     style: TextStyle(color: Colors.white),
                   ),
                   accountEmail: Text(

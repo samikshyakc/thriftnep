@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:thrift_nep/components/product/searchedProductDetail.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 
@@ -100,12 +102,71 @@ class _SearchScreenState extends State<SearchScreen> {
       Card(
       elevation: 19,
       child: ListTile(
-        title: Text("ProductName : " +
-            prodList[i]['product_name'] +
-            " " +
-            "\n Price" +
-            prodList[i]['product_price']),
-      ),
+        onTap: ()
+        => Navigator.of(context).push(MaterialPageRoute(
+          //  here we are passing the value of the product to product details page
+            builder: (context) => SearchProductDetails(
+              productId: prodList[i]['product_id'],
+              productName:prodList[i]['product_name'],
+              productPrice: prodList[i]['product_price'],
+              // negotiable: product.negotiable,
+              condition: prodList[i]['product_condition'],
+              usedfor: prodList[i]['used_for'],
+              category: prodList[i]['category'],
+              productImages: prodList[i]['product_images'],
+              details:  prodList[i]['description'],
+              seller:  prodList[i]['seller'],
+
+            ))),
+        // title: Text("ProductName : " +
+        //     prodList[i]['product_name'] +
+        //     " " +
+        //     "\n Price" +
+        //     prodList[i]['product_price']),
+
+          leading: Image(
+            image: CachedNetworkImageProvider(prodList[i]['product_images']),
+            width: 50.0,
+            height: 100.0,
+          ),
+          title: Text(prodList[i]['product_name']),
+          subtitle: Column(
+            children: [
+              Row(
+                children: [
+                  //       ===product size section==
+                  Text("Condition:"),
+                  Text(
+                    prodList[i]['product_condition'],
+                    style: TextStyle(color: kAppbar),
+                  ),
+                  Padding(padding: const EdgeInsets.only(left: 20),),
+                  //===product color section==
+                  Text("Used for:"),
+                  Text(
+                    prodList[i]['used_for'],
+                    style: TextStyle(color: kAppbar),
+                  ),
+
+                ],
+
+              ),
+
+              //          ======Section for product price=====
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Rs ${prodList[i]['product_price']}",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      color: kAppbar,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        ),
+
     );
   }
 }

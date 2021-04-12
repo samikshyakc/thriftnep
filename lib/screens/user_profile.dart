@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:thrift_nep/components/order/orderHistoryScreen.dart';
 import 'package:thrift_nep/components/user_profile/account_screen.dart';
 import 'package:thrift_nep/components/user_profile/user.dart';
 import 'package:thrift_nep/constants/colors.dart';
@@ -118,6 +119,10 @@ class ProfileScreen extends StatelessWidget {
                   Card(
                     color: Colors.white70,
                     child: ListTile(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => OrderHistoryScreen()));
+                      },
                       leading: Icon(Icons.shopping_cart),
                       title: Text(
                         'My Orders',

@@ -30,6 +30,25 @@ class DisptachOrderProvider extends ChangeNotifier {
 
     notifyListeners();
   }
+  Future deliveredOrder(String order_id) async {
+    //onLoading(context);
+    var url = '$UPDATEORDERSTATUS_URL?order_id=$order_id&status=3';
+    var response = await http.get(url);
+    // Navigator.pop(context);
+    //print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    if (response.body.contains("Updated")) {
+      //   Provider.of<DisptachOrderProvider>(context, listen: false).fetchDispatchedOrder();
+      //   Navigator.pushReplacementNamed(context, 'admin');
+      fetchDispatchedOrder();
+      notifyListeners();
+      return true;
+    } else {
+      print('Failed');
+      notifyListeners();
+      return false;
+    }
+  }
 
 }
 

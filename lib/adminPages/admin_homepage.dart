@@ -19,8 +19,8 @@ class AdminHomeScreen extends StatelessWidget {
         .fetchProductToVerify();
     Provider.of<DisapprovedProductProvider>(context, listen: false)
         .fetchProductDisapproved();
-    Provider.of<DeliveredOrderProvider>(context, listen: false)
-        .fetchDeliveredOrder();
+    // Provider.of<DeliveredOrderProvider>(context, listen: false)
+    //     .fetchDeliveredOrder();
     Provider.of<DisptachOrderProvider>(context, listen: false)
         .fetchDispatchedOrder();
 

@@ -324,7 +324,7 @@ class _MyAccountState extends State<MyAccount> {
     var url = '$CHANGESTATUS_URL?email=$email&status=$act';
     var response = await http.get(url);
     print('Response body: ${response.body}');
-    if (response.body.contains("user status changed")) {
+    if (response.body.contains("Updated")) {
       print("done");
       Navigator.pop(context);
       // Navigator.pushReplacementNamed(context, 'home');

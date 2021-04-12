@@ -32,7 +32,7 @@ class _CartProductsState extends State<CartProducts> {
         Provider.of<CartProvider>(context, listen: false).allCart;
     totalPrice = Provider.of<CartProvider>(context, listen: false).totalPrice;
     print("Total price  $totalPrice");
-
+    print("Total price  $cartproductList");
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

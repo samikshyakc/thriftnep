@@ -18,6 +18,7 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
   bool _obscureConfirmpassword = true;
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
+  final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordconfirmController = TextEditingController();
 
@@ -29,6 +30,7 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
   var email = '';
   var password = '';
   var passwordConfirm = '';
+  var phoneNumber ="";
   @override
   void initState() {
     // TODO: implement initState
@@ -169,6 +171,17 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
               height: 15,
             ),
             CustomTextField(
+              controller: phoneController,
+              hint: '  Phone Number',
+              validator: validateMobile,
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.phone,
+              issecured: false,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTextField(
               controller: passwordController,
               hint: '  Password',
               validator: validatePassword,
@@ -231,6 +244,7 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
     usernameController.dispose();
     passwordController.dispose();
     emailController.dispose();
+    phoneController.dispose();
     passwordconfirmController.dispose();
     super.dispose();
   }
@@ -240,8 +254,9 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
     email = emailController.text;
     password = passwordController.text;
     passwordConfirm = passwordconfirmController.text;
+    phoneNumber = phoneController.text;
     onLoading(context);
-    var url = '$REGISTER_URL?name=$name&email=$email&password=$password';
+    var url = '$REGISTER_URL?name=$name&email=$email&phoneNumber=$phoneNumber&password=$password';
     var response = await http.get(url);
     Navigator.pop(context);
     // print('Response status: ${response.statusCode}');

@@ -6,13 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
+import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:toast/toast.dart';
 
 class DispatchOrderWidget extends StatefulWidget {
   final Order orderProduct;
+
   DispatchOrderWidget(this.orderProduct);
 
   @override
@@ -24,23 +26,7 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: (){},
-        // => Navigator.of(context).push(MaterialPageRoute(
-        //   //  here we are passing the value of the product to product details page
-        //     builder: (context) => AdminOrderDetails(
-        //       productId: orderProduct.productId,
-        //       productName:orderProduct.productName,
-        //       productPrice: orderProduct.productPrice,
-        //       // negotiable: product.negotiable,
-        //       condition: orderProduct.productCondition,
-        //       usedfor: orderProduct.usedFor,
-        //       category: orderProduct.category,
-        //       productImages: orderProduct.productImages,
-        //       details: orderProduct.description,
-        //       seller: orderProduct.seller,
-        //       orderId: orderProduct.orderId,
-        //
-        //     ))),
+        onTap: () {},
         child: Slidable(
           actionPane: SlidableDrawerActionPane(),
           actionExtentRatio: 0.25,
@@ -56,13 +42,14 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
               color: kPrimaryColor,
               icon: Icons.delete,
               onTap: () {
-                 deliveredOrder();
+                deliveredOrder();
               },
             ),
           ],
           child: ListTile(
             leading: Image(
-              image: CachedNetworkImageProvider(widget.orderProduct.productImages),
+              image:
+                  CachedNetworkImageProvider(widget.orderProduct.productImages),
               width: 50.0,
               height: 100.0,
             ),
@@ -77,10 +64,10 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
                       widget.orderProduct.date,
                       style: TextStyle(color: kAppbar),
                     ),
-                    Padding(padding: const EdgeInsets.only(left: 20),),
-
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                    ),
                   ],
-
                 ),
 
                 //          ======Section for product price=====
@@ -102,18 +89,31 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
     );
   }
 
-  void deliveredOrder() async {
+  // void deliveredOrder() async {
+  //   onLoading(context);
+  //   var url = '$UPDATEORDERSTATUS_URL?order_id=${widget.orderProduct.orderId}&status=3';
+  //   var response = await http.get(url);
+  //   Navigator.pop(context);
+  //   //print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //   if (response.body.contains("Updated")) {
+  //     Provider.of<DisptachOrderProvider>(context, listen: false).fetchDispatchedOrder();
+  //     Navigator.pushReplacementNamed(context, 'admin');
+  //   } else {
+  //     print('Failed');
+  //   }
+  // }
+
+  deliveredOrder() async{
+
     onLoading(context);
-    var url = '$UPDATEORDERSTATUS_URL?order_id=${widget.orderProduct.orderId}&status=Delivered';
-    var response = await http.get(url);
+    bool isDelivered = await Provider.of<DisptachOrderProvider>(context, listen: false)
+        .deliveredOrder(widget.orderProduct.orderId);
     Navigator.pop(context);
-    //print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    if (response.body.contains("Updated")) {
-      Provider.of<DisptachOrderProvider>(context, listen: false).fetchDispatchedOrder();
-      Navigator.pushReplacementNamed(context, 'admin');
+    if (isDelivered) {
+      Toast.show("Product Delivered.", context);
     } else {
-      print('Failed');
+      Toast.show("Something is wrong.", context);
     }
   }
 }
