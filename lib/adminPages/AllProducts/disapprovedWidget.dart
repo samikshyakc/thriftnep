@@ -1,9 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:thrift_nep/adminPages/ProductVerification/verifyproddetails.dart';
+import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/product/product.dart';
+import 'package:thrift_nep/constants/colors.dart';
+import 'package:thrift_nep/provider/productToVerify.dart';
+import 'package:thrift_nep/widgets/loading_indicator.dart';
+import 'package:toast/toast.dart';
 
-class DisapprovedWidget extends StatelessWidget {
+class DisapprovedWidget extends StatefulWidget {
 
   const DisapprovedWidget({
     Key key,
@@ -11,58 +15,182 @@ class DisapprovedWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Product product;
+
+  @override
+  _DisapprovedWidgetState createState() => _DisapprovedWidgetState();
+}
+
+class _DisapprovedWidgetState extends State<DisapprovedWidget> {
+
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: ()
-        => Navigator.of(context).push(MaterialPageRoute(
-          //  here we are passing the value of the product to product details page
-            builder: (context) => AdminProductDetails(
-              productId: product.productId,
-              productName:product.productName,
-              productPrice: product.productPrice,
-              condition: product.productCondition,
-              usedfor: product.usedFor,
-              category: product.category,
-              productImages: product.productImages,
-              details: product.description,
-              seller: product.seller,
+    return ExpansionTile(
 
-            ))),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.bottomLeft,
-              children: [
-                Ink.image(image: CachedNetworkImageProvider(product.productImages),
-                  height: 200,
-                  fit: BoxFit.fitWidth ,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(product.productName),
-                )
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('TShirt', style: TextStyle(color: Colors.black54),),
-                  Text(product.productCondition),
-                  Text(product.description),
-                ],
-              ),
-            ),
-            ButtonBar()
-          ],
+        leading: Image(
+          image: CachedNetworkImageProvider(widget.product.productImages),
+          width: 50.0,
+          height: 100.0,
         ),
-      ),
+        title: Text(widget.product.productName),
+        subtitle: Column(
+            children: [
+              Row(
+                children: [
+                  //       ===product size section==
+                  Text("Product Condition:"),
+                  Text(
+                    widget.product.productCondition,
+                    style: TextStyle(color: kAppbar),
+                  ),
+                  Padding(padding: const EdgeInsets.only(left: 20),),
+
+                ],
+
+              ),
+
+              //          ======Section for product price=====
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Rs ${widget.product.productPrice}",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      color: kAppbar,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ]
+        ),
+
+        children: [
+          Divider(
+            color: kAppbar,
+          ),
+          ListTile(
+            title: Text('Product Details'),
+            subtitle: Text(widget.product.description),
+            // subtitle: Text(
+            // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: Text(
+                  "Product Name",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.productName),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: Text(
+                  "Used For",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.usedFor),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: Text(
+                  "Product Condition",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.productCondition),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: Text(
+                  "Product Category",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.category),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                child: Text(
+                  "Product Seller",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5.0),
+                child: Text(widget.product.seller),
+              )
+            ],
+          ),
+          Row(
+
+            children: [
+              ElevatedButton(
+                child: Text('Approve', style: TextStyle(color: Colors.white),),
+                style: ElevatedButton.styleFrom(
+                  primary: kAppbar,
+                ),
+                //icon: Icon(Icons.pic),
+                onPressed: () {
+                  approveProd();
+                  //  Navigator.pushReplacementNamed(context, 'verify');
+                },
+              ),
+              Padding(padding: EdgeInsets.all(8.0)),
+              ElevatedButton(
+                child: Text('Delete', style: TextStyle(color: Colors.white),),
+                style: ElevatedButton.styleFrom(
+                  primary: kAppbar,
+                ),
+                //icon: Icon(Icons.pic),
+                onPressed: () {
+                 // declineProd();
+                  //   Navigator.pushReplacementNamed(context, 'verify');
+                },
+              ),
+            ],
+          )
+        ]
+
     );
 
+  }
+
+  approveProd() async {
+    onLoading(context);
+    bool isAdded = await Provider.of<VerifyProductProvider>(context, listen: false)
+        .approvePRoduct(widget.product.productId, widget.product);
+    Navigator.pop(context);
+    if (isAdded) {
+      Toast.show("Product Approved", context);
+    } else {
+      Toast.show("Something is wrong.", context);
+    }
   }
 }

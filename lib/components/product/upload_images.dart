@@ -10,6 +10,7 @@ import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/screens/homepage.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
+import 'package:toast/toast.dart';
 
 
 class UploadProduct extends StatefulWidget {
@@ -354,8 +355,10 @@ class _UploadProductState extends State<UploadProduct> {
       Navigator.pop(context);
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => HomePage()));
+      Toast.show("Product Declined", context);
 
     } else {
+      Navigator.pop(context);
       print('Failed');
 
     }

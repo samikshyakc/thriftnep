@@ -30,7 +30,8 @@ class DisptachOrderProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-  Future deliveredOrder(String order_id) async {
+
+  Future deliveredOrder(String order_id,Order order) async {
     //onLoading(context);
     var url = '$UPDATEORDERSTATUS_URL?order_id=$order_id&status=3';
     var response = await http.get(url);
@@ -41,6 +42,7 @@ class DisptachOrderProvider extends ChangeNotifier {
       //   Provider.of<DisptachOrderProvider>(context, listen: false).fetchDispatchedOrder();
       //   Navigator.pushReplacementNamed(context, 'admin');
       fetchDispatchedOrder();
+      orderList.remove(order);
       notifyListeners();
       return true;
     } else {

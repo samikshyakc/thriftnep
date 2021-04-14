@@ -7,6 +7,7 @@ import 'package:thrift_nep/components/product/buynow.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
+import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:http/http.dart' as http;
 import 'package:toast/toast.dart';
@@ -195,7 +196,7 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
                 IconButton(
                   icon: Icon(Icons.done),
                   onPressed: () {
-                    dispatchOrder();
+                   // dispatchOrder();
                     // approveProd();
                     //   Navigator.pushReplacementNamed(context, 'admin');
                   },
@@ -213,17 +214,18 @@ class _AdminOrderDetailsState extends State<AdminOrderDetails> {
     );
   }
 
-  dispatchOrder() async {
-    onLoading(context);
-    bool isAdded = await Provider.of<AllOrderProvider>(context, listen: false)
-        .disptachedOrder(widget.orderId);
-    Navigator.pop(context);
-    if (isAdded) {
-      Toast.show("Order Dispatched", context);
-    } else {
-      Toast.show("Something is wrong.", context);
-    }
-  }
+  // dispatchOrder() async {
+  //   onLoading(context);
+  //   bool isAdded = await Provider.of<AllOrderProvider>(context, listen: false)
+  //       .disptachedOrder(widget.orderId,widget.);
+  //   Navigator.pop(context);
+  //   if (isAdded) {
+  //     Provider.of<DisptachOrderProvider>(context, listen: false).fetchDispatchedOrder();
+  //     Toast.show("Order Dispatched", context);
+  //   } else {
+  //     Toast.show("Something is wrong.", context);
+  //   }
+  // }
 }
 // void disptachOrder() async {
 //   onLoading(context);

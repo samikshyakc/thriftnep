@@ -27,63 +27,132 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
     return Card(
       child: InkWell(
         onTap: () {},
-        child: Slidable(
-          actionPane: SlidableDrawerActionPane(),
-          actionExtentRatio: 0.25,
-          secondaryActions: <Widget>[
-            new IconSlideAction(
-              caption: 'Cancel',
-              color: Colors.black45,
-              icon: Icons.cancel_outlined,
-              onTap: () {},
-            ),
-            new IconSlideAction(
-              caption: 'Delivered',
-              color: kPrimaryColor,
-              icon: Icons.delete,
-              onTap: () {
-                deliveredOrder();
-              },
-            ),
-          ],
-          child: ListTile(
-            leading: Image(
-              image:
-                  CachedNetworkImageProvider(widget.orderProduct.productImages),
-              width: 50.0,
-              height: 100.0,
-            ),
-            title: Text(widget.orderProduct.productName),
-            subtitle: Column(
-              children: [
-                Row(
-                  children: [
-                    //       ===product size section==
-                    Text("Ordered Date:"),
-                    Text(
-                      widget.orderProduct.date,
-                      style: TextStyle(color: kAppbar),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                    ),
-                  ],
-                ),
-
-                //          ======Section for product price=====
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Rs ${widget.orderProduct.productPrice}",
-                    style: TextStyle(
-                        fontSize: 17.0,
-                        color: kAppbar,
-                        fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ),
+        child: ExpansionTile(
+          leading: Image(
+            image:
+                CachedNetworkImageProvider(widget.orderProduct.productImages),
+            width: 50.0,
+            height: 100.0,
           ),
+          title: Text(widget.orderProduct.productName),
+          subtitle: Column(
+            children: [
+              Row(
+                children: [
+                  //       ===product size section==
+                  Text("Ordered Date:"),
+                  Text(
+                    widget.orderProduct.date,
+                    style: TextStyle(color: kAppbar),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                  ),
+                ],
+              ),
+
+              //          ======Section for product price=====
+              Container(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Rs ${widget.orderProduct.productPrice}",
+                  style: TextStyle(
+                      fontSize: 17.0,
+                      color: kAppbar,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+            children: [
+              Divider(
+                color: kAppbar,
+              ),
+              ListTile(
+                title: Text('Product Details'),
+                subtitle: Text(widget.orderProduct.description),
+                // subtitle: Text(
+                // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Used For",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.usedFor),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Product Buyer",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.buyer),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Delivery Address",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.address),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Product Condition",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.productCondition),
+                  )
+                ],
+              ),
+              Row(
+
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.done),
+                    onPressed: () {
+                      deliveredOrder();
+                      // approveProd();
+                      //   Navigator.pushReplacementNamed(context, 'admin');
+                    },
+                  ),
+                  Padding(padding: EdgeInsets.all(8.0)),
+                  IconButton(icon: Icon(Icons.cancel_outlined), onPressed: () {
+                    // declineProd();
+                    //Navigator.pushReplacementNamed(context, 'admin');
+                  })
+                ],
+              )
+            ]
         ),
       ),
     );
@@ -108,7 +177,7 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
 
     onLoading(context);
     bool isDelivered = await Provider.of<DisptachOrderProvider>(context, listen: false)
-        .deliveredOrder(widget.orderProduct.orderId);
+        .deliveredOrder(widget.orderProduct.orderId,widget.orderProduct);
     Navigator.pop(context);
     if (isDelivered) {
       Toast.show("Product Delivered.", context);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/DeliveredOrderProvider.dart';
 import 'package:thrift_nep/provider/allOrderProvider.dart';
@@ -17,14 +18,14 @@ class AdminHomeScreen extends StatelessWidget {
     Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();
     Provider.of<VerifyProductProvider>(context, listen: false)
         .fetchProductToVerify();
-    Provider.of<DisapprovedProductProvider>(context, listen: false)
-        .fetchProductDisapproved();
+    // Provider.of<DisapprovedProductProvider>(context, listen: false)
+    //     .fetchProductDisapproved();
     // Provider.of<DeliveredOrderProvider>(context, listen: false)
     //     .fetchDeliveredOrder();
     Provider.of<DisptachOrderProvider>(context, listen: false)
         .fetchDispatchedOrder();
 
-    Provider.of<ProductProvider>(context, listen: false).fetchProduct();
+  //  Provider.of<ProductProvider>(context, listen: false).fetchProduct();
     Provider.of<AllUserProvider>(context, listen: false).fetchUser();
     return SafeArea(
       child: Scaffold(
@@ -37,6 +38,40 @@ class AdminHomeScreen extends StatelessWidget {
             ),
             backgroundColor: kAppbar,
             iconTheme: IconThemeData(color: Colors.white),
+            actions: [
+              IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: (){
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            // title: Text("Are you sure?"),
+                            //content: Text('Logout?'),
+                            title:
+                            Text('Do you want to exit this application?'),
+                            content: Text('We hate to see you leave...'),
+                            actions: [
+                              FlatButton(
+                                onPressed: () async {
+                                  SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                                  prefs.setString('email', "");
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context, 'login', (route) => false);
+                                },
+                                child: Text('YES'),
+                              ),
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('NO')),
+                            ],
+                          );
+                        });
+                  })
+            ],
           ),
           // drawer: FitnessChoiceDrawer(),
           body: SingleChildScrollView(

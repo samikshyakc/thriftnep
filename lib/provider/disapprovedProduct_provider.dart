@@ -13,6 +13,7 @@ class DisapprovedProductProvider extends ChangeNotifier {
 
 
   Future<void> fetchProductDisapproved() async {
+    disproductList =[];
     var url = '$DISPRODUCT_URL';
     var response = await http.get(url);
     if (response.statusCode == 200) {

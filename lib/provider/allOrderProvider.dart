@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/urls.dart';
+import 'package:provider/provider.dart';
+import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
 
 
 class AllOrderProvider extends ChangeNotifier {
@@ -29,7 +31,7 @@ class AllOrderProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-  Future disptachedOrder(String orderID) async {
+  Future disptachedOrder(String orderID, Order order) async {
    // onLoading(context);
     var url = '$UPDATEORDERSTATUS_URL?order_id=$orderID&status=2';
     var response = await http.get(url);
@@ -38,6 +40,7 @@ class AllOrderProvider extends ChangeNotifier {
     print('Response body: ${response.body}');
     if (response.body.contains("Updated")) {
       fetchAllOrder();
+      orderList.remove(order);
       notifyListeners();
       return true;
       // Provider.of<AllOrderProvider>(context, listen: false).fetchAllOrder();

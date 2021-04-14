@@ -196,50 +196,50 @@ class _AllProductDetailsState extends State<AllProductDetails> {
               ],
             ),
             Padding(padding: EdgeInsets.all(8.0)),
-            ElevatedButton(
-              child: Text('Disapprove', style: TextStyle(color: Colors.white),),
-              style: ElevatedButton.styleFrom(
-                primary: kAppbar,
-              ),
-              //icon: Icon(Icons.pic),
-              onPressed: () {
-                declineProd();
-                Navigator.pushReplacementNamed(context, 'admin');
-              },
-            )
+            // ElevatedButton(
+            //   child: Text('Disapprove', style: TextStyle(color: Colors.white),),
+            //   style: ElevatedButton.styleFrom(
+            //     primary: kAppbar,
+            //   ),
+            //   //icon: Icon(Icons.pic),
+            //   onPressed: () {
+            //     declineProd();
+            //     Navigator.pushReplacementNamed(context, 'admin');
+            //   },
+            // )
 
           ],
         ),
       ),
     );
   }
-  void approveProd() async {
-    onLoading(context);
-    var url = '$APPROVEPRODUCT_URL?productId=${widget.productId}';
-    var response = await http.get(url);
-    Navigator.pop(context);
-    //print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    if (response.body.contains("Updated")) {
-      Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
-      //  Navigator.pushReplacementNamed(context, 'home');
-    } else {
-      print('Failed');
-    }
-  }
-
-  void declineProd() async {
-    onLoading(context);
-    var url = '$DECLINEPRODUCT_URL?productId=${widget.productId}';
-    var response = await http.get(url);
-    Navigator.pop(context);
-    //print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    if (response.body.contains("Deleted")) {
-      Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
-      //  Navigator.pushReplacementNamed(context, 'home');
-    } else {
-      print('Failed');
-    }
-  }
+  // void approveProd() async {
+  //   onLoading(context);
+  //   var url = '$APPROVEPRODUCT_URL?productId=${widget.productId}';
+  //   var response = await http.get(url);
+  //   Navigator.pop(context);
+  //   //print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //   if (response.body.contains("Updated")) {
+  //     Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
+  //     //  Navigator.pushReplacementNamed(context, 'home');
+  //   } else {
+  //     print('Failed');
+  //   }
+  // }
+  //
+  // void declineProd() async {
+  //   onLoading(context);
+  //   var url = '$DECLINEPRODUCT_URL?productId=${widget.productId}';
+  //   var response = await http.get(url);
+  //   Navigator.pop(context);
+  //   //print('Response status: ${response.statusCode}');
+  //   print('Response body: ${response.body}');
+  //   if (response.body.contains("Deleted")) {
+  //   //  Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
+  //     //  Navigator.pushReplacementNamed(context, 'home');
+  //   } else {
+  //     print('Failed');
+  //   }
+  // }
 }

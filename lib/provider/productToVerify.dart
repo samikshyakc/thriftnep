@@ -28,6 +28,48 @@ Future<void> fetchProductToVerify() async {
   notifyListeners();
 }
 
+  Future approvePRoduct(String product_id, Product product) async {
+    //onLoading(context);
+    var url = '$APPROVEPRODUCT_URL?product_id=$product_id';
+    var response = await http.get(url);
+  //  Navigator.pop(context);
+    //print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    if (response.body.contains("Updated")) {
+     // fetchProductToVerify();
+      verifyproductList.remove(product);
+
+      notifyListeners();
+      return true;
+    //  Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
+      //  Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      print('Failed');
+      notifyListeners();
+      return false;
+    }
+  }
+
+  Future declineProd(String product_id, Product product) async {
+   // onLoading(context);
+    var url = '$DECLINEPRODUCT_URL?product_id=$product_id';
+    var response = await http.get(url);
+  //  Navigator.pop(context);
+    //print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    if (response.body.contains("Updated")) {
+      fetchProductToVerify();
+      verifyproductList.remove(product);
+      notifyListeners();
+      return true;
+  //    Provider.of<VerifyProductProvider>(context, listen: false).fetchProductToVerify();
+      //  Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      print('Failed');
+      notifyListeners();
+      return false;
+    }
+  }
 // Future<String> save(String title, String details) async {
 //   var url = '$ADDNOTE_URL?title=$title&details=$details';
 //   var response = await http.get(url);

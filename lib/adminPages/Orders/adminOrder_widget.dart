@@ -188,7 +188,7 @@ class _AdminOrderWidgetState extends State<AdminOrderWidget> {
   dispatchOrder() async {
     onLoading(context);
     bool isAdded = await Provider.of<AllOrderProvider>(context, listen: false)
-        .disptachedOrder(widget.orderProduct.orderId);
+        .disptachedOrder(widget.orderProduct.orderId, widget.orderProduct);
     Navigator.pop(context);
     if (isAdded) {
       Toast.show("Order Dispatched", context);

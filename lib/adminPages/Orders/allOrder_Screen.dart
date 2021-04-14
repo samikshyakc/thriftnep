@@ -16,10 +16,11 @@ class _OrderProductsState extends State<OrderProducts> {
   List<Order> orderList = [];
   int totalPrice = 0;
 
+
   @override
   Widget build(BuildContext context) {
     orderList =
-        Provider.of<AllOrderProvider>(context, listen: false).allOrder;
+        Provider.of<AllOrderProvider>(context, listen: true).allOrder;
   //  totalPrice = Provider.of<AllOrderProvider>(context, listen: false).totalPrice;
   //  print(totalPrice);
 

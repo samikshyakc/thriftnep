@@ -12,6 +12,7 @@ class ProductProvider extends ChangeNotifier {
   List<Product> get allProduct => UnmodifiableListView(productList); //yo bhaneko chai ProductProvider le matra aba productList lai change garna sakcha
 
   Future<void> fetchProduct() async {
+    productList=[];
     var url = '$READPRODUCT_URL';
     var response = await http.get(url);
     if (response.statusCode == 200) {

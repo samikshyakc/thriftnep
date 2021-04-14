@@ -10,7 +10,6 @@ import 'package:thrift_nep/constants/colors.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:thrift_nep/provider/cart_provider.dart';
 import 'package:thrift_nep/provider/emaiProvider.dart';
-import 'package:thrift_nep/provider/orderProvider.dart';
 import 'package:thrift_nep/provider/product_provider.dart';
 import 'package:thrift_nep/widgets/product_widget.dart';
 import 'package:thrift_nep/screens/user_profile.dart';
