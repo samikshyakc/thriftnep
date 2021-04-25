@@ -20,6 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   bool isLoading = true;
 
   Future<void> fetchProduct(String searchText) async {
+
     var url = '$SEARCH_URL?search=$searchText';
     var response = await http.get(url);
     if (response.statusCode == 200) {

@@ -53,6 +53,7 @@ class _MyAccountState extends State<MyAccount> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: kPrimaryLightColor,
         appBar: AppBar(
           backgroundColor: kAppbar,
           title: Text("Edit Profile", style: TextStyle(color: Colors.white),),
@@ -61,58 +62,67 @@ class _MyAccountState extends State<MyAccount> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8,top: 10),
-                  child: Text("Full Name"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35),
-                  child: TextField(
-                       controller: fullnameController,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(color: Colors.black)
-                        ),
-                        suffixIcon: Icon(Icons.account_circle_outlined),)
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white60,
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8,top: 10),
+                    child: Text("Full Name",style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800, fontSize: 15)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35),
+                    child: TextField(
+                         controller: fullnameController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                            borderSide: BorderSide(color: Colors.black)
+                          ),
+                          suffixIcon: Icon(Icons.account_circle_outlined),)
 
 
+                    ),
                   ),
-                ),
-                Padding(padding: EdgeInsets.all(10.0)),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
-                  child: Text("Phone Number"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35),
-                  child: TextField(
-                    enabled: false,
-                    controller: phonenumberController,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                          borderSide: BorderSide(color: Colors.black)
-                      ),
-                      suffixIcon: Icon(Icons.call),)
+                  Padding(padding: EdgeInsets.all(10.0)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
+                    child: Text("Email Address", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800, fontSize: 15)),
                   ),
-                ),
-                Padding(padding: EdgeInsets.all(10.0)),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
-                  child: Text("Email Address"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35),
-                  child: TextField(
-                    enabled: false,
-                    controller: emailController,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35),
+                    child: TextField(
+                        enabled: false,
+                        controller: emailController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                              borderSide: BorderSide(color: Colors.black)
+                          ),
+                          suffixIcon: Icon(Icons.alternate_email),)
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(10.0)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
+                    child: Text("Phone Number",style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800, fontSize: 15)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35),
+                    child: TextField(
+                      enabled: false,
+                      controller: phonenumberController,
                       obscureText: false,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -120,172 +130,185 @@ class _MyAccountState extends State<MyAccount> {
                             borderSide: BorderSide(color: Colors.black)
                         ),
                         suffixIcon: Icon(Icons.call),)
-                  ),
-                ),
-                Padding(padding: EdgeInsets.all(10.0)),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
-                  child: Text("Enter new password"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35),
-                  child: TextField(
-                    controller: newpasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                            borderSide: BorderSide(color: Colors.black)
-                        ),
-                      suffixIcon: IconButton(icon: Icon(_obscurePassword
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePassword = !_obscurePassword;
-                          });
-                        },
-                      )
                     ),
                   ),
+                  Padding(padding: EdgeInsets.all(10.0)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
+                    child: Text("Enter new password",style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800, fontSize: 15)),
                   ),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
-                //   child: status == '1' ? Text("active") : Text("inactive"),
-                // ),
-                SizedBox(height: 25),
-                Center(
-                  child: ElevatedButton(
-                    child: Text("Update", style: TextStyle(fontSize: 20,color: Colors.white),),
-                    onPressed: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              // title: Text("Are you sure?"),
-                              //content: Text('Logout?'),
-                              title: Text(' Enter your password'),
-
-                              content:  CustomTextField(
-                                hint: 'password',
-                                // validator: validateEmail,
-                                controller: passwordController,
-                                textInputAction: TextInputAction.done,
-                                keyboardType: TextInputType.text,
-                                issecured: true,
-                              ),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () async {
-                                    onLoading(context);
-                                    verify();
-                                    //   cashOnDelivery('COD');
-                                    Navigator.pop(context);
-                                    // Navigator.pushNamedAndRemoveUntil(
-                                    //     context, 'confirmOrder', (route) => false);
-                                  },
-                                  child: Text('Confirm'),
-                                ),
-                                FlatButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('NO')),
-                              ],
-                            );
-                          });
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: kAppbar,
-                        padding: EdgeInsets.all(8.0),
-                        textStyle: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                ),
-               Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("you can change your status"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 40,left: 35),
-                  child: InkWell(
-                    onTap: (){
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              // title: Text("Are you sure?"),
-                              //content: Text('Logout?'),
-                              title: Text(' Enter your password'),
-
-                              content:SizedBox(
-                                height: 55,
-                                width: 150,
-                                child: DropdownButtonFormField(
-                                  decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.white,
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(10.0))),
-                                  value:status== '1'? "active": "inactive",
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      act = newValue;
-                                    });
-                                  },
-                                  items: activity.map((valueItem) {
-                                    return DropdownMenuItem(
-                                      value: valueItem,
-                                      child: Text(valueItem),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () async {
-
-                                    onLoading(context);
-                                    statusController.text = act;
-                                    changeStatus();
-                                    //verify();
-                                    //   cashOnDelivery('COD');
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    // Navigator.pushNamedAndRemoveUntil(
-                                    //     context, 'confirmOrder', (route) => false);
-                                  },
-                                  child: Text('Confirm'),
-                                ),
-                                FlatButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text('NO')),
-                              ],
-                            );
-                          });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40,left: 35),
                     child: TextField(
-                        enabled: false,
-                        controller: statusController,
-                        obscureText: false,
-                        decoration: InputDecoration(
+                      controller: newpasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                               borderSide: BorderSide(color: Colors.black)
                           ),
-                          suffixIcon: Icon(Icons.lightbulb),),
+                        suffixIcon: IconButton(icon: Icon(_obscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                        )
+                      ),
+                    ),
+                    ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 40,left: 35,bottom: 8),
+                  //   child: status == '1' ? Text("active") : Text("inactive"),
+                  // ),
+                  SizedBox(height: 25),
+                  Center(
+                    child: ElevatedButton(
+                      child: Text("Update", style: TextStyle(fontSize: 20,color: Colors.white),),
+                      onPressed: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                // title: Text("Are you sure?"),
+                                //content: Text('Logout?'),
+                                title: Text(' Enter your password'),
 
-
+                                content:  CustomTextField(
+                                  hint: 'password',
+                                  // validator: validateEmail,
+                                  controller: passwordController,
+                                  textInputAction: TextInputAction.done,
+                                  keyboardType: TextInputType.text,
+                                  issecured: true,
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    onPressed: () async {
+                                      onLoading(context);
+                                      verify();
+                                      //   cashOnDelivery('COD');
+                                      Navigator.pop(context);
+                                      // Navigator.pushNamedAndRemoveUntil(
+                                      //     context, 'confirmOrder', (route) => false);
+                                    },
+                                    child: Text('Confirm'),
+                                  ),
+                                  FlatButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('NO')),
+                                ],
+                              );
+                            });
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: kAppbar,
+                          padding: EdgeInsets.all(8.0),
+                          textStyle: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold)),
                     ),
                   ),
-                ),
+                 Divider(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("you can change your status", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800, fontSize: 15),),
+                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40,left: 35),
+                          child: InkWell(
+                            onTap: (){
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      // title: Text("Are you sure?"),
+                                      //content: Text('Logout?'),
+                                      title: Text(' Enter your password'),
+
+                                      content:SizedBox(
+                                        height: 55,
+                                        width: 150,
+                                        child: DropdownButtonFormField(
+                                          decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              border: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.circular(10.0))),
+                                          value:status== '1'? "active": "inactive",
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              act = newValue;
+                                            });
+                                          },
+                                          items: activity.map((valueItem) {
+                                            return DropdownMenuItem(
+                                              value: valueItem,
+                                              child: Text(valueItem),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () async {
+
+                                            onLoading(context);
+                                            statusController.text = act;
+                                            changeStatus();
+                                            //verify();
+                                            //   cashOnDelivery('COD');
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+                                            // Navigator.pushNamedAndRemoveUntil(
+                                            //     context, 'confirmOrder', (route) => false);
+                                          },
+                                          child: Text('Confirm'),
+                                        ),
+                                        FlatButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('NO')),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: TextField(
+                              enabled: false,
+                              controller: statusController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderSide: BorderSide(color: Colors.black)
+                                ),
+                                suffixIcon: Icon(Icons.lightbulb),),
 
 
-              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+                SizedBox(
+                  height: 30,
+                )
+                ],
+              ),
             ),
           ),
         ),

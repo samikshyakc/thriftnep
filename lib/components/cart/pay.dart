@@ -16,7 +16,7 @@ class Pay extends StatefulWidget {
   final seller;
   final productId;
 
-  Pay({this.productPrice, this.productName, this.seller,this.productId});
+  Pay({this.productPrice, this.productName, this.seller, this.productId});
 
   @override
   _PayState createState() => _PayState();
@@ -58,41 +58,42 @@ class _PayState extends State<Pay> {
                 color: kAppbar,
                 textColor: Colors.white24,
                 onPressed: () {
-                  showDialog(context: context, builder: (context){
-                    return AlertDialog(
-                      // title: Text("Are you sure?"),
-                      //content: Text('Logout?'),
-                      title: Text('Total: $totalPrice \n Enter your delivery address'),
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          // title: Text("Are you sure?"),
+                          //content: Text('Logout?'),
+                          title: Text(
+                              'Total: $totalPrice \n Enter your delivery address'),
 
-                      content:  TextField(
-
-                       // hint: 'Delivery Address',
-                        // validator: validateEmail,
-                        controller: addressController,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.text,
-                       // issecured: false,
-                      ),
-                      actions: [
-                        FlatButton(
-                          onPressed: () async {
-                            onLoading(context);
-                            openKhalti();
-                            Navigator.pop(context);
-                            // Navigator.pushNamedAndRemoveUntil(
-                            //     context, 'confirmOrder', (route) => false);
-                          },
-                          child: Text('Confirm'),
-                        ),
-                        FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text('NO')),
-                      ],
-                    );
-                  });
-
+                          content: TextField(
+                            // hint: 'Delivery Address',
+                            // validator: validateEmail,
+                            controller: addressController,
+                            textInputAction: TextInputAction.done,
+                            keyboardType: TextInputType.text,
+                            // issecured: false,
+                          ),
+                          actions: [
+                            FlatButton(
+                              onPressed: () async {
+                                onLoading(context);
+                                openKhalti();
+                                Navigator.pop(context);
+                                // Navigator.pushNamedAndRemoveUntil(
+                                //     context, 'confirmOrder', (route) => false);
+                              },
+                              child: Text('Confirm'),
+                            ),
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('NO')),
+                          ],
+                        );
+                      });
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(30.0))),
@@ -108,15 +109,15 @@ class _PayState extends State<Pay> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return
-                          AlertDialog(
+                        return AlertDialog(
                           // title: Text("Are you sure?"),
                           //content: Text('Logout?'),
-                          title: Text('Total: $totalPrice \n Enter your delivery address'),
+                          title: Text(
+                              'Total: $totalPrice \n Enter your delivery address'),
 
-                          content:  CustomTextField(
+                          content: CustomTextField(
                             hint: 'Delivery Address',
-                           // validator: validateEmail,
+                            // validator: validateEmail,
                             controller: addressController,
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.text,
@@ -178,7 +179,6 @@ class _PayState extends State<Pay> {
     );
   }
 
-
   void openKhalti() {
     print(totalPrice);
     double amount = totalPrice * 100.0;
@@ -198,6 +198,7 @@ class _PayState extends State<Pay> {
     _flutterKhalti.startPayment(
       product: product,
       onSuccess: (data) {
+        print(data);
         print("Success message here");
         cashOnDelivery('Khalti');
         // sendBookingData();
@@ -209,23 +210,22 @@ class _PayState extends State<Pay> {
   }
 
   void cashOnDelivery(String paymentMethod) async {
-
     var address = addressController.text;
     var now = new DateTime.now();
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(now);
     String buyer = Provider.of<EmailProvider>(context, listen: false).email();
-    print("address: $address");
-    print("address: $paymentMethod");
-    print("address: $buyer");
-    print("address: $formattedDate");
-    print("address: ${widget.productId}");
+    // print("address: $address");
+    // print("address: $paymentMethod");
+    // print("address: $buyer");
+    // print("address: $formattedDate");
+    // print("address: ${widget.productId}");
 
     onLoading(context);
     var url =
         '$ORDER_URL?product_id=${widget.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
     var response = await http.get(url);
-  //  var url = '$ORDER_URL?productId=${cart.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
+    //  var url = '$ORDER_URL?productId=${cart.productId}&payment_method=$paymentMethod&buyer=$buyer&address=$address&date=$formattedDate';
     Navigator.pop(context);
     //print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -235,13 +235,12 @@ class _PayState extends State<Pay> {
       Navigator.pop(context);
       print('Response body: ${response.body}');
       if (response.body.contains("deleted")) {
-
         Navigator.pushReplacementNamed(context, 'home');
       } else {
         _showSnackBar('Failed');
       }
     } else {
-     print('failed!');
+      print('failed!');
     }
   }
 

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thrift_nep/adminPages/ProductVerification/verifyproddetails.dart';
 import 'package:thrift_nep/components/product/product.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/provider/productToVerify.dart';
@@ -65,12 +64,6 @@ class _VerifyProdWidgetState extends State<VerifyProdWidget> {
         children: [
           Divider(
             color: kAppbar,
-          ),
-          ListTile(
-            title: Text('Product Details'),
-            subtitle: Text(widget.product.description),
-            // subtitle: Text(
-            // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
           ),
           Row(
             children: [
@@ -144,7 +137,13 @@ class _VerifyProdWidgetState extends State<VerifyProdWidget> {
               Padding(
                 padding: EdgeInsets.all(5.0),
                 child: Text(widget.product.seller),
-              )
+              ),
+              ListTile(
+                title: Text('Product Details'),
+                subtitle: Text(widget.product.description),
+                // subtitle: Text(
+                // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+              ),
             ],
           ),
           Row(
@@ -158,7 +157,7 @@ class _VerifyProdWidgetState extends State<VerifyProdWidget> {
                 //icon: Icon(Icons.pic),
                 onPressed: () {
                   approveProd();
-                //  Navigator.pushReplacementNamed(context, 'verify');
+                  //  Navigator.pushReplacementNamed(context, 'verify');
                 },
               ),
               Padding(padding: EdgeInsets.all(8.0)),
@@ -170,7 +169,7 @@ class _VerifyProdWidgetState extends State<VerifyProdWidget> {
                 //icon: Icon(Icons.pic),
                 onPressed: () {
                   declineProd();
-               //   Navigator.pushReplacementNamed(context, 'verify');
+                  //   Navigator.pushReplacementNamed(context, 'verify');
                 },
               ),
             ],

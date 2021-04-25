@@ -6,6 +6,7 @@ import 'package:thrift_nep/adminPages/AllProducts/productControl.dart';
 import 'package:thrift_nep/adminPages/Orders/deliveredOrder.dart';
 import 'package:thrift_nep/adminPages/Orders/dispatchedOrder.dart';
 import 'package:thrift_nep/adminPages/Users/user_screen.dart';
+import 'package:thrift_nep/adminPages/adminSigninScreen.dart';
 import 'package:thrift_nep/adminPages/admin_homepage.dart';
 import 'package:thrift_nep/adminPages/orderscontrol.dart';
 import 'package:thrift_nep/components/cart/checkout.dart';
@@ -113,6 +114,7 @@ class MyApp extends StatelessWidget {
           'orderHistory' : (context) => OrderHistoryScreen(),
           'confirmOrder' : (context) => OrderPlaced(),
           'admin': (context) => AdminHomeScreen(),
+          'adminLogin': (context) => AdminSignUp(),
           'adminUsers': (context) => AllUsers(),
           'verify': (context) => Verification(),
           'adminAllProduct': (context) => AllProduct(),

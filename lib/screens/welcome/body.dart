@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/screens/login_screen.dart';
-import 'package:thrift_nep/screens/signup_screen.dart';
 import 'package:thrift_nep/screens/welcome/background.dart';
 
 import '../../widgets/round_button.dart';
@@ -18,7 +16,7 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "WELCOME TO ThriftNep",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white70),
             ),
             SizedBox(height: size.height * 0.05),
             SizedBox(height: size.height * 0.05),

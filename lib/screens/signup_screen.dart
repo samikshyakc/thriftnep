@@ -41,102 +41,101 @@ class _MainPageState extends State<SignupScreen> with ValidationMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _globalKeyScaffold,
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            image:
-                DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill,
-                    colorFilter: new ColorFilter.mode(
-                        kAppbar.withOpacity(1.0), BlendMode.darken)),
-
-            // gradient: LinearGradient(
-            //  //   colors: [kPrimaryColor, kPrimaryLightColor],
-            //     begin: Alignment.bottomCenter,
-            //     end: Alignment.topCenter),
-          ),
-          child: Form(
-            child: ListView(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 35,
+      body: Container(
+        decoration: BoxDecoration(
+          image:
+          DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill),
+          gradient: LinearGradient(
+              colors: [kPrimaryColor, kAppbar],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter),
+        ),
+        child: Form(
+          child: ListView(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 35,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Text(
+                    'Create Account',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 85,
-                  ),
-                  signupform(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: ButtonTheme(
-                        buttonColor: Color.fromRGBO(99, 62, 116, 1.0),
-                        minWidth: MediaQuery.of(context).size.width,
-                        height: 55,
-                        child: RaisedButton(
-                          onPressed: () {
-                            _validateInputs();
-                          },
-                          child: Text(
-                            'Create',
-                            style: TextStyle(
-                                color: kPrimaryLightColor,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25)),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Center(
-                    child: Text(
-                      'OR',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Already Have an Accout ?",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, 'login');
+                ),
+                SizedBox(
+                  height: 85,
+                ),
+                signupform(),
+                SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: ButtonTheme(
+                      buttonColor: Colors.white70,
+                      minWidth: MediaQuery.of(context).size.width,
+                      height: 55,
+                      child: RaisedButton(
+                        onPressed: () {
+                          _validateInputs();
                         },
                         child: Text(
-                          'Login',
+                          'Create',
                           style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25)),
+                      )),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: Text(
+                    'OR',
+                    style: TextStyle(color: Colors.white),
                   ),
-                ]),
-          ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already Have an Accout ?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, 'login');
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
+                    ),
+
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ]),
         ),
       ),
     );

@@ -2,12 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:provider/provider.dart';
 import 'package:thrift_nep/components/order/orders.dart';
 import 'package:thrift_nep/constants/colors.dart';
-import 'package:thrift_nep/constants/urls.dart';
-import 'package:thrift_nep/provider/dispatchedOrderProvider.dart';
-import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:http/http.dart' as http;
 
 

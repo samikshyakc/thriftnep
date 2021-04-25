@@ -29,15 +29,20 @@ class CustomTextField extends StatelessWidget {
         padding: const EdgeInsets.only(left: 25, right: 25),
         child: TextFormField(
           validator: validator,
+
           textInputAction: textInputAction,
           keyboardType: keyboardType,
           controller: controller,
           obscureText: issecured,
           cursorColor: Colors.white,
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
           decoration: InputDecoration(
+             errorStyle: TextStyle(
+               fontSize: 18,
+               fontWeight: FontWeight.bold
+             ),
               icon: icon,
               suffixIcon: suffixicon,
               disabledBorder: OutlineInputBorder(
@@ -50,12 +55,12 @@ class CustomTextField extends StatelessWidget {
               hintStyle: TextStyle(
                   fontSize: 18,
                   letterSpacing: 1.5,
-                  color: Colors.white70,
-                  fontWeight: FontWeight.w900),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600),
               filled: true,
-              hoverColor: Colors.transparent,
+              hoverColor: Colors.white70,
               focusColor: Colors.transparent,
-              fillColor: Colors.black26,
+              fillColor: Colors.white60,
               // fillColor: Color.fromRGBO(39, 185, 216, 1.0),
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
@@ -63,7 +68,7 @@ class CustomTextField extends StatelessWidget {
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: kPrimaryLightColor),
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(15),
               )),
         ));
   }

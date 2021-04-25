@@ -268,7 +268,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (isAdded) {
       Toast.show("Added to cart.", context);
     } else {
-      Toast.show("Something is wrong.", context);
+      Toast.show("Product is already added to cart.", context);
     }
     //Navigator.pop(context);
   }

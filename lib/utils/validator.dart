@@ -27,7 +27,7 @@ class ValidationMixin {
     if (value.length == 0) {
       return 'Password can\'t be empty';
     } else if (value.length < 6) {
-      return 'Password must be longer than 6 characters';
+      return 'At least 6 characters ';
     }
     return null;
   }

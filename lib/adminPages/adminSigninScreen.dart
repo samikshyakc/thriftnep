@@ -34,136 +34,135 @@ class _MainPageState extends State<AdminSignUp> with ValidationMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _globalKeyScaffold,
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            image:
-            DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill),
-            gradient: LinearGradient(
-                colors: [kPrimaryColor, kPrimaryLightColor],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter),
-          ),
-          child: Center(
-            child: Form(
-              child: ListView(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 45,
+      body: Container(
+        decoration: BoxDecoration(
+          image:
+          DecorationImage(image: AssetImage('1.png'), fit: BoxFit.fill),
+          gradient: LinearGradient(
+              colors: [kPrimaryColor, kAppbar],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter),
+        ),
+        child: Center(
+          child: Form(
+            child: ListView(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 45,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Text(
+                    'Admin Login',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 35),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Text(
-                      'Admin Login',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35),
-                    ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 25),
+                  child: Text(
+                    ' Sign in with your account',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
-                  SizedBox(
-                    height: 25,
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+                adminLoginForm(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0, top: 8.0),
+                  // child: Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     GestureDetector(
+                  //       onTap: () {},
+                  //       child: Container(
+                  //         child: Padding(
+                  //           padding:
+                  //           const EdgeInsets.only(right: 25.0, top: 8.0),
+                  //           child: Text(
+                  //             'Forgot Password?',
+                  //             style: TextStyle(
+                  //                 color: Colors.white,
+                  //                 fontWeight: FontWeight.w700),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 20.0,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
-                    child: Text(
-                      ' Sign in with your account',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  adminLoginForm(),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0, top: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            child: Padding(
-                              padding:
-                              const EdgeInsets.only(right: 25.0, top: 8.0),
-                              child: Text(
-                                'Forgot Password?',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 35, right: 35),
+                    child: ButtonTheme(
+                        buttonColor: kPrimaryLightColor,
+                        minWidth: MediaQuery.of(context).size.width,
+                        height: 55,
+                        child: RaisedButton(
+                          onPressed: () {
+                            _validateInputs();
+                          },
+                          child: Text(
+                            'Log in',
+                            style:
+                            TextStyle(color: Colors.black, fontSize: 22),
+
                           ),
-                        ),
-                      ],
-                    ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25)),
+                        )),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 20.0,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 35, right: 35),
-                      child: ButtonTheme(
-                          buttonColor: Colors.white,
-                          minWidth: MediaQuery.of(context).size.width,
-                          height: 55,
-                          child: RaisedButton(
-                            onPressed: () {
-                              _validateInputs();
-                            },
-                            child: Text(
-                              'Log in',
-                              style:
-                              TextStyle(color: Colors.grey, fontSize: 22),
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25)),
-                          )),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: Text(
-                      'OR',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't Have an Accout ?",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, 'signup');
-                        },
-                        child: Text(
-                          'Sign up',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                // Center(
+                //   child: Text(
+                //     'OR',
+                //     style: TextStyle(color: Colors.white),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(
+                //       "Don't Have an Accout ?",
+                //       style: TextStyle(color: Colors.white),
+                //     ),
+                //     SizedBox(
+                //       width: 10,
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigator.pushReplacementNamed(context, 'signup');
+                //       },
+                //       child: Text(
+                //         'Sign up',
+                //         style: TextStyle(
+                //             decoration: TextDecoration.underline,
+                //             fontWeight: FontWeight.w500,
+                //             color: Colors.white),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+              ],
             ),
           ),
         ),
@@ -241,7 +240,7 @@ class _MainPageState extends State<AdminSignUp> with ValidationMixin {
       saveEmail();
       Navigator.pushReplacementNamed(context, 'admin');
     } else {
-      _showSnackBar('Login failed!');
+      _showSnackBar('Invalid email or password!!');
     }
   }
 
