@@ -69,8 +69,10 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     fromDate = now.subtract(Duration(days: 30));
 
     toDate = DateTime.now();
-    String fromdatee = formatter.format(fromDate);
-    String uptoDate = formatter.format(toDate);
+    //String fromdatee = formatter.format(fromDate);
+    String fromdatee = "2021-04-09";
+   // String uptoDate = formatter.format(toDate);
+    String uptoDate = "2021-04-15";
     fromDateController = TextEditingController(text: "$fromdatee");
     toDateController = TextEditingController(text: "$uptoDate");
 

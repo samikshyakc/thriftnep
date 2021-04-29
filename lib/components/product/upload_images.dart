@@ -323,16 +323,10 @@ class _UploadProductState extends State<UploadProduct> {
     productPrice = product_priceController.text;
     productdetails = product_details.text;
     _condition = _condition;
-    // _negotiable = _negotiable;
     String seller = Provider.of<EmailProvider>(context, listen: false).email();
-
-    //var category = "Mens Clothing";
     var category = '${widget.category}';
   
     print('$fileName');
-
-    // var jsonData = json.encode(map);
-    // print(jsonData);
 
     var map = {
       'image': base64Image,
@@ -349,7 +343,6 @@ class _UploadProductState extends State<UploadProduct> {
 
 
     var response = await http.post('$UPLOAD_URL', body: map);
-   // print(response.body.toString());
     if (response.body.toString().contains('added')) {
       print('Success');
       Navigator.pop(context);

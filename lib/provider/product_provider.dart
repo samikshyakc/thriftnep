@@ -37,8 +37,7 @@ class ProductProvider extends ChangeNotifier {
     });
     return filteredList;
   }
-
-
+  
   List<Product> filterProduct(String search){
     List<Product> filteredProd = [];
     productList.forEach((product) {

@@ -9,10 +9,8 @@ import 'package:thrift_nep/provider/allOrderProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 import 'package:toast/toast.dart';
 
-
 class AdminOrderWidget extends StatefulWidget {
   final Order orderProduct;
-
 
   AdminOrderWidget(this.orderProduct);
 
@@ -26,14 +24,12 @@ class _AdminOrderWidgetState extends State<AdminOrderWidget> {
     bool visibility = false;
     return Card(
       child: InkWell(
-        onTap: ()
-        {
+        onTap: () {
           print("samikshya");
           setState(() {
             visibility = !visibility;
           });
-        }
-        ,
+        },
         // => Navigator.of(context).push(MaterialPageRoute(
         //   //  here we are passing the value of the product to product details page
         //     builder: (context) => AdminOrderDetails(
@@ -52,15 +48,14 @@ class _AdminOrderWidgetState extends State<AdminOrderWidget> {
         //
         //     ))),
         child: ExpansionTile(
-
-          leading: Image(
-            image: CachedNetworkImageProvider(widget.orderProduct.productImages),
-            width: 50.0,
-            height: 100.0,
-          ),
-          title: Text(widget.orderProduct.productName),
-          subtitle: Column(
-            children: [
+            leading: Image(
+              image:
+                  CachedNetworkImageProvider(widget.orderProduct.productImages),
+              width: 50.0,
+              height: 100.0,
+            ),
+            title: Text(widget.orderProduct.productName),
+            subtitle: Column(children: [
               Row(
                 children: [
                   //       ===product size section==
@@ -69,10 +64,10 @@ class _AdminOrderWidgetState extends State<AdminOrderWidget> {
                     widget.orderProduct.date,
                     style: TextStyle(color: kAppbar),
                   ),
-                  Padding(padding: const EdgeInsets.only(left: 20),),
-
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                  ),
                 ],
-
               ),
 
               //          ======Section for product price=====
@@ -85,103 +80,127 @@ class _AdminOrderWidgetState extends State<AdminOrderWidget> {
                       color: kAppbar,
                       fontWeight: FontWeight.bold),
                 ),
-               ),
-        ]
-          ),
-
-        children: [
-          Divider(
-          color: kAppbar,
-        ),
-        ListTile(
-          title: Text('Product Details'),
-          subtitle: Text(widget.orderProduct.description),
-          // subtitle: Text(
-          // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-              child: Text(
-                "Used For",
-                style: TextStyle(color: Colors.grey),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(widget.orderProduct.usedFor),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-              child: Text(
-                "Product Buyer",
-                style: TextStyle(color: Colors.grey),
+            ]),
+            children: [
+              Divider(
+                color: kAppbar,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(widget.orderProduct.buyer),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-              child: Text(
-                "Delivery Address",
-                style: TextStyle(color: Colors.grey),
+              ListTile(
+                title: Text('Product Details'),
+                subtitle: Text(widget.orderProduct.description),
+                // subtitle: Text(
+                // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(widget.orderProduct.address),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-              child: Text(
-                "Product Condition",
-                style: TextStyle(color: Colors.grey),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Used For",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.usedFor),
+                  )
+                ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: Text(widget.orderProduct.productCondition),
-            )
-          ],
-        ),
-        Row(
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Product Buyer",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.buyer),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Delivery Address",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.address),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                    child: Text(
+                      "Product Condition",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Text(widget.orderProduct.productCondition),
+                  )
+                ],
+              ),
+              Row(
 
-          children: [
-            IconButton(
-              icon: Icon(Icons.done),
-              onPressed: () {
-                dispatchOrder();
-                // approveProd();
-                //   Navigator.pushReplacementNamed(context, 'admin');
-              },
-            ),
-            Padding(padding: EdgeInsets.all(8.0)),
-            IconButton(icon: Icon(Icons.cancel_outlined), onPressed: () {
-              // declineProd();
-              //Navigator.pushReplacementNamed(context, 'admin');
-            })
-          ],
-        )
-          ]
+                children: [
+                  ElevatedButton(
+                    child: Text('Dispatch', style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                      primary: kAppbar,
+                    ),
+                    //icon: Icon(Icons.pic),
+                    onPressed: () {
+                      dispatchOrder();
+                      //  Navigator.pushReplacementNamed(context, 'verify');
+                    },
+                  ),
+                  Padding(padding: EdgeInsets.all(8.0)),
+                  ElevatedButton(
+                    child: Text('Cancel', style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                      primary: kAppbar,
+                    ),
+                    //icon: Icon(Icons.pic),
+                    onPressed: () {
 
-          ),
-        ),
-
+                      //   Navigator.pushReplacementNamed(context, 'verify');
+                    },
+                  ),
+                ],
+              )
+              // Row(
+              //   children: [
+              //     IconButton(
+              //       icon: Icon(Icons.done),
+              //       onPressed: () {
+              //         dispatchOrder();
+              //         // approveProd();
+              //         //   Navigator.pushReplacementNamed(context, 'admin');
+              //       },
+              //     ),
+              //     Padding(padding: EdgeInsets.all(8.0)),
+              //     IconButton(
+              //         icon: Icon(Icons.cancel_outlined),
+              //         onPressed: () {
+              //           // declineProd();
+              //           //Navigator.pushReplacementNamed(context, 'admin');
+              //         })
+              //   ],
+              // )
+            ]),
+      ),
     );
   }
 

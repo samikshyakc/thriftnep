@@ -50,101 +50,201 @@ class _PayState extends State<Pay> {
           iconTheme: IconThemeData(color: Colors.white),
           actions: [],
         ),
-        body: Row(
+        body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RaisedButton(
-                child: Text("Khalti Digital Wallet"),
-                color: kAppbar,
-                textColor: Colors.white24,
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          // title: Text("Are you sure?"),
-                          //content: Text('Logout?'),
-                          title: Text(
-                              'Total: $totalPrice \n Enter your delivery address'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                child: ListTile(
+                  tileColor: kAppbar,
+                  title: Text('Khalti Digital Wallet',style: TextStyle(color: Colors.white),),
+                 onTap: (){
+                   showDialog(
+                       context: context,
+                       builder: (context) {
+                         return AlertDialog(
+                           // title: Text("Are you sure?"),
+                           //content: Text('Logout?'),
+                           title: Text(
+                               'Total: $totalPrice \n Enter your delivery address'),
 
-                          content: TextField(
-                            // hint: 'Delivery Address',
-                            // validator: validateEmail,
-                            controller: addressController,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.text,
-                            // issecured: false,
-                          ),
-                          actions: [
-                            FlatButton(
-                              onPressed: () async {
-                                onLoading(context);
-                                openKhalti();
-                                Navigator.pop(context);
-                                // Navigator.pushNamedAndRemoveUntil(
-                                //     context, 'confirmOrder', (route) => false);
-                              },
-                              child: Text('Confirm'),
-                            ),
-                            FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('NO')),
-                          ],
-                        );
-                      });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0))),
-            RaisedButton(
-                child: Text("Cash On Delivery"),
-                color: kAppbar,
-                textColor: Colors.white24,
-                // onPressed: (){
-                // //  cashOnDelivery('COD');
-                //  // openKhalti();
-                // },
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          // title: Text("Are you sure?"),
-                          //content: Text('Logout?'),
-                          title: Text(
-                              'Total: $totalPrice \n Enter your delivery address'),
+                           content: TextField(
+                             // hint: 'Delivery Address',
+                             // validator: validateEmail,
+                             controller: addressController,
+                             textInputAction: TextInputAction.done,
+                             keyboardType: TextInputType.text,
+                             // issecured: false,
+                           ),
+                           actions: [
+                             FlatButton(
+                               onPressed: () async {
+                                 onLoading(context);
+                                 openKhalti();
+                                 Navigator.pop(context);
+                                 // Navigator.pushNamedAndRemoveUntil(
+                                 //     context, 'confirmOrder', (route) => false);
+                               },
+                               child: Text('Confirm'),
+                             ),
+                             FlatButton(
+                                 onPressed: () {
+                                   Navigator.pop(context);
+                                 },
+                                 child: Text('NO')),
+                           ],
+                         );
+                       });
+                 } ,
+                 // subtitle: Text(widget.product.description),
+                  // subtitle: Text(
+                  // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                child: ListTile(
+                  tileColor: kAppbar,
+                  title: Text('Cash On Delivery',style: TextStyle(color: Colors.white),),
+                  onTap: (){
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            // title: Text("Are you sure?"),
+                            //content: Text('Logout?'),
+                            title: Text(
+                                'Total: $totalPrice \n Enter your delivery address'),
 
-                          content: CustomTextField(
-                            hint: 'Delivery Address',
-                            // validator: validateEmail,
-                            controller: addressController,
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.text,
-                            issecured: false,
-                          ),
-                          actions: [
-                            FlatButton(
-                              onPressed: () async {
-                                onLoading(context);
-                                cashOnDelivery('COD');
-                                Navigator.pop(context);
-                                // Navigator.pushNamedAndRemoveUntil(
-                                //     context, 'confirmOrder', (route) => false);
-                              },
-                              child: Text('Confirm'),
+                            content: CustomTextField(
+                              hint: 'Delivery Address',
+                              // validator: validateEmail,
+                              controller: addressController,
+                              textInputAction: TextInputAction.done,
+                              keyboardType: TextInputType.text,
+                              issecured: false,
                             ),
-                            FlatButton(
-                                onPressed: () {
+                            actions: [
+                              FlatButton(
+                                onPressed: () async {
+                                  onLoading(context);
+                                  cashOnDelivery('COD');
                                   Navigator.pop(context);
+                                  // Navigator.pushNamedAndRemoveUntil(
+                                  //     context, 'confirmOrder', (route) => false);
                                 },
-                                child: Text('NO')),
-                          ],
-                        );
-                      });
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)))
+                                child: Text('Confirm'),
+                              ),
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('NO')),
+                            ],
+                          );
+                        });
+                  },
+                  // subtitle: Text(widget.product.description),
+                  // subtitle: Text(
+                  // 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+                ),
+              ),
+            ),
+            // RaisedButton(
+            //     child: Text("Khalti Digital Wallet"),
+            //     color: kAppbar,
+            //     textColor: Colors.white,
+            //     onPressed: () {
+            //       showDialog(
+            //           context: context,
+            //           builder: (context) {
+            //             return AlertDialog(
+            //               // title: Text("Are you sure?"),
+            //               //content: Text('Logout?'),
+            //               title: Text(
+            //                   'Total: $totalPrice \n Enter your delivery address'),
+            //
+            //               content: TextField(
+            //                 // hint: 'Delivery Address',
+            //                 // validator: validateEmail,
+            //                 controller: addressController,
+            //                 textInputAction: TextInputAction.done,
+            //                 keyboardType: TextInputType.text,
+            //                 // issecured: false,
+            //               ),
+            //               actions: [
+            //                 FlatButton(
+            //                   onPressed: () async {
+            //                     onLoading(context);
+            //                     openKhalti();
+            //                     Navigator.pop(context);
+            //                     // Navigator.pushNamedAndRemoveUntil(
+            //                     //     context, 'confirmOrder', (route) => false);
+            //                   },
+            //                   child: Text('Confirm'),
+            //                 ),
+            //                 FlatButton(
+            //                     onPressed: () {
+            //                       Navigator.pop(context);
+            //                     },
+            //                     child: Text('NO')),
+            //               ],
+            //             );
+            //           });
+            //     },
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: new BorderRadius.circular(30.0))),
+            // RaisedButton(
+            //     child: Text("Cash On Delivery"),
+            //     color: kAppbar,
+            //     textColor: Colors.white24,
+            //     // onPressed: (){
+            //     // //  cashOnDelivery('COD');
+            //     //  // openKhalti();
+            //     // },
+            //     onPressed: () {
+            //       showDialog(
+            //           context: context,
+            //           builder: (context) {
+            //             return AlertDialog(
+            //               // title: Text("Are you sure?"),
+            //               //content: Text('Logout?'),
+            //               title: Text(
+            //                   'Total: $totalPrice \n Enter your delivery address'),
+            //
+            //               content: CustomTextField(
+            //                 hint: 'Delivery Address',
+            //                 // validator: validateEmail,
+            //                 controller: addressController,
+            //                 textInputAction: TextInputAction.done,
+            //                 keyboardType: TextInputType.text,
+            //                 issecured: false,
+            //               ),
+            //               actions: [
+            //                 FlatButton(
+            //                   onPressed: () async {
+            //                     onLoading(context);
+            //                     cashOnDelivery('COD');
+            //                     Navigator.pop(context);
+            //                     // Navigator.pushNamedAndRemoveUntil(
+            //                     //     context, 'confirmOrder', (route) => false);
+            //                   },
+            //                   child: Text('Confirm'),
+            //                 ),
+            //                 FlatButton(
+            //                     onPressed: () {
+            //                       Navigator.pop(context);
+            //                     },
+            //                     child: Text('NO')),
+            //               ],
+            //             );
+            //           });
+            //     },
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: new BorderRadius.circular(30.0)))
 
             //  Text('Total Price $totalPrice', style: TextStyle(color: Colors.black, fontSize: 20),),
           ],

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:thrift_nep/components/user_profile/user.dart';
 import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
-import 'package:thrift_nep/provider/allUserProvider.dart';
-import 'package:thrift_nep/provider/emaiProvider.dart';
 import 'package:thrift_nep/widgets/loading_indicator.dart';
 
 
@@ -140,68 +137,73 @@ class _UsersWidgetState extends State<UsersWidget> {
 
                             ),
                           ),
-                          TextButton(
-                              child: Text("Change status", style: TextStyle(decoration: TextDecoration.underline,),),
-                            onPressed: (){
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      // title: Text("Are you sure?"),
-                                      //content: Text('Logout?'),
-                                      title: Text(' Enter your password'),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                  child: Text("Change status of user", style: TextStyle(decoration: TextDecoration.underline,color: kAppbar),),
+                                onPressed: (){
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          // title: Text("Are you sure?"),
+                                          //content: Text('Logout?'),
+                                          title: Text('Choose the status'),
 
-                                      content:SizedBox(
-                                        height: 55,
-                                        width: 150,
-                                        child: DropdownButtonFormField(
-                                          decoration: InputDecoration(
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.circular(10.0))),
-                                          value:widget.users.status == '1'? "active": "inactive",
-                                          onChanged: (newValue) {
-                                            setState(() {
-                                              activeStatus = newValue;
-                                            });
-                                          },
-                                          items: activity.map((valueItem) {
-                                            return DropdownMenuItem(
-                                              value: valueItem,
-                                              child: Text(valueItem),
-                                            );
-                                          }).toList(),
-                                        ),
-                                      ),
-                                      actions: [
-                                        FlatButton(
-                                          onPressed: () async {
+                                          content:SizedBox(
+                                            height: 55,
+                                            width: 150,
+                                            child: DropdownButtonFormField(
+                                              decoration: InputDecoration(
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  border: OutlineInputBorder(
+                                                      borderRadius: BorderRadius.circular(10.0))),
+                                              value:widget.users.status == '1'? "active": "inactive",
+                                              onChanged: (newValue) {
+                                                setState(() {
+                                                  activeStatus = newValue;
+                                                });
+                                              },
+                                              items: activity.map((valueItem) {
+                                                return DropdownMenuItem(
+                                                  value: valueItem,
+                                                  child: Text(valueItem),
+                                                );
+                                              }).toList(),
+                                            ),
+                                          ),
+                                          actions: [
+                                            FlatButton(
+                                              onPressed: () async {
 
-                                           onLoading(context);
-                                          //  activeStatus = activeStatus;
+                                               onLoading(context);
+                                              //  activeStatus = activeStatus;
 
-                                            changeStatus();
+                                                changeStatus();
 
-                                            //verify();
+                                                //verify();
 
-                                           Navigator.pop(context);
-                                           Navigator.pop(context);
-                                           statusController.text = activeStatus;
-                                            // Navigator.pushNamedAndRemoveUntil(
-                                            //     context, 'confirmOrder', (route) => false);
-                                          },
-                                          child: Text('Confirm'),
-                                        ),
-                                        FlatButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('NO')),
-                                      ],
-                                    );
-                                  });
-                            },
+                                               Navigator.pop(context);
+                                               Navigator.pop(context);
+                                               statusController.text = activeStatus;
+                                                // Navigator.pushNamedAndRemoveUntil(
+                                                //     context, 'confirmOrder', (route) => false);
+                                              },
+                                              child: Text('Confirm'),
+                                            ),
+                                            FlatButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('NO')),
+                                          ],
+                                        );
+                                      });
+                                },
+                              ),
+                            ],
                           )
                         ]
                   ),

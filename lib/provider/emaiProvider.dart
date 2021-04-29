@@ -6,22 +6,17 @@ import 'package:http/http.dart' as http;
 import 'package:thrift_nep/constants/urls.dart';
 
 class EmailProvider extends ChangeNotifier {
-
- // List<Users> users = [];
-  String id="";
+  String id = "";
   String name = "";
-  String phoneNumber ="";
+  String phoneNumber = "";
   String _email = '';
   String status = "";
   String email() => _email;
-   String _name ="";
+
   getEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
     _email = prefs.getString('email') ?? '';
     fetchUser();
-    //return email = await getValue() ?? "";
-    //return email;
   }
 
   Future<void> fetchUser() async {
@@ -33,13 +28,10 @@ class EmailProvider extends ChangeNotifier {
       result.forEach((p) {
         var user = Users.fromJson(p);
         name = user.name;
-        phoneNumber= user.phoneNumber;
+        phoneNumber = user.phoneNumber;
         status = user.status.toString();
         id = user.userId.toString();
-
       });
     }
-
-   // notifyListeners();
   }
 }

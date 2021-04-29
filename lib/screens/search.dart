@@ -32,12 +32,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
       print('I am being printed : \n $result');
 
-      // result.forEach((p) {
-      //   var note = Product.fromJson(p);
-      // //  print(note);
-      //   prodList.add(note);
-      // }
-     // );
     }
   }
 
@@ -66,13 +60,6 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (value) {
                 value == "" ?
                 fetchProduct(null): fetchProduct(value);
-                // setState(() {
-                //   prodList = [];
-                //   prodList =
-                //       Provider.of<ProductProvider>(context, listen: false)
-                //           .filterProduct(value);
-                // }
-                //);
               },
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -87,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
          child: CircularProgressIndicator(),
        ):
        //Text("heyy")
-       prodList != null?  ListView.builder(
+       prodList == null?  ListView.builder(
            itemCount: prodList == null ? 0 : prodList.length,
            itemBuilder: (context, i) {
              return SearchedItems(i, context);
@@ -119,11 +106,6 @@ class _SearchScreenState extends State<SearchScreen> {
               seller:  prodList[i]['seller'],
 
             ))),
-        // title: Text("ProductName : " +
-        //     prodList[i]['product_name'] +
-        //     " " +
-        //     "\n Price" +
-        //     prodList[i]['product_price']),
 
           leading: Image(
             image: CachedNetworkImageProvider(prodList[i]['product_images']),

@@ -71,7 +71,23 @@ class OrderWidget extends StatelessWidget {
                         color: kAppbar,
                         fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
+                Row(
+                  children: [
+                    //       ===product size section==
+                    Text("Ordered Status:"),
+                    orderProduct.status == "1"?Text(
+                      "Order Placed",
+                      style: TextStyle(color: kAppbar),
+                    ):Text(
+                      "Order Delivered",
+                      style: TextStyle(color: kAppbar),
+                    ) ,
+                    Padding(padding: const EdgeInsets.only(left: 20),),
+
+                  ],
+
+                ),
               ],
             ),
           ),

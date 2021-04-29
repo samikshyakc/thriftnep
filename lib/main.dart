@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryLightColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: 'admin',
+        initialRoute: 'splash',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
           'splash': (context) => SplashScreen(),

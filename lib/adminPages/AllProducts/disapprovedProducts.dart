@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thrift_nep/adminPages/AllProducts/disapprovedWidget.dart';
 import 'package:thrift_nep/components/product/product.dart';
+import 'package:thrift_nep/constants/colors.dart';
 import 'package:thrift_nep/constants/urls.dart';
 import 'package:thrift_nep/provider/disapprovedProduct_provider.dart';
 
@@ -49,7 +50,13 @@ class _DisapprovedProductsState extends State<DisapprovedProducts> {
   Widget build(BuildContext context) {
     productList = Provider.of<DisapprovedProductProvider>(context, listen: true).allDisProduct;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: kAppbar,
+        title: Text("Disapproved Products", style: TextStyle(color: Colors.white),),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back, color: Colors.white,),
+        // ),
+      ),
       body: productList.length == 0? Center(child: Text("No new products", style:TextStyle(color: Colors.black),)): SingleChildScrollView(
         child: (!isLoading)?ListView.builder(
             physics: NeverScrollableScrollPhysics(),

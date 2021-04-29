@@ -47,12 +47,12 @@ class AdminOrderScreen extends StatelessWidget {
                             children: <Widget>[
                               Items(
                                   "New Orders",
-                                  "assets/orders.png",
+                                  Icon(Icons.new_releases, size: 100,color: kAppbar,),
                                   context,
                                   "adminAllOrder"),
-                              Items("Dispatched", "assets/dispatched.png",
+                              Items("Dispatched", Icon(Icons.airport_shuttle_outlined, size: 100,color: kAppbar,),
                                   context, "dispatchOrder"),
-                              Items("Deliverd", "assets/delivered.png",
+                              Items("Delivered",  Icon(Icons.done_outline_rounded, size: 100,color: kAppbar,),
                                   context, "deliverOrder"),
                               // Items("Orders", "assets/images/water.jpg",
                               //     context, "dispatchOrder"),
@@ -69,7 +69,7 @@ class AdminOrderScreen extends StatelessWidget {
     );
   }
 
-  Items(String title, String imgPath, BuildContext context, String pageName) {
+  Items(String title, Icon icon, BuildContext context, String pageName) {
     return Card(
       elevation: 12.0,
       margin: EdgeInsets.all(8.0),
@@ -102,14 +102,15 @@ class AdminOrderScreen extends StatelessWidget {
                 child: Container(
                   height: 120,
                   width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imgPath),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(1.0), BlendMode.softLight),
-                    ),
-                  ),
+                  child: icon,
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //     image: AssetImage(imgPath),
+                  //     fit: BoxFit.cover,
+                  //     colorFilter: ColorFilter.mode(
+                  //         Colors.black.withOpacity(1.0), BlendMode.softLight),
+                  //   ),
+                  // ),
                 ),
               ),
               SizedBox(

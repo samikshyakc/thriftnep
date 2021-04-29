@@ -134,22 +134,50 @@ class _DispatchOrderWidgetState extends State<DispatchOrderWidget> {
                   )
                 ],
               ),
+              // Row(
+              //
+              //   children: [
+              //     IconButton(
+              //       icon: Icon(Icons.done),
+              //       onPressed: () {
+              //         deliveredOrder();
+              //         // approveProd();
+              //         //   Navigator.pushReplacementNamed(context, 'admin');
+              //       },
+              //     ),
+              //     Padding(padding: EdgeInsets.all(8.0)),
+              //     IconButton(icon: Icon(Icons.cancel_outlined), onPressed: () {
+              //       // declineProd();
+              //       //Navigator.pushReplacementNamed(context, 'admin');
+              //     })
+              //   ],
+              // )
               Row(
 
                 children: [
-                  IconButton(
-                    icon: Icon(Icons.done),
+                  ElevatedButton(
+                    child: Text('Delivered', style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                      primary: kAppbar,
+                    ),
+                    //icon: Icon(Icons.pic),
                     onPressed: () {
                       deliveredOrder();
-                      // approveProd();
-                      //   Navigator.pushReplacementNamed(context, 'admin');
+                      //  Navigator.pushReplacementNamed(context, 'verify');
                     },
                   ),
                   Padding(padding: EdgeInsets.all(8.0)),
-                  IconButton(icon: Icon(Icons.cancel_outlined), onPressed: () {
-                    // declineProd();
-                    //Navigator.pushReplacementNamed(context, 'admin');
-                  })
+                  ElevatedButton(
+                    child: Text('Cancel', style: TextStyle(color: Colors.white),),
+                    style: ElevatedButton.styleFrom(
+                      primary: kAppbar,
+                    ),
+                    //icon: Icon(Icons.pic),
+                    onPressed: () {
+
+                      //   Navigator.pushReplacementNamed(context, 'verify');
+                    },
+                  ),
                 ],
               )
             ]

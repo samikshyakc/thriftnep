@@ -56,7 +56,7 @@ class _CartProductsState extends State<CartProducts> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 return CartWidget(cartproductList[index]);
-              }): Center(child: Text("No prod")),
+              }): Center(child: Text("Cart is empty!!")),
         ),
         bottomNavigationBar: Container(
           color: Colors.white,

@@ -47,12 +47,12 @@ class AdminProductScreen extends StatelessWidget {
                             children: <Widget>[
                               Items(
                                   "New",
-                                  "assets/orders.png",
+                                  Icon(Icons.new_releases, size: 100,color: kAppbar,),
                                   context,
                                   "verify"),
-                              Items("Approved", "assets/dispatched.png",
+                              Items("Approved", Icon(Icons.verified, size: 100,color: kAppbar,),
                                   context, "adminAllProduct"),
-                              Items("Disapproved", "assets/delivered.png",
+                              Items("Disapproved", Icon(Icons.do_disturb_on_rounded, size: 100,color: kAppbar,),
                                   context, "disapprovedProducts"),
                               // Items("Orders", "assets/images/water.jpg",
                               //     context, "dispatchOrder"),
@@ -69,7 +69,7 @@ class AdminProductScreen extends StatelessWidget {
     );
   }
 
-  Items(String title, String imgPath, BuildContext context, String pageName) {
+  Items(String title, Icon icon, BuildContext context, String pageName) {
     return Card(
       elevation: 12.0,
       margin: EdgeInsets.all(8.0),
@@ -102,14 +102,15 @@ class AdminProductScreen extends StatelessWidget {
                 child: Container(
                   height: 120,
                   width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imgPath),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(1.0), BlendMode.softLight),
-                    ),
-                  ),
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //     image: AssetImage(imgPath),
+                  //     fit: BoxFit.cover,
+                  //     colorFilter: ColorFilter.mode(
+                  //         Colors.black.withOpacity(1.0), BlendMode.softLight),
+                  //   ),
+                  // ),
+                  child: icon,
                 ),
               ),
               SizedBox(

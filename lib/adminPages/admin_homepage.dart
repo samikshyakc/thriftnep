@@ -50,7 +50,7 @@ class AdminHomeScreen extends StatelessWidget {
                             //content: Text('Logout?'),
                             title:
                             Text('Do you want to exit this application?'),
-                            content: Text('We hate to see you leave...'),
+                            //content: Text('We hate to see you leave...'),
                             actions: [
                               FlatButton(
                                 onPressed: () async {
@@ -58,7 +58,7 @@ class AdminHomeScreen extends StatelessWidget {
                                   await SharedPreferences.getInstance();
                                   prefs.setString('email', "");
                                   Navigator.pushNamedAndRemoveUntil(
-                                      context, 'login', (route) => false);
+                                      context, 'adminLogin', (route) => false);
                                 },
                                 child: Text('YES'),
                               ),
@@ -100,14 +100,14 @@ class AdminHomeScreen extends StatelessWidget {
                             children: <Widget>[
                               Items(
                                   "Prodcuts",
-                                  "assets/images/dietlogo.png",
+                                  Icon(Icons.shopping_bag, size: 100,color: kAppbar,),
                                   context,
                                   "productScreen"),
                               // Items("All Products", "assets/images/bmi.png",
                               //     context, "adminAllProduct"),
-                              Items("Orders", "assets/orders.png",
+                              Items("Orders", Icon(Icons.shopping_cart, size: 100,color: kAppbar,),
                                   context, "adminOrders"),
-                              Items("Users", "assets/images/water.jpg",
+                              Items("Users", Icon(Icons.person, size: 100,color: kAppbar,),
                                   context, "adminUsers"),
                             ],
                           ),
@@ -122,7 +122,7 @@ class AdminHomeScreen extends StatelessWidget {
     );
   }
 
-  Items(String title, String imgPath, BuildContext context, String pageName) {
+  Items(String title, Icon icon, BuildContext context, String pageName) {
     return Card(
       elevation: 12.0,
       margin: EdgeInsets.all(8.0),
@@ -155,14 +155,15 @@ class AdminHomeScreen extends StatelessWidget {
                 child: Container(
                   height: 120,
                   width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imgPath),
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(1.0), BlendMode.softLight),
-                    ),
-                  ),
+                  child: icon,
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //     image: AssetImage(imgPath),
+                  //     fit: BoxFit.cover,
+                  //     colorFilter: ColorFilter.mode(
+                  //         Colors.black.withOpacity(1.0), BlendMode.softLight),
+                  //   ),
+                  // ),
                 ),
               ),
               SizedBox(

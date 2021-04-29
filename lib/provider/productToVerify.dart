@@ -70,15 +70,7 @@ Future<void> fetchProductToVerify() async {
       return false;
     }
   }
-// Future<String> save(String title, String details) async {
-//   var url = '$ADDNOTE_URL?title=$title&details=$details';
-//   var response = await http.get(url);
-//   if (response.body.contains("Created")) {
-//     productList = [];
-//     fetchNote();
-//   }
-//   return response.body;
-// }
+
 }
 
 
